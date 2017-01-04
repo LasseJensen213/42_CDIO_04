@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Desktop_GUI</name>
+			<type>2</type>
+			<location>C:/Users/lasse/Desktop/DTU/1 semester/Java/Workspace opgaver/Desktop_GUI</location>
+		</link>
+	</linkedResources>
 </projectDescription>
