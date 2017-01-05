@@ -1,12 +1,10 @@
 package player;
 
 import java.util.ArrayList;
-import gui.PlayerCreationGUI;
 
 public class PlayerManager {
 	
 	private ArrayList<Player>playerList;
-	private PlayerCreationGUI playerCreateGUI;
 
 	private int nPlayers;
 	
@@ -14,7 +12,6 @@ public class PlayerManager {
 	{
 		this.playerList = new ArrayList<Player>();
 		this.playerList.clear();
-		this.playerCreateGUI = new PlayerCreationGUI();	
 		
 	
 	}
@@ -49,23 +46,7 @@ public class PlayerManager {
 	
 	
 	
-	public void initPlayers()
-	{
-		//First choose number of players
-		nPlayers = playerCreateGUI.chooseNPlayers();
-		
-		for(int i = 0; i<nPlayers;i++)
-		{
-			String name = playerCreateGUI.chooseName(this);
-			String color = playerCreateGUI.chooseColor();//Chooses the color for the car
-			addPlayer(name);
-			playerList.get(i).setCar(playerCreateGUI.getColor(color));
-			playerCreateGUI.addPlayerToBoard(playerList.get(i));
-				
-			
-		}
-		
-	}
+	
 	
 	
 	/**

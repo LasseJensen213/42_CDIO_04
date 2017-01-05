@@ -11,8 +11,8 @@ public abstract class Ownable extends Field {
 	private boolean pawned;
 	
 	
-	public Ownable(String desc, String subtext, String title, Image i, int pos, int price, int rent) {
-		super(desc,subtext,title,i,pos);
+	public Ownable(String desc, String subtext, String title, int pos, int price, int rent) {
+		super(desc,subtext,title,pos);
 		this.price = price;
 		this.rent = rent;
 		pawned = false;
@@ -20,4 +20,28 @@ public abstract class Ownable extends Field {
 		
 	}
 
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public int getRent() {
+		return rent;
+	}
+
+
+	public Player getOwner() {
+		return owner;
+	}
+
+
+	public boolean isPawned() {
+		return pawned;
+	}
+
+	
+	
+	
+	
 }
