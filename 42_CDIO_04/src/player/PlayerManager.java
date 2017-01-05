@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import gui.PlayerCreationGUI;
 
 public class PlayerManager {
-
+	
 	private ArrayList<Player>playerList;
 	private PlayerCreationGUI playerCreateGUI;
 
