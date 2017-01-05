@@ -108,7 +108,7 @@ public class Stringbanks_Fields {
 	
 	
 	//Fleet information
-	private String field24Name = "Helsingør-Helsingborg";
+	private String field24Name = "Helsingør- <br> Helsingborg";
 	private String field24Description = "";
 	private String field24subtext = "";
 	
@@ -116,11 +116,11 @@ public class Stringbanks_Fields {
 	private String field25Description = "";
 	private String field25subtext = "";
 	
-	private String field26Name = "Gedser-Rostock";
+	private String field26Name = "Gedser- <br> Rostock";
 	private String field26Description = "";
 	private String field26subtext = "";
 	
-	private String field27Name = "Rødby-Puttgarden";
+	private String field27Name = "Rødby- <br> Puttgarden";
 	private String field27Description = "";
 	private String field27subtext = "";
 
@@ -299,6 +299,11 @@ public class Stringbanks_Fields {
 		return field34subtext;
 	}
 
+	
+	/**
+	 * Jail Name
+	 * @return field30Name
+	 */
 	public String getField30Name() {
 		return field30Name;
 	}

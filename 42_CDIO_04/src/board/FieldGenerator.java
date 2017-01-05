@@ -96,7 +96,7 @@ public class FieldGenerator {
 
 	public static void initFgColor() {
 		for(int i = 0;i<fgColors.length;i++) {
-			fgColors[i] = Color.GREEN;
+			fgColors[i] = Color.BLACK;
 		}
 	}
 	public static void initTerritoryFields() {

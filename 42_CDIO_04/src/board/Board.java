@@ -96,7 +96,7 @@ public class Board {
 				subtext = FieldGenerator.getGoToJailField().getSubtext();
 				title = FieldGenerator.getGoToJailField().getTitle();
 				
-				fields[i] = new Brewery.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setPicture("").setBgColor(bgColor).setFgColor(fgColor).build();
+				fields[i] = new Jail.Builder().setDescription(desc).setSubText(title).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).build();
 	
 			}
 			else if(FieldGenerator.getJailField().getFieldPosition()==i) {
@@ -104,7 +104,8 @@ public class Board {
 				subtext = FieldGenerator.getJailField().getSubtext();
 				title = FieldGenerator.getJailField().getTitle();
 				
-				fields[i] = new Jail.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).setPicture("src/Images/questionmark.jpg").build();
+				
+				fields[i] = new Jail.Builder().setDescription(desc).setSubText(title).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).build();
 						
 			}
 			else if(FieldGenerator.getParkingLotField().getFieldPosition()==i) {
