@@ -3,14 +3,14 @@ package player;
 import java.util.ArrayList;
 import gui.PlayerCreationGUI;
 
-public class PlayerManager {
+public class PlayerList {
 	
 	private ArrayList<Player>playerList;
 	private PlayerCreationGUI playerCreateGUI;
 
 	private int nPlayers;
 	
-	public PlayerManager() 
+	public PlayerList() 
 	{
 		this.playerList = new ArrayList<Player>();
 		this.playerList.clear();
