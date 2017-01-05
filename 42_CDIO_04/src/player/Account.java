@@ -11,6 +11,7 @@ public class Account {
 	
 	public boolean withdraw(int amount)
 	{
+		
 		this.balance -= amount;
 		return true;
 	}
@@ -27,6 +28,21 @@ public class Account {
 
 	public void setBalance(int balance) {
 		this.balance = balance;
+	}
+	/**
+	 * Transfers the amount to the Account parameter
+	 * @param amount
+	 * @param a
+	 */
+	public void transfer(int amount, Account a)
+	{
+		//checks if the amount is greater than this accounts balance, since only available funds can be transfered
+		if(amount>this.balance)
+		{
+			amount = this.balance;
+		}
+		withdraw(amount);
+		a.deposit(amount);
 	}
 	
 	

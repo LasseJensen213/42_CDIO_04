@@ -9,17 +9,25 @@ public class Player
 	private String name;
 	private Account account;
 	private boolean broke;
+	private boolean jailed;
+	private boolean passedStart;
 	private int playerPos;
-	private int nFleetsOwned;
-	private int nLaborOwned;
-	private int lastDiceResult; // Bruges til labor camp
+	private int equalFaceValue;
+	private int timeInJail;
+	private Property property;
+	
 
-	public Player(String name)
+	public Player(String name , Car car , int startBalance)
 	{
 		this.name = name;
+		this.timeInJail = 0;
+		this.equalFaceValue=0;
 		this.broke = false;
-		account = new Account(30000);
-		car = new Car.Builder().build();//Default random coloured car
+		this.jailed = false;
+		this.passedStart = false;
+		account = new Account(startBalance);
+		this.car = car;
+		this.property = new Property();
 		this.playerPos = 0;
 	}
 	
@@ -55,36 +63,6 @@ public class Player
 		this.playerPos = playerPos;
 	}
 	
-	public int getFleetsOwned()
-	{
-		return nFleetsOwned;
-	}
-	
-	public int getLaborOwned()
-	{
-		return nLaborOwned;
-	}
-	
-	public void setFleetsOwned(int nFleetsOwned)
-	{
-		this.nFleetsOwned = nFleetsOwned;
-	}
-	
-	public void setLaborOwned(int nLaborOwned)
-	{
-		this.nLaborOwned = nLaborOwned;
-	}
-	
-	public int getDiceResult()
-	{
-		return this.lastDiceResult;
-	}
-	
-	public void setDiceResult(int diceResult)
-	{
-		this.lastDiceResult = diceResult;
-	}
-	
 	public Car getCar()
 	{
 		return car;
@@ -95,9 +73,41 @@ public class Player
 	 * Creates new car object with the color that's input
 	 * @param color
 	 */
-	public void setCar(Color color)
+	public void setCar(Car car)
 	{
-		car = new Car.Builder().primaryColor(color).build();
+		this.car = car;
+	}
+
+	public boolean isJailed() {
+		return jailed;
+	}
+
+	public void setJailed(boolean jailed) {
+		this.jailed = jailed;
+	}
+
+	public boolean isPassedStart() {
+		return passedStart;
+	}
+
+	public void setPassedStart(boolean passedStart) {
+		this.passedStart = passedStart;
+	}
+
+	public int getTimeInJail() {
+		return timeInJail;
+	}
+
+	public void setTimeInJail(int timeInJail) {
+		this.timeInJail = timeInJail;
+	}
+
+	public Property getProperty() {
+		return property;
+	}
+
+	public void setProperty(Property property) {
+		this.property = property;
 	}
 	
 	
