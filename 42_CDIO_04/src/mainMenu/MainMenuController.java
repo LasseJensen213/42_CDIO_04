@@ -30,7 +30,9 @@ public class MainMenuController {
 				if(gui.confirmInput())
 					break;
 			}
+			
 		}
+		gui.close();
 	}
 
 }
