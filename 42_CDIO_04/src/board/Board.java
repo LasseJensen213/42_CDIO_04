@@ -67,7 +67,7 @@ public class Board {
 				fgColor = FieldGenerator.getFgColors(i);
 				bgColor = FieldGenerator.getBgColors(i);
 				
-				fields[i] = new Brewery.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).setPicture("").setRent("rent").build();
+				fields[i] = new Brewery.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).setRent("rent").build();
 				breweryReached++;
 			}
 			
