@@ -1,5 +1,6 @@
 package game;
 
+import field.Ownable;
 import field.Territory;
 import player.Player;
 import player.PlayerList;
@@ -26,17 +27,21 @@ public class PropertyController {
 			String[] options = new String[0];
 			Territory[] validHousePlacements = getValidHousePlacements(player);
 			Territory[] validHotelUpgrades = getValidHotelsUpgrades(player);
-			
+			Player[] validTradePlayers = validPlayersToTradeWith(player);
+
 			if(validHousePlacements.length>0 && housesUsed<MAX_HOUSES && player.getAccount().getBalance()>2000)
 				options = (String[]) addToArray(options,"Køb huse");
-			
+
 			if(validHotelUpgrades.length>0 && hotelsUsed < MAX_HOTELS && player.getAccount().getBalance()>5000)
 				options = (String[]) addToArray(options,"Køb hoteller");
-			
+
+			if(canTrade(player) && validTradePlayers.length>0)
+				options = (String[]) addToArray(options, "Byt grunde");
+
 			options = (String[]) addToArray(options,"Gå videre");
-			
+
 			String choice = gui.chooseWhatToBuy(options);
-			
+
 			if(choice.equals("Køb huse"))
 			{
 				buyHouse(player);
@@ -45,12 +50,16 @@ public class PropertyController {
 			{
 				buyHotel(player);
 			}
+			else if(choice.equals("Byt grunde"))
+			{
+				tradeWithPlayer(player);
+			}
 			else if(choice.equals("Gå videre"))
 			{
 				break;
 			}
 		}
-		
+
 	}
 	public void buyHouse(Player player)
 	{
@@ -66,9 +75,9 @@ public class PropertyController {
 				}
 			}
 			options = (String[]) addToArray(options, "Gå tilbage");
-			
+
 			String choice = gui.chooseWhereToBuyHouses(options);
-			
+
 			if(choice.equals("Gå tilbage"))
 				break;
 			for(int i = 0; i<validFields.length;i++)
@@ -82,12 +91,12 @@ public class PropertyController {
 					gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
 				}
 			}
-			
+
 		}
-		
-		
+
+
 	}
-	
+
 	public void buyHotel(Player player)
 	{
 		while(true)
@@ -101,9 +110,9 @@ public class PropertyController {
 					options = (String[]) addToArray(options, t.getTitle());
 				}
 			}
-			
+
 			options = (String[]) addToArray(options, "Gå tilbage");
-			
+
 			String choice = gui.chooseWhereToUpgradeHotel(options);
 			if(choice.equals("Gå tilbage"))
 			{
@@ -123,16 +132,76 @@ public class PropertyController {
 				}
 			}
 		}
-		
-		
+
+
+
+	}
+
+	public void tradeWithPlayer(Player player)
+	{
+		while(true)
+		{
+			Player[] players = validPlayersToTradeWith(player);
+			String[] options = new String[0];
+			for(int i = 0; i<players.length;i++)
+			{
+				options = (String[]) addToArray(options,players[i].getName());
+			}
+			options = (String[]) addToArray(options,"Gå tilbage");
+
+			String choice = gui.chooseWhoToTradeWith(options);
+			if(choice.equals("Gå tilbage"))
+			{
+				break;
+			}
+			for(int i = 0; i<players.length;i++)
+			{
+				if(choice.equals(players[i].getName()))
+				{
+					Ownable yourField = chooseAssetForTrade(player);
+					if(yourField!=null){
+						Ownable otherPlayersField = chooseAssetForTrade(players[i]);
+						if(otherPlayersField!=null)
+						{
+							if(gui.confirmTrade(players[i].getName(),otherPlayersField.getTitle(),yourField.getTitle()))
+							{
+								player.getProperty().removeField(yourField);
+								player.getProperty().addField(otherPlayersField);
+								gui.setOwner(player.getName(), otherPlayersField.getFieldPosition());
+								players[i].getProperty().removeField(otherPlayersField);
+								players[i].getProperty().addField(yourField);
+								gui.setOwner(players[i].getName(), yourField.getFieldPosition());
+							}
+						}
+					}
+					
+				}
+			}
+		}	
+	}
+
+	public Ownable chooseAssetForTrade(Player player)
+	{
+		String[] options = new String[0];
+		Ownable[] assets = tradableAssets(player); 
+		for(Ownable o :assets)
+		{
+			options = (String[]) addToArray(options, o.getTitle());
+		}
+		options = (String[]) addToArray(options, "Gå tilbage");
+
+		String choice = gui.chooseWhatToTradeWith(options, player.getName());
+
+		for(int i = 0; i<assets.length;i++)
+		{
+			if(assets[i].getTitle().equals(choice))
+				return assets[i];
+		}
+		return null;
+			
 		
 	}
 
-	public void trade()
-	{
-		
-	}
-	
 	public Player[] validPlayersToTradeWith(Player player)
 	{
 		Player[] validPlayers = new Player[0];
@@ -140,9 +209,55 @@ public class PropertyController {
 		{
 			if(pList.get(i)==player)
 				continue;
-			validPlayers = (Player[]) addToArray(validPlayers,pList.get(i));
+			for(int k = 0; k<pList.get(i).getProperty().nFields();k++)
+			{
+				//Checks if the Field has any structures
+				if(canTrade(pList.get(i)))
+				{
+					validPlayers = (Player[]) addToArray(validPlayers, pList.get(i));
+				}
+			}	
 		}
 		return validPlayers;
+	}
+
+	public Ownable[] tradableAssets(Player player)
+	{
+		Ownable[] result = new Ownable[0];
+		for(int k = 0; k<player.getProperty().nFields();k++)
+		{
+			//Checks if the Field has any structures
+			if(player.getProperty().get(k) instanceof Territory && 
+					!((Territory)player.getProperty().get(k)).hasHotel() &&
+					((Territory)player.getProperty().get(k)).getHouse()==0)
+			{
+				result = (Ownable[]) addToArray(result, player.getProperty().get(k));
+			}
+			else
+			{
+				result = (Ownable[]) addToArray(result, player.getProperty().get(k));
+			}
+		}
+		return result;
+	}
+
+	public boolean canTrade(Player player)
+	{
+		for(int k = 0; k<player.getProperty().nFields();k++)
+		{
+			//Checks if the Field has any structures
+			if(player.getProperty().get(k) instanceof Territory && 
+					!((Territory)player.getProperty().get(k)).hasHotel() &&
+					((Territory)player.getProperty().get(k)).getHouse()==0)
+			{
+				return true;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 
@@ -193,14 +308,14 @@ public class PropertyController {
 				if(!p.getProperty().getTerritoryOfId(id[i], k).hasHotel())
 				{
 					singleSeries =  (Territory[]) addToArray(singleSeries, p.getProperty().getTerritoryOfId(id[i], k));
-					
+
 					int houseCount = singleSeries[k].getHouse();
 					numOfHouses = (Integer[]) addToArray(numOfHouses,houseCount);
-					
+
 					if(houseCount<smallestNumOfHouses)
 						smallestNumOfHouses = houseCount;
 				}
-				
+
 			}
 			//The last index in the numOfHouses array is the smallest number of houses of that series
 			//This is needed to be known since there has to be an equal distribution of houses
@@ -213,17 +328,17 @@ public class PropertyController {
 		{
 			if(numOfHousesSeries[outer][numOfHousesSeries[outer].length-1]==4)
 				continue;
-			
+
 			for(int inner = 0; inner<series[outer].length;inner++)
 			{
 				if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
 					result = (Territory[]) addToArray(result, series[outer][inner]);
 			}
-			
+
 		}
 		return result;
-		
-		
+
+
 	}
 
 	/**
@@ -243,11 +358,11 @@ public class PropertyController {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	public Object[] addToArray(Object[] array, Object element)
 	{
 		Object[] result = new Object[array.length+1];
@@ -258,7 +373,7 @@ public class PropertyController {
 		result[result.length-1] = element;
 		return result;
 	}
-	
+
 	public Object[][] addToTwoDimensionalArray(Object[][] array, Object[] element)
 	{
 		Object[][] result = new Object[array.length+1][];
@@ -268,7 +383,7 @@ public class PropertyController {
 			{
 				result[outer] = addToArray(result[outer],array[outer][inner]);
 			}
-			
+
 		}
 		result[result.length-1] = element;
 		return result;

@@ -27,17 +27,17 @@ public class PropertyBoundary {
 	
 	public String chooseWhoToTradeWith(String[] options)
 	{
-		return "";
+		return GUI.getUserButtonPressed("Hvem vil du bytte med?", options);
 	}
 	
-	public String chooseWhatToTradeWith(String[] options)
+	public String chooseWhatToTradeWith(String[] options, String playerName)
 	{
-		return "";
+		return GUI.getUserButtonPressed("%s's grunde", options);
 	}
 	
-	public String confirmTrade(String currentPlayer, String opposingPlayer)
+	public boolean confirmTrade(String opposingPlayer, String otherPlayersField, String yourField)
 	{
-		return "";
+		return true;
 	}
 	
 	public void updateHouseCount(int fieldNumber, int houseCount)
@@ -54,5 +54,10 @@ public class PropertyBoundary {
 	public void updatePlayerBalance(String name, int balance)
 	{
 		GUI.setBalance(name, balance);
+	}
+	
+	public void setOwner(String name, int fieldNumber)
+	{
+		GUI.setOwner(fieldNumber, name);
 	}
 }
