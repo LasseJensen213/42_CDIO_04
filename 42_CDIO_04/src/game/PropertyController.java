@@ -2,6 +2,7 @@ package game;
 
 import field.Territory;
 import player.Player;
+import player.PlayerList;
 
 public class PropertyController {
 
@@ -9,13 +10,13 @@ public class PropertyController {
 	private final int MAX_HOTELS = 12;
 	private int housesUsed = 0;
 	private int hotelsUsed = 0;
-	private int housePrice = 2000;
-	private int hotelPrice = 5000;
 	PropertyBoundary gui; 
+	PlayerList pList;
 
 	public PropertyController()
 	{
 		gui = new PropertyBoundary();
+		pList = PlayerList.getPL();
 	}
 
 	public void buyAssets(Player player)
@@ -129,7 +130,19 @@ public class PropertyController {
 
 	public void trade()
 	{
-
+		
+	}
+	
+	public Player[] validPlayersToTradeWith(Player player)
+	{
+		Player[] validPlayers = new Player[0];
+		for(int i = 0; i<pList.getNPlayers();i++)
+		{
+			if(pList.get(i)==player)
+				continue;
+			validPlayers = (Player[]) addToArray(validPlayers,pList.get(i));
+		}
+		return validPlayers;
 	}
 
 

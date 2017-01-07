@@ -17,44 +17,44 @@ public class GameController {
 	
 	public void startGame()
 	{
-		playerCreate.createPlayers();
-		cardGen.createCards();
-		pList = pList.getPList;
-		gLogic = new GameLogic();
-		while(true)
-		{
-			if(pList.get(playerIndex).isInjail())
-			{
-				gLogic.inPrisonTurn(pList.get(playerTurn));
-			}
-			else
-			{
-				gLogic.normalTurn(pList.get(playerTurn));
-			}
-			//checks whether the player went in jail during his turn
-			//And makes sure he doesn't get an extra turn
-			if(pList.get(playerIndex).isInjail())
-			{
-				pList.get(playerTurn).setEqualFaceValue(0);
-			}
-			//Checks to see if the player gets an extra turn
-			if(pList.get(playerTurn).getEqualFaceValue()>0)
-			{
-
-			}
-			else
-			{
-				playerIndex = pList.nextPlayer();
-			}
-			
-			if(pList.checkForWinner())
-			{
-				gui.showWinnerMsg(pList.get(playerIndex).getName);
-				break;
-			}
-			
-			
-		}
+//		playerCreate.createPlayers();
+//		cardGen.createCards();
+//		pList = pList.getPList;
+//		gLogic = new GameLogic();
+//		while(true)
+//		{
+//			if(pList.get(playerIndex).isInjail())
+//			{
+//				gLogic.inPrisonTurn(pList.get(playerTurn));
+//			}
+//			else
+//			{
+//				gLogic.normalTurn(pList.get(playerTurn));
+//			}
+//			//checks whether the player went in jail during his turn
+//			//And makes sure he doesn't get an extra turn
+//			if(pList.get(playerIndex).isInjail())
+//			{
+//				pList.get(playerTurn).setEqualFaceValue(0);
+//			}
+//			//Checks to see if the player gets an extra turn
+//			if(pList.get(playerTurn).getEqualFaceValue()>0)
+//			{
+//
+//			}
+//			else
+//			{
+//				playerIndex = pList.nextPlayer();
+//			}
+//			
+//			if(pList.checkForWinner())
+//			{
+//				gui.showWinnerMsg(pList.get(playerIndex).getName);
+//				break;
+//			}
+//			
+//			
+//		}
 	}
 
 }

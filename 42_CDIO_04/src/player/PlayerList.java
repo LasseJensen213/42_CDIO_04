@@ -6,6 +6,7 @@ import gui.PlayerCreationGUI;
 public class PlayerList {
 	
 	private ArrayList<Player>playerList;
+	private static PlayerList INSTANCE;
 	private PlayerCreationGUI playerCreateGUI;
 
 	private int nPlayers;
@@ -143,7 +144,14 @@ public class PlayerList {
 	}
 	
 	
-
+	public static PlayerList getPL()
+	{
+		if(INSTANCE == null)
+		{
+			INSTANCE = new PlayerList();
+		}
+		return INSTANCE;
+	}
 	
 	
 	
