@@ -97,7 +97,7 @@ public class Board {
 				title = FieldGenerator.getGoToJailField().getTitle();
 				
 				fields[i] = new Jail.Builder().setDescription(desc).setSubText(title).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).build();
-	
+				
 			}
 			else if(FieldGenerator.getJailField().getFieldPosition()==i) {
 				desc = FieldGenerator.getJailField().getDesc();
@@ -132,6 +132,7 @@ public class Board {
 		
 		}
 		GUI.create(fields);
+		
 	}
 	
 	public field.Field getField(int pos){
@@ -139,5 +140,13 @@ public class Board {
 	}
 
 
+	public Field[] getFields() {
+		return fields;
+	}
+
+
+	
+	
+	
 }
 

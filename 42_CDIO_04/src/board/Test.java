@@ -9,6 +9,8 @@ public class Test {
 		Board board = new Board();
 		board.generateBoard();
 		GUI.showMessage("asdf");
+		GUI.getUserSelection("Vil De købe feltet", "yes","no");
+		GUI.getUserButtonPressed("Vil de købe feltet", "yes","no");
 		
 	}
 

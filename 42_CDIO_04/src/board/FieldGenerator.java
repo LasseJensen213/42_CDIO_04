@@ -150,13 +150,17 @@ public class FieldGenerator {
 		String subtext = "";
 		String title = "";
 		int pos = 0;
+		int price = 0;
+		int rent = 0;
 
 		for(int i = 0;i<fleetFields.length;i++) {
 			pos = fleetPlace[i];
 			desc = strBank.getFleetDescriptionArray(i);
 			subtext = strBank.getFleetSubtextArray(i);
 			title = strBank.getFleetNameArray(i);
-			fleetFields[i] = new Fleet(desc,subtext,title,pos);
+			
+			
+			fleetFields[i] = new Fleet(desc,subtext,title,pos,price,rent);
 		}
 	}
 
