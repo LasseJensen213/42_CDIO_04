@@ -1,4 +1,4 @@
-package game;
+package boundary;
 
 import desktop_resources.GUI;
 

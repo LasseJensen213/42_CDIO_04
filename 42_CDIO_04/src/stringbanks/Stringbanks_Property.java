@@ -7,18 +7,22 @@ public class Stringbanks_Property {
 	private static String whereToUpgradeHotel = "Vælg hvor du vil bygge hotel";
 	private static String chooseWhatToTradeWith = "Vælg en af %s's grunde";
 	private static String chooseWhoToTradeWith = "Hvem vil du bytte med?"; 
-
 	private static String goBack = "Tilbage";
 	private static String pass = "Videre";
-	
 	private static String confirmTradeMsg = "%s vil du gerne bytte %s med %s";
 	private static String confirmTradeYes = "Ja";
 	private static String confirmTradeNo = "Nej";
+	private static String chooseYourLot = "Vælg en af dine grunde du vil bytte med";
+	
+	private static String buyHouseOption = "Køb huse";
+	private static String buyHotelOption = "Køb hotel";
+	private static String tradeOption = "Byt grunde";
 	
 	private static String[] strings = {mainPropertyMenuMsg, whereToBuyHouses, 
 									  whereToUpgradeHotel,chooseWhatToTradeWith,
 									  chooseWhoToTradeWith,goBack,pass, confirmTradeMsg, 
-									  confirmTradeYes,confirmTradeNo};
+									  confirmTradeYes,confirmTradeNo,chooseYourLot,buyHouseOption,
+									  buyHotelOption,tradeOption};
 		
 	/**
 	 * 0 = mainPropertMenuMsg<br>
@@ -31,6 +35,10 @@ public class Stringbanks_Property {
 	 * 7 = confirmTradeMsg<br>
 	 * 8 = confirmTradeYes<br>
 	 * 9 = confirmTradeNo<br>
+	 * 10 = chooseYourLot<br>
+	 * 11 = buyHouseOption<br>
+	 * 12 = buyHotelOption<br>
+	 * 13 = tradeOption <br>
 	 * @param i 
 	 * @return
 	 */

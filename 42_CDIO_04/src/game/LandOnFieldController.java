@@ -1,7 +1,17 @@
-package field;
+package game;
 
 import board.Board;
 import boundary.LandOnFieldBoundary;
+import field.Brewery;
+import field.Chance;
+import field.Field;
+import field.Fleet;
+import field.GoToJail;
+import field.Jail;
+import field.ParkingLot;
+import field.Start;
+import field.Tax;
+import field.Territory;
 import player.Player;
 
 public class LandOnFieldController {

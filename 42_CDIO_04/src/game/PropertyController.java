@@ -1,9 +1,11 @@
 package game;
 
+import boundary.PropertyBoundary;
 import field.Ownable;
 import field.Territory;
 import player.Player;
 import player.PlayerList;
+import stringbanks.Stringbanks_Property;
 
 public class PropertyController {
 
@@ -30,31 +32,31 @@ public class PropertyController {
 			Player[] validTradePlayers = validPlayersToTradeWith(player);
 
 			if(validHousePlacements.length>0 && housesUsed<MAX_HOUSES && player.getAccount().getBalance()>2000)
-				options = (String[]) addToArray(options,"Køb huse");
+				options = (String[]) addToArray(options,Stringbanks_Property.get(11));
 
 			if(validHotelUpgrades.length>0 && hotelsUsed < MAX_HOTELS && player.getAccount().getBalance()>5000)
-				options = (String[]) addToArray(options,"Køb hoteller");
+				options = (String[]) addToArray(options,Stringbanks_Property.get(12));
 
 			if(canTrade(player) && validTradePlayers.length>0)
-				options = (String[]) addToArray(options, "Byt grunde");
+				options = (String[]) addToArray(options, Stringbanks_Property.get(13));
 
-			options = (String[]) addToArray(options,"Gå videre");
+			options = (String[]) addToArray(options,Stringbanks_Property.get(6));
 
 			String choice = gui.chooseWhatToBuy(options);
 
-			if(choice.equals("Køb huse"))
+			if(choice.equals(Stringbanks_Property.get(11)))
 			{
 				buyHouse(player);
 			}
-			else if(choice.equals("Køb hoteller"))
+			else if(choice.equals(Stringbanks_Property.get(12)))
 			{
 				buyHotel(player);
 			}
-			else if(choice.equals("Byt grunde"))
+			else if(choice.equals(Stringbanks_Property.get(13)))
 			{
 				tradeWithPlayer(player);
 			}
-			else if(choice.equals("Gå videre"))
+			else if(choice.equals(Stringbanks_Property.get(6)))
 			{
 				break;
 			}
@@ -74,11 +76,11 @@ public class PropertyController {
 					options = (String[]) addToArray(options,t.getTitle());
 				}
 			}
-			options = (String[]) addToArray(options, "Gå tilbage");
+			options = (String[]) addToArray(options, Stringbanks_Property.get(5));
 
 			String choice = gui.chooseWhereToBuyHouses(options);
 
-			if(choice.equals("Gå tilbage"))
+			if(choice.equals(Stringbanks_Property.get(5)))
 				break;
 			for(int i = 0; i<validFields.length;i++)
 			{
@@ -111,10 +113,10 @@ public class PropertyController {
 				}
 			}
 
-			options = (String[]) addToArray(options, "Gå tilbage");
+			options = (String[]) addToArray(options, Stringbanks_Property.get(5));
 
 			String choice = gui.chooseWhereToUpgradeHotel(options);
-			if(choice.equals("Gå tilbage"))
+			if(choice.equals(Stringbanks_Property.get(5)))
 			{
 				break;
 			}
@@ -147,10 +149,10 @@ public class PropertyController {
 			{
 				options = (String[]) addToArray(options,players[i].getName());
 			}
-			options = (String[]) addToArray(options,"Gå tilbage");
+			options = (String[]) addToArray(options,Stringbanks_Property.get(5));
 
 			String choice = gui.chooseWhoToTradeWith(options);
-			if(choice.equals("Gå tilbage"))
+			if(choice.equals(Stringbanks_Property.get(5)))
 			{
 				break;
 			}
@@ -158,7 +160,7 @@ public class PropertyController {
 			{
 				if(choice.equals(players[i].getName()))
 				{
-					Ownable yourField = chooseAssetForTrade(player);
+					Ownable yourField = chooseYourAssetForTrade(player);
 					if(yourField!=null){
 						Ownable otherPlayersField = chooseAssetForTrade(players[i]);
 						if(otherPlayersField!=null)
@@ -180,6 +182,26 @@ public class PropertyController {
 		}	
 	}
 
+	public Ownable chooseYourAssetForTrade(Player player)
+	{
+		String[] options = new String[0];
+		Ownable[] assets = tradableAssets(player); 
+		for(Ownable o :assets)
+		{
+			options = (String[]) addToArray(options, o.getTitle());
+		}
+		options = (String[]) addToArray(options, Stringbanks_Property.get(5));
+
+		String choice = gui.chooseYourLots(options);
+		
+		for(int i = 0; i<assets.length;i++)
+		{
+			if(assets[i].getTitle().equals(choice))
+				return assets[i];
+		}
+		return null;
+			
+	}
 	public Ownable chooseAssetForTrade(Player player)
 	{
 		String[] options = new String[0];
@@ -188,7 +210,7 @@ public class PropertyController {
 		{
 			options = (String[]) addToArray(options, o.getTitle());
 		}
-		options = (String[]) addToArray(options, "Gå tilbage");
+		options = (String[]) addToArray(options, Stringbanks_Property.get(5));
 
 		String choice = gui.chooseWhatToTradeWith(options, player.getName());
 
@@ -199,7 +221,6 @@ public class PropertyController {
 		}
 		return null;
 			
-		
 	}
 
 	public Player[] validPlayersToTradeWith(Player player)

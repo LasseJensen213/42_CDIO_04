@@ -1,5 +1,7 @@
 package game;
 
+import boundary.GameControllerBoundary;
+
 public class GameController {
 
 //	private PlayerManager pList;
