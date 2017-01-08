@@ -12,9 +12,9 @@ import desktop_fields.Start;
 import desktop_fields.Street;
 import desktop_fields.Tax;
 import desktop_resources.GUI;
-import board.FieldGenerator;
 
 public class Board {
+	field.Field[] ourFields = new field.Field[40];
 	Field[] fields = new Field[40];
 
 
@@ -132,6 +132,10 @@ public class Board {
 		
 		}
 		GUI.create(fields);
+	}
+	
+	public field.Field getField(int pos){
+		return ourFields[pos];
 	}
 
 

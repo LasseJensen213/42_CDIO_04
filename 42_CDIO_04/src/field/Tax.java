@@ -1,7 +1,5 @@
 package field;
 
-import java.awt.Image;
-
 public class Tax extends Field{
 	
 	private int tax;
@@ -12,6 +10,14 @@ public class Tax extends Field{
 		this.tax = tax;
 		this.percentange = percentage;
 			
+	}
+
+	public int getTax() {
+		return tax;
+	}
+
+	public int getPercentange() {
+		return percentange;
 	}
 	
 	
