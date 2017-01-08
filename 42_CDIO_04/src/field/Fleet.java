@@ -1,10 +1,12 @@
 package field;
 
-import java.awt.Image;
-
 public class Fleet extends Field{
+	private int price;
+	private int rent;
 
-	public Fleet(String desc, String subtext, String title, int pos) {
+	public Fleet(String desc, String subtext, String title, int pos, int price, int rent) {
 		super(desc,subtext,title,pos);
+		this.price = price;
+		this.rent = rent;
 	}
 }
