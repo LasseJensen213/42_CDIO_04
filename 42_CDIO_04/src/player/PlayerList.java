@@ -1,12 +1,10 @@
 package player;
 
 import java.util.ArrayList;
-import gui.PlayerCreationGUI;
 
 public class PlayerList {
 	
 	private ArrayList<Player>playerList;
-	private PlayerCreationGUI playerCreateGUI;
 
 	private int nPlayers;
 	
@@ -14,7 +12,6 @@ public class PlayerList {
 	{
 		this.playerList = new ArrayList<Player>();
 		this.playerList.clear();
-		this.playerCreateGUI = new PlayerCreationGUI();	
 		
 	
 	}
@@ -30,7 +27,7 @@ public class PlayerList {
 	}
 	
 	public int getNPlayers()
-	{
+	{0
 		return nPlayers;
 	}
 	
