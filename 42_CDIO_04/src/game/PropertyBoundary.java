@@ -30,6 +30,11 @@ public class PropertyBoundary {
 		return GUI.getUserButtonPressed("Hvem vil du bytte med?", options);
 	}
 	
+	
+	public String chooseYourLots(String[] options)
+	{
+		return GUI.getUserButtonPressed(options, options);
+	}
 	public String chooseWhatToTradeWith(String[] options, String playerName)
 	{
 		return GUI.getUserButtonPressed("%s's grunde", options);
