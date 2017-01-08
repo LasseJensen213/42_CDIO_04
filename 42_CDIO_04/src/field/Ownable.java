@@ -40,6 +40,26 @@ public abstract class Ownable extends Field {
 		return pawned;
 	}
 
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
+	public void setRent(int rent) {
+		this.rent = rent;
+	}
+
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
+	}
+
+
+	public void setPawned(boolean pawned) {
+		this.pawned = pawned;
+	}
+
 	
 	
 	

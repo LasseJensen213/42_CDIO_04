@@ -46,7 +46,7 @@ public class LandOnFieldController {
 			if(player.getAccount().getBalance()>(f.getPrice())){
 				if(LandOnFieldBoundary.buyChoice()){
 					player.getAccount().withdraw(f.getPrice());
-					f.setOwner(player);
+					((Territory)f).setOwner(player);
 				}
 			}
 		}
