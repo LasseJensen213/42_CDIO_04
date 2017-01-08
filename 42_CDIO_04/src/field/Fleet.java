@@ -1,6 +1,6 @@
 package field;
 
-public class Fleet extends Field{
+public class Fleet extends Ownable{
 	private int price;
 	private int rent;
 
@@ -8,5 +8,6 @@ public class Fleet extends Field{
 		super(desc,subtext,title,pos);
 		this.price = price;
 		this.rent = rent;
+
 	}
 }

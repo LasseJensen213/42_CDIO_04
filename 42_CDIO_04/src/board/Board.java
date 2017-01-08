@@ -12,9 +12,9 @@ import desktop_fields.Start;
 import desktop_fields.Street;
 import desktop_fields.Tax;
 import desktop_resources.GUI;
-import board.FieldGenerator;
 
 public class Board {
+	field.Field[] ourFields = new field.Field[40];
 	Field[] fields = new Field[40];
 
 
@@ -67,7 +67,7 @@ public class Board {
 				fgColor = FieldGenerator.getFgColors(i);
 				bgColor = FieldGenerator.getBgColors(i);
 				
-				fields[i] = new Brewery.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).setRent("rent").build();
+				fields[i] = new Brewery.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).setPicture("").setRent("rent").build();
 				breweryReached++;
 			}
 			
@@ -133,6 +133,10 @@ public class Board {
 		}
 		GUI.create(fields);
 		
+	}
+	
+	public field.Field getField(int pos){
+		return ourFields[pos];
 	}
 
 
