@@ -116,10 +116,23 @@ public class Property {
 			fieldsOwned=newOwnableArr;
 		}
 
-
-
-
-
+	}
+	/**
+	 * removes one bail out card from the players cards
+	 */
+	public void removeCard()
+	{
+		if(bailCards.length==0){
+			
+		}
+		else{
+			Card[] newBailCards = new Card[bailCards.length-1];
+			for(int i = 1; i<bailCards.length;i++)
+			{
+				newBailCards[i-1] = bailCards[i];
+			}
+			return newBailCards;
+		}
 	}
 	
 	/**
@@ -229,7 +242,13 @@ public class Property {
 		return false;
 	}
 
-	public Ownable get(int i)
+	public Card getCard(int i)
+	{
+		return bailCards[i];
+	}
+	
+
+	public Ownable getField(int i)
 	{
 		return fieldsOwned[i];
 	}
@@ -280,6 +299,8 @@ public class Property {
 		}
 		return result;
 	}
+	
+	
 	
 	
 	

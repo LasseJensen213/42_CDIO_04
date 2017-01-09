@@ -12,12 +12,13 @@ public class GameLogic {
 	DiceCup diceCup;
 	PropertyController prop;
 	LandOnFieldController landOn;
-	GameLogicBoundary gui = new GameLogicBoundary();
+	GameLogicBoundary gui;
 	public GameLogic() 
 	{
 		diceCup = DiceCup.getDC();
 		prop = new PropertyController();
 		landOn = new LandOnFieldController();
+		gui = new GameLogicBoundary();
 	}
 	
 	

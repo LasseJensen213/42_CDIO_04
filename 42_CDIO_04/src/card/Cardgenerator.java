@@ -53,6 +53,13 @@ public class Cardgenerator {
 			new MovePlayer(Stringbank_Card.getMoveFigureCard(8)),
 			new MovePlayer(Stringbank_Card.getMoveFigureCard(9))
 			};
+	
+	public static void generateCards()
+	{
+		CardDeck deck = CardDeck.getCD();
+		deck.setActiveDeck(cardDeckGenerator);
+		deck.shuffle();
+	}
 
 	public static Card getCardDeckGenerator(int i) {
 		return cardDeckGenerator[i];
