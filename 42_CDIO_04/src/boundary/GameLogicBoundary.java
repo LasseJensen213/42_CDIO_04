@@ -37,5 +37,10 @@ public class GameLogicBoundary {
 	{
 		GUI.removeCar(fieldNumber, name);
 	}
+	
+	public String jailChoices(String[] options)
+	{
+		return GUI.getUserButtonPressed("DU ER I FÆNGSEL BRIAN", options);
+	}
 
 }
