@@ -17,6 +17,12 @@ public class ParkingLot extends Field {
 	public static void setTaxMoney(int tax) {
 		taxMoney = tax;
 	}
+	@Override
+	public String toString() {
+		return "ParkingLot [getDesc()=" + getDesc() + ", getSubtext()=" + getSubtext() + ", getTitle()=" + getTitle()
+				+ ", getFieldPosition()=" + getFieldPosition() + ", toString()=" + super.toString() + ", getClass()="
+				+ getClass() + "]";
+	}
 	
 	
 	

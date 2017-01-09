@@ -8,7 +8,6 @@ public class Card {
 		this.description = description;
 	}
 
-
 	public String getDescription() {
 		return description;
 	}

@@ -1,7 +1,5 @@
 package field;
 
-import java.awt.Image;
-
 public abstract class Field {
 	
 	private String desc;
@@ -36,7 +34,7 @@ public abstract class Field {
 	@Override
 	public String toString() {
 		return "Field [desc=" + desc + ", subtext=" + subtext + ", title=" + title + ", fieldPosition=" + fieldPosition
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ ", getClass()=" + getClass() + ", toString()=" + super.toString()
 				+ "]";
 	}
 	
