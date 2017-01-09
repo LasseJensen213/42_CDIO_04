@@ -8,6 +8,23 @@ public class Brewery extends Ownable{
 			this.rent = rent;
 	}
 
+	public int getRent() {
+		return rent;
+	}
+
+	public void setRent(int rent) {
+		this.rent = rent;
+	}
+
+	@Override
+	public String toString() {
+		return "Brewery [rent=" + rent + ", getPrice()=" + getPrice() + ", getOwner()=" + getOwner() + ", isPawned()="
+				+ isPawned() + ", toString()=" + super.toString() + ", getDesc()=" + getDesc() + ", getSubtext()="
+				+ getSubtext() + ", getTitle()=" + getTitle() + ", getFieldPosition()=" + getFieldPosition()
+				+ ", getClass()=" + getClass();
+	}
+
+	
 	
 	
 }

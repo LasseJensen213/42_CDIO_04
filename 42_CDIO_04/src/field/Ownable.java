@@ -43,6 +43,7 @@ public abstract class Ownable extends Field {
 
 	
 
+
 	public void setOwner(Player owner) {
 		this.owner = owner;
 	}
@@ -52,8 +53,17 @@ public abstract class Ownable extends Field {
 		this.pawned = pawned;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Ownable [price=" + price + ", owner=" + owner + ", pawned=" + pawned + ", getDesc()=" + getDesc()
+				+ ", getSubtext()=" + getSubtext() + ", getTitle()=" + getTitle() + ", getFieldPosition()="
+				+ getFieldPosition() + ", toString()=" + super.toString() + ", getClass()=" + getClass() + "]";
+	}
+
 	
-	
+
+
 	
 	
 }

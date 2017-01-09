@@ -1,7 +1,6 @@
 package board;
 
 import java.awt.Color;
-
 import field.Brewery;
 import field.Chance;
 import field.Fleet;
@@ -12,6 +11,10 @@ import field.Start;
 import field.Tax;
 import field.Territory;
 import stringbanks.Stringbanks_Fields;
+
+
+
+
 public class FieldGenerator {
 
 
@@ -82,8 +85,8 @@ public class FieldGenerator {
 	private final static int frederiksberggadeRent[] = {700,3500,10000,22000,26000,30000};
 	private final static int rådhuspladsenRent[] = {1000,4000,12000,28000,34000,40000};
 	
-	
-	
+	//Prices on houses
+	private final static int territoryHousePrice[] = {1000,1000,2000,2000,3000,3000,4000,4000};
 	
 	private final static int territoryPrice[] = {1200,1200,2000,2000,2400,2800,2800,3200,3600,3600,4000,4400,4400,4800,5200,5200,5600,6000,6000,6400,7000,8000};
 	private final static int territoryRent[][] = {hvidovrevejRent,rødovrevejRent,roskildevejRent,valbyLanggadeRent,allégadeRent,frederiksbergAlléRent
@@ -101,6 +104,7 @@ public class FieldGenerator {
 	//Fleet related information.
 	private final static int fleetPrice[] = {4000,4000,4000,4000};
 	private final static int fleetPlace[] = {5,15,25,35};
+	private final static int fleetRent[] = {500,1000,2000,4000};
 
 	//Tax related information.
 	private final static int taxAmount[] = {2000,4000};
@@ -139,13 +143,14 @@ public class FieldGenerator {
 		int seriesMax = 0;
 		int seriesMaxReached = 0;
 		int counter = 0;
+		int housePrice = 0;
 		//(String desc, String subtext, String title, int pos, int price, int rent, int series, Color color) 
 		for(int i = 0;i<territoryFields.length;i++) {
 			desc = strBank.getTerritoryDescArray(i);
 			subtext = strBank.getTerritorySubtextArray(i);
 			title = strBank.getTerritoryNameArray(i);
 			pos = territoryPlace[i];
-			for(int r = 0;i<6;r++) {
+			for(int r = 0;r<6;r++) {
 				rent[r] = territoryRent[i][r];
 			}
 			price = territoryPrice[i];
@@ -159,7 +164,8 @@ public class FieldGenerator {
 				seriesMax = territorySeriesMax[seriesMaxReached];
 			}
 			color = territoryColor[seriesMaxReached];
-			territoryFields[i] = new Territory(desc, subtext, title, pos, price, rent, seriesMax, color);
+			housePrice = territoryHousePrice[seriesMaxReached];
+			territoryFields[i] = new Territory(desc, subtext, title, pos, price, rent, seriesMax, color, housePrice);
 			
 			
 			counter++;
@@ -196,15 +202,19 @@ public class FieldGenerator {
 		String title = "";
 		int pos = 0;
 		int price = 0;
-		int rent = 0;
+		int rent[] = new int[4];
 
 		for(int i = 0;i<fleetFields.length;i++) {
 			pos = fleetPlace[i];
 			desc = strBank.getFleetDescriptionArray(i);
 			subtext = strBank.getFleetSubtextArray(i);
 			title = strBank.getFleetNameArray(i);
-
-
+			price = fleetPrice[i];
+			
+			for(int r = 0;r<rent.length;r++) {
+				rent[r] = fleetRent[r];
+			}
+			
 			fleetFields[i] = new Fleet(desc,subtext,title,pos,price,rent);
 		}
 	}
@@ -234,7 +244,6 @@ public class FieldGenerator {
 		String subtext = strBank.getField1subtext();
 		String title = strBank.getField1Name();
 		int pos = 0;
-		System.out.println(desc + " : " + subtext + " : " + title);
 
 		startField = new Start(desc,subtext,title,pos);
 	}
