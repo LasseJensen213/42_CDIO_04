@@ -1,6 +1,8 @@
 package dice;
 import java.util.*;
 public class DiceCup {
+	
+	
 	//Dice Cup
 	private ArrayList<Dice> diceList;
 	private static DiceCup INSTANCE;

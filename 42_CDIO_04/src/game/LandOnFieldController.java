@@ -87,13 +87,14 @@ public class LandOnFieldController {
 			//nothing happens
 		}
 		else {
-			int rent = player.getTotalFaceValue()
-			// mangler metode til at trække dobbelt op på husleje og huse. 1000 er et midlertidigt tal.
-
-			player.getAccount().transfer(1000, f.getOwner().getAccount());
+			int rent = player.getTotalFaceValue()*f.getRent()*100;
+			
+			player.getAccount().transfer(rent, f.getOwner().getAccount());
 		}
 	}
 	// mangler udregning af leje
+	
+	
 	
 	
 	public void landOnFleet(Player player, Fleet f){
@@ -109,11 +110,14 @@ public class LandOnFieldController {
 			//nothing happens
 		}
 		else {
-			
+			int rent = player.getProperty().g
 			
 			player.getAccount().transfer(1000, f.getOwner().getAccount());
 		}
 	}
+	
+	
+	
 	//færdig
 	public void landOnTax(Player player, Tax f){
 		player.getAccount().withdraw(f.getTax());
