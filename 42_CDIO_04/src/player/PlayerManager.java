@@ -2,6 +2,8 @@ package player;
 
 import java.util.ArrayList;
 
+import desktop_codebehind.Car;
+
 public class PlayerManager {
 	
 	private ArrayList<Player>playerList;
@@ -21,9 +23,9 @@ public class PlayerManager {
 		this.nPlayers = nPlayers;
 	}
 	
-	public void addPlayer(String name)
+	public void addPlayer(String name, Car car, int i )
 	{
-		playerList.add(new Player(name));
+		playerList.add(new Player(name, car, i));
 	}
 	
 	public int getNPlayers()

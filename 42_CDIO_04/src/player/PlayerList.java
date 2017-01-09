@@ -5,11 +5,9 @@ import java.util.ArrayList;
 public class PlayerList {
 	
 	private ArrayList<Player>playerList;
-<<<<<<< HEAD
-=======
+
 	private static PlayerList INSTANCE;
 	private PlayerCreationGUI playerCreateGUI;
->>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04.git
 
 	private int nPlayers;
 	
