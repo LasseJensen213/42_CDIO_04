@@ -30,7 +30,7 @@ public class BoardTest {
 		
 		Field[] fields = b.getFields();
 		for(int i = 0;i<fields.length;i++) {
-			f.getBgColors(i)
+			f.getBgColors(i);
 
 		}
 		

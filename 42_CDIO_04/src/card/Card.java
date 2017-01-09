@@ -1,24 +1,13 @@
 package card;
 
 public class Card {
-	private String name;
+	
 	private String description;
 	
-	public Card(String name, String description) {
-		this.name = name;
+	public Card(String description) {
 		this.description = description;
 	}
 
-	public String getName() {
-		return name;
-	}
-	
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	
 	public String getDescription() {
 		return description;
 	}
