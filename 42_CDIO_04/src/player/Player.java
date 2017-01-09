@@ -42,6 +42,7 @@ public class Player
 		this.totalFaceValue = totalFaceValue;
 	}
 
+
 	public Player(String name , Car car , int startBalance)
 	{
 		this.name = name;
@@ -135,7 +136,16 @@ public class Player
 	public void setProperty(Property property) {
 		this.property = property;
 	}
-	
-	
+	public void equalFaceValue() {
+		if(!(equalFaceValue == 0)) {
+			if(diceCup.isEqual()) {
+				equalFaceValue++; 
+			}
+		}
+	}
+	public void gotoJail() {
+		if(equalFaceValue == 3) 
+			jailed = true;
+	}
 	
 }

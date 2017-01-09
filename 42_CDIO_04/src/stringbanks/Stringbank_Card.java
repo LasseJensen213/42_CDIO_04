@@ -18,6 +18,7 @@ public class Stringbank_Card {
 	private static String[] specialcard = {pardon,bailout,jailed,matadorlegat};
 
 
+	
 	//Player-pays-Player card
 	private static String ppp1 = "De skal holde familiefest og får tilskud fra hver medspiller på kr. 500.";
 	private static String ppp2 = "De har lagt penge ud til et sammenskudsgilde."
@@ -52,7 +53,7 @@ public class Stringbank_Card {
 	private static String pm9 = "Ejendomsskatterne er steget. Ekstraudgifterne er: kr. 800 pr. hus, kr. 2.300 pr. hotel.";
 	private static String pm10 = "Oliepriserne er steget, og De skal betale: kr. 500 pr. hus, kr. 2.000 pr. hotel";
 
-	private static String[] payMoneyCard = {pm1,pm2,pm3,pm4,pm5,pm6,pm7,pm8,p9,pm10};
+	private static String[] payMoneyCard = {pm1,pm2,pm3,pm4,pm5,pm6,pm7,pm8,pm9,pm10};
 
 	//Move Figure Card
 	private static String mf1 = "Ryk frem til ”START”.";
@@ -68,4 +69,26 @@ public class Stringbank_Card {
 
 	private static String[] moveFigureCard ={mf1,mf2,mf3,mf4,mf5,mf6,mf7,mf8,mf9,mf10};
 
+	public static String getSpecialcard(int i) {
+		return specialcard[i];
+	}
+
+	public static String getPlayerPaysPlayerCard(int i) {
+		return playerPaysPlayerCard[i];
+	}
+
+	public static String getReceiveMoneyCard(int i) {
+		return receiveMoneyCard;
+	}
+
+	public static String getPayMoneyCard(int i) {
+		return payMoneyCard;
+	}
+
+	public static String getMoveFigureCard(int i) {
+		return moveFigureCard;
+	}
+
+	
+	
 }
