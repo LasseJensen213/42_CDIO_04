@@ -1,7 +1,7 @@
 package player;
 
-import java.util.ArrayList;
 
+import card.Card;
 import field.Brewery;
 import field.Fleet;
 import field.Ownable;
@@ -10,17 +10,22 @@ import field.Territory;
 public class Property {
 
 	private Ownable[] fieldsOwned;
-	//private Cards[] bailCards;
+	private Card[] bailCards;
 
 	public Property() {
 		fieldsOwned = new Ownable[0];
-		//bailCards = new Cards[0];
+		bailCards = new Card[0];
 
 	}
 
 	public int nFields()
 	{
 		return fieldsOwned.length;
+	}
+	
+	public int nCards()
+	{
+		return bailCards.length;
 	}
 
 	public int nBreweriesOwned()

@@ -40,7 +40,7 @@ public class Player
 	{
 		this.name = name;
 		this.timeInJail = 0;
-		this.equalFaceValue=0;
+		this.setEqualFaceValue(0);
 		this.broke = false;
 		this.jailed = false;
 		this.passedStart = false;
@@ -131,6 +131,14 @@ public class Player
 
 	public void setProperty(Property property) {
 		this.property = property;
+	}
+
+	public int getEqualFaceValue() {
+		return equalFaceValue;
+	}
+
+	public void setEqualFaceValue(int equalFaceValue) {
+		this.equalFaceValue = equalFaceValue;
 	}
 	
 	

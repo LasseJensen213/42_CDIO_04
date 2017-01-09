@@ -3,6 +3,7 @@ import java.util.*;
 public class DiceCup {
 	//Dice Cup
 	private ArrayList<Dice> diceList;
+	private static DiceCup INSTANCE;
 
 	public DiceCup(int numOfDice, int numOfSides)
 	{
@@ -44,5 +45,12 @@ public class DiceCup {
 			total = total + getDiceValue(i);
 		}
 		return total;
+	}
+	
+	public static DiceCup getDC()
+	{
+		if(INSTANCE == null)
+			INSTANCE = new DiceCup(2,6);
+		return INSTANCE;
 	}
 }
