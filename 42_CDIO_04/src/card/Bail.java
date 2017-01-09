@@ -2,8 +2,8 @@ package card;
 
 public class Bail extends Card {
 	private boolean inUse;
-	public Bail(String name, String description) {
-		super(name,description);
+	public Bail(String description) {
+		super(description);
 		setInUse(false);
 	}
 	public boolean isInUse() {
