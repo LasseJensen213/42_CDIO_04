@@ -141,7 +141,10 @@ public class Player
 			if(diceCup.isEqual()) {
 				equalFaceValue++; 
 			}
+			else
+				equalFaceValue = 0;
 		}
+		
 	}
 	public void gotoJail() {
 		if(equalFaceValue == 3) 

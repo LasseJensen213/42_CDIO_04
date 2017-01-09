@@ -66,6 +66,9 @@ public class LandOnFieldController {
 		else {
 			int houses = f.getHouse();
 			int rent = f.getRent(houses);
+			if(houses == 0) {
+				rent = rent*2;
+			}
 			// mangler metode til at trække dobbelt op på husleje og huse. 1000 er et midlertidigt tal.
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
