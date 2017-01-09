@@ -2,6 +2,8 @@ package player;
 
 import java.awt.Color;
 import desktop_codebehind.Car;
+import dice.Dice;
+import dice.DiceCup;
 
 public class Player 
 {
@@ -15,7 +17,24 @@ public class Player
 	private int equalFaceValue;
 	private int timeInJail;
 	private Property property;
+	private int totalFaceValue;
 	
+
+	public int getEqualFaceValue() {
+		return equalFaceValue;
+	}
+
+	public void setEqualFaceValue(int equalFaceValue) {
+		this.equalFaceValue = equalFaceValue;
+	}
+
+	public int getTotalFaceValue() {
+		return totalFaceValue;
+	}
+
+	public void setTotalFaceValue(int totalFaceValue) {
+		this.totalFaceValue = totalFaceValue;
+	}
 
 	public Player(String name , Car car , int startBalance)
 	{
@@ -31,6 +50,10 @@ public class Player
 		this.playerPos = 0;
 	}
 	
+	public void calcTotalFaceValue() {
+		
+		
+	}
 	public String getName() {
 		return name;
 	}

@@ -1,7 +1,17 @@
-package field;
+package game;
 
 import board.Board;
 import boundary.LandOnFieldBoundary;
+import field.Brewery;
+import field.Chance;
+import field.Field;
+import field.Fleet;
+import field.GoToJail;
+import field.Jail;
+import field.ParkingLot;
+import field.Start;
+import field.Tax;
+import field.Territory;
 import player.Player;
 
 public class LandOnFieldController {
@@ -54,11 +64,15 @@ public class LandOnFieldController {
 			//nothing happens
 		}
 		else {
+			int houses = f.getHouse();
+			int rent = f.getRent(houses);
 			// mangler metode til at trække dobbelt op på husleje og huse. 1000 er et midlertidigt tal.
 
-			player.getAccount().transfer(1000, f.getOwner().getAccount());
+			player.getAccount().transfer(rent, f.getOwner().getAccount());
 		}
 	}
+	
+	
 	// mangler udregning af leje
 	public void landOnBrewery(Player player, Brewery f){
 		if(f.getOwner() == null){
@@ -73,12 +87,15 @@ public class LandOnFieldController {
 			//nothing happens
 		}
 		else {
+			int rent = player.getTotalFaceValue()
 			// mangler metode til at trække dobbelt op på husleje og huse. 1000 er et midlertidigt tal.
 
 			player.getAccount().transfer(1000, f.getOwner().getAccount());
 		}
 	}
 	// mangler udregning af leje
+	
+	
 	public void landOnFleet(Player player, Fleet f){
 		if(f.getOwner() == null){
 			if(player.getAccount().getBalance()>(f.getPrice())){
@@ -92,8 +109,8 @@ public class LandOnFieldController {
 			//nothing happens
 		}
 		else {
-			// mangler metode til at trække dobbelt op på husleje og huse. 1000 er et midlertidigt tal.
-
+			
+			
 			player.getAccount().transfer(1000, f.getOwner().getAccount());
 		}
 	}

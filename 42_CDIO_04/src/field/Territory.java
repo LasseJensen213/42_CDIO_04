@@ -36,8 +36,8 @@ public class Territory extends Ownable {
 		this.seriesMax = seriesMax;
 	}
 
-	public int[] getRent() {
-		return rent;
+	public int getRent(int i) {
+		return rent[i];
 	}
 
 	public void setRent(int[] rent) {
