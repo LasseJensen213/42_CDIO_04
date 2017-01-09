@@ -1,7 +1,6 @@
 package board;
 
 import java.awt.Color;
-import java.awt.Image;
 
 import field.Brewery;
 import field.Chance;
@@ -21,7 +20,7 @@ public class FieldGenerator {
 	//GUI Colours
 	private static Color bgColors[] = new Color[40];
 	private static Color fgColors[] = new Color[40];
-	
+
 	//Fields;
 	private static Territory territoryFields[];
 	private static Brewery breweryFields[];
@@ -43,7 +42,7 @@ public class FieldGenerator {
 		taxFields = new Tax[2];
 		chanceFields = new Chance[6];
 		goToJailField = new GoToJail("","","",0);
-		
+
 		FieldGenerator.initBreweryFields();
 		FieldGenerator.initChance();
 		FieldGenerator.initFleetFields();
@@ -55,16 +54,46 @@ public class FieldGenerator {
 		FieldGenerator.initTerritoryFields();
 		FieldGenerator.initBgColor();
 		FieldGenerator.initFgColor();
-		
-		
+
+
 	}
 	//Territory related information.
-	private final static int territoryPrice[] = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
-	private final static int territoryRent[] = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
+	//Rent:
+	private final static int hvidovrevejRent[] = {50,250,750,2250,4000,6000};
+	private final static int rødovrevejRent[] = {50,250,750,2250,4000,6000};
+	private final static int roskildevejRent[] = {100,600,1800,5400,8000,11000};
+	private final static int valbyLanggadeRent[] = {100,600,1800,5400,8000,11000};
+	private final static int allégadeRent[] = {150,800,2000,6000,9000,12000};
+	private final static int frederiksbergAlléRent[] = {200,1000,3000,9000,12500,15000};
+	private final static int bülowsvejRent[] = {200,1000,3000,9000,12500,15000};
+	private final static int glKongevejRent[] = {250,1250,3750,10000,14000,18000};
+	private final static int bernstoffsvejRent[] = {300,1400,4000,11000,15000,19000};
+	private final static int hellerupvejRent[] = {300,1400,4000,11000,15000,19000};
+	private final static int strandvejenRent[] = {350,1600,4400,12000,16000,20000};
+	private final static int trianglenRent[] = {350,1800,5000,14000,17500,21000};
+	private final static int østerbrogadeRent[] = {350,1800,5000,14000,17500,21000};
+	private final static int grønningenRent[] = {400,2000,6000,15000,18500,22000};
+	private final static int kgsNytorvRent[] = {450,2200,6600,16000,19500,23000};
+	private final static int bredgadeRent[] = {450,2200,6600,16000,19500,23000};
+	private final static int østergadeRent[] = {500,2400,7200,17000,20500,24000};
+	private final static int vimmelskaftetRent[] = {550,2600,7800,18000,22000,25000};
+	private final static int amagertorvRent[] = {550,2600,7800,18000,22000,25000};
+	private final static int nygadeRent[] = {600,4000,9000,19000,23000,26000};
+	private final static int frederiksberggadeRent[] = {700,3500,10000,22000,26000,30000};
+	private final static int rådhuspladsenRent[] = {1000,4000,12000,28000,34000,40000};
+	
+	
+	
+	
+	private final static int territoryPrice[] = {1200,1200,2000,2000,2400,2800,2800,3200,3600,3600,4000,4400,4400,4800,5200,5200,5600,6000,6000,6400,7000,8000};
+	private final static int territoryRent[][] = {hvidovrevejRent,rødovrevejRent,roskildevejRent,valbyLanggadeRent,allégadeRent,frederiksbergAlléRent
+			,bülowsvejRent,glKongevejRent,bernstoffsvejRent,hellerupvejRent,hellerupvejRent,strandvejenRent,trianglenRent,østerbrogadeRent
+			,grønningenRent,kgsNytorvRent,bredgadeRent,østergadeRent,vimmelskaftetRent,amagertorvRent,nygadeRent,frederiksberggadeRent,rådhuspladsenRent};
 	private final static int territoryPlace[] = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
-	private final static int territoryIncr[] = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
+	private final static int territorySeriesMax[] = {2,3,3,3,3,3,3,2};
+	private final static Color territoryColor[] = {Color.BLUE,Color.ORANGE,Color.GREEN, Color.GRAY,Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
+	
 
-	//Tax related information.
 	private final static int breweryPrice[] = {3000,3000};
 	private final static int breweryBaseRent[] = {100,100};
 	private final static int breweryPlace[] = {12,28};
@@ -105,19 +134,35 @@ public class FieldGenerator {
 		String title = "";
 		int pos = 0;
 		int price = 0;
-		int rent = 0;
-		int priceIncr = 0;
-		String id = "";
+		int rent[] = new int[6];
+		Color color = Color.BLACK;
+		int seriesMax = 0;
+		int seriesMaxReached = 0;
+		int counter = 0;
+		//(String desc, String subtext, String title, int pos, int price, int rent, int series, Color color) 
 		for(int i = 0;i<territoryFields.length;i++) {
 			desc = strBank.getTerritoryDescArray(i);
 			subtext = strBank.getTerritorySubtextArray(i);
 			title = strBank.getTerritoryNameArray(i);
 			pos = territoryPlace[i];
+			for(int r = 0;i<6;r++) {
+				rent[r] = territoryRent[i][r];
+			}
 			price = territoryPrice[i];
-			rent = territoryRent[i];
-			priceIncr = territoryIncr[i];
-
-			territoryFields[i] = new Territory(desc, subtext, title, pos, price, rent, priceIncr, id);
+			
+			
+			if((seriesMaxReached < 8) && counter == territorySeriesMax[seriesMaxReached]) {
+				seriesMaxReached++;
+				counter = 0;
+			}
+			if(!(seriesMaxReached>7)) {
+				seriesMax = territorySeriesMax[seriesMaxReached];
+			}
+			color = territoryColor[seriesMaxReached];
+			territoryFields[i] = new Territory(desc, subtext, title, pos, price, rent, seriesMax, color);
+			
+			
+			counter++;
 		}
 	}
 
@@ -158,8 +203,8 @@ public class FieldGenerator {
 			desc = strBank.getFleetDescriptionArray(i);
 			subtext = strBank.getFleetSubtextArray(i);
 			title = strBank.getFleetNameArray(i);
-			
-			
+
+
 			fleetFields[i] = new Fleet(desc,subtext,title,pos,price,rent);
 		}
 	}

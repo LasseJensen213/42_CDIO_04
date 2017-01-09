@@ -1,17 +1,23 @@
 package field;
 
-import java.awt.Image;
+import java.awt.Color;
 
 public class Territory extends Ownable {
 	private int house;
-	private boolean hotel;
-	private String id;
+	private int seriesMax;
+	private Color color;
+	private static int rent[];
 	
-	public Territory(String desc, String subtext, String title, int pos, int price, int rent, int priceIncr, String id) {
-		super(desc, subtext, title, pos, price, rent);
-		this.id = id;
-		hotel = false;
+	
+	
+	
+	
+	public Territory(String desc, String subtext, String title, int pos, int price, int[] rent, int series, Color color) {
+		super(desc, subtext, title, pos, price);
 		house = 0;
+		this.seriesMax = series;
+		this.color = color;
+		this.rent = rent;
 	}
 
 	public void addHouse(int amount) {
@@ -23,15 +29,9 @@ public class Territory extends Ownable {
 		house -= amount;
 	}
 	
-	public boolean hasHotel()
-	{
-		return hotel;
-	}
+
 	
-	public void setHotel(boolean hasHotel)
-	{
-		this.hotel = hasHotel;
-	}
+
 	
 	
 	public int getHouse() {
@@ -42,14 +42,23 @@ public class Territory extends Ownable {
 		this.house = house;
 	}
 
-	public String getId() {
-		return id;
+
+
+	public int getSeries() {
+		return seriesMax;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setSeries(int series) {
+		this.seriesMax = series;
 	}
 
-	
-	
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+
 }
