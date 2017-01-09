@@ -53,4 +53,10 @@ public class DiceCup {
 			INSTANCE = new DiceCup(2,6);
 		return INSTANCE;
 	}
+	public boolean isEqual() {
+		if(getDiceValue(0) == getDiceValue(1)){
+			return true;	
+		}
+			return false;
+		}
 }

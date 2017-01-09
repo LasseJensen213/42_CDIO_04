@@ -2,6 +2,7 @@ package player;
 
 import java.awt.Color;
 import desktop_codebehind.Car;
+import dice.DiceCup;
 
 public class Player 
 {
@@ -16,6 +17,7 @@ public class Player
 	private int timeInJail;
 	private Property property;
 	
+	DiceCup diceCup = DiceCup.getDC();
 
 	public Player(String name , Car car , int startBalance)
 	{
@@ -117,7 +119,16 @@ public class Player
 	public void setEqualFaceValue(int equalFaceValue) {
 		this.equalFaceValue = equalFaceValue;
 	}
-	
-	
+	public void equalFaceValue() {
+		if(!(equalFaceValue == 0)) {
+			if(diceCup.isEqual()) {
+				equalFaceValue++; 
+			}
+		}
+	}
+	public void gotoJail() {
+		if(equalFaceValue == 3) 
+			jailed = true;
+	}
 	
 }
