@@ -31,7 +31,7 @@ public class PropertyController {
 			Territory[] validHotelUpgrades = getValidHotelsUpgrades(player);
 			Player[] validTradePlayers = validPlayersToTradeWith(player);
 
-			if(validHousePlacements.length>0 && housesUsed<MAX_HOUSES && player.getAccount().getBalance()>2000)
+			if(validHousePlacements.length>0 && housesUsed < MAX_HOUSES && player.getAccount().getBalance()>2000)
 				options = (String[]) addToArray(options,Stringbanks_Property.get(11));
 
 			if(validHotelUpgrades.length>0 && hotelsUsed < MAX_HOTELS && player.getAccount().getBalance()>5000)
@@ -310,7 +310,7 @@ public class PropertyController {
 	{
 		int nDiffSeries = p.getProperty().nDifferentSeries();
 		Territory[][] series = new Territory[nDiffSeries][0];
-		Integer[][] numOfHousesSeries = new Integer[nDiffSeries][0];
+		int[][] numOfHousesSeries = new int[nDiffSeries][0];
 		int smallestNumOfHouses = 4;
 		//Placeholder for the different ID's
 		String[] id = {"Y","R","B","BL","W"};
@@ -318,7 +318,7 @@ public class PropertyController {
 		{
 			int nPartSeries = p.getProperty().nParticularSeries(id[i]);
 			Territory[] singleSeries = new Territory[0];
-			Integer[] numOfHouses = new Integer[0];
+			int[] numOfHouses = new int[0];
 			if(singleSeries.length == 0)
 			{
 				i--;
@@ -328,10 +328,10 @@ public class PropertyController {
 			{
 				if(!p.getProperty().getTerritoryOfId(id[i], k).hasHotel())
 				{
-					singleSeries =  (Territory[]) addToArray(singleSeries, p.getProperty().getTerritoryOfId(id[i], k));
+					singleSeries =  addToArray(singleSeries, p.getProperty().getTerritoryOfId(id[i], k));
 
 					int houseCount = singleSeries[k].getHouse();
-					numOfHouses = (Integer[]) addToArray(numOfHouses,houseCount);
+					numOfHouses = addToArray(numOfHouses,houseCount);
 
 					if(houseCount<smallestNumOfHouses)
 						smallestNumOfHouses = houseCount;
@@ -340,9 +340,9 @@ public class PropertyController {
 			}
 			//The last index in the numOfHouses array is the smallest number of houses of that series
 			//This is needed to be known since there has to be an equal distribution of houses
-			numOfHouses = (Integer[]) addToArray(numOfHouses,smallestNumOfHouses);
-			series = (Territory[][]) addToTwoDimensionalArray(series, singleSeries);
-			numOfHousesSeries = (Integer[][]) addToTwoDimensionalArray(numOfHousesSeries, numOfHouses );
+			numOfHouses =  addToArray(numOfHouses,smallestNumOfHouses);
+			series =  addToTwoDimensionalArray(series, singleSeries);
+			numOfHousesSeries = addToTwoDimensionalArray(numOfHousesSeries, numOfHouses );
 		}
 		Territory[] result = new Territory[0];
 		for(int outer = 0; outer<series.length;outer++)
@@ -353,7 +353,7 @@ public class PropertyController {
 			for(int inner = 0; inner<series[outer].length;inner++)
 			{
 				if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
-					result = (Territory[]) addToArray(result, series[outer][inner]);
+					result = addToArray(result, series[outer][inner]);
 			}
 
 		}
@@ -374,7 +374,7 @@ public class PropertyController {
 		{
 			if(((Territory)p.getProperty().get(i)).getHouse()==4)
 			{
-				result =  (Territory[]) addToArray(result,p.getProperty().get(i));
+				result = addToArray(result,(Territory)p.getProperty().get(i));
 			}
 		}
 		return result;
@@ -384,9 +384,9 @@ public class PropertyController {
 
 
 
-	public Object[] addToArray(Object[] array, Object element)
+	public String[] addToArray(String[] array, String element)
 	{
-		Object[] result = new Object[array.length+1];
+		String[] result = new String[array.length+1];
 		for(int i = 0; i<array.length;i++)
 		{
 			result[i] = array[i];
@@ -394,10 +394,112 @@ public class PropertyController {
 		result[result.length-1] = element;
 		return result;
 	}
-
-	public Object[][] addToTwoDimensionalArray(Object[][] array, Object[] element)
+	public Player[] addToArray(Player[] array, Player element)
 	{
-		Object[][] result = new Object[array.length+1][];
+		Player[] result = new Player[array.length+1];
+		for(int i = 0; i<array.length;i++)
+		{
+			result[i] = array[i];
+		}
+		result[result.length-1] = element;
+		return result;
+	}
+	
+	public int[] addToArray(int[] array, int element)
+	{
+		int[] result = new int[array.length+1];
+		for(int i = 0; i<array.length;i++)
+		{
+			result[i] = array[i];
+		}
+		result[result.length-1] = element;
+		return result;
+	}
+	public Territory[] addToArray(Territory[] array, Territory element)
+	{
+		Territory[] result = new Territory[array.length+1];
+		for(int i = 0; i<array.length;i++)
+		{
+			result[i] = array[i];
+		}
+		result[result.length-1] = element;
+		return result;
+	}
+	
+	public Ownable[] addToArray(Ownable[] array, Ownable element)
+	{
+		Ownable[] result = new Ownable[array.length+1];
+		for(int i = 0; i<array.length;i++)
+		{
+			result[i] = array[i];
+		}
+		result[result.length-1] = element;
+		return result;
+	}
+	
+	public Territory[][] addToTwoDimensionalArray(Territory[][] array, Territory[] element)
+	{
+		Territory[][] result = new Territory[array.length+1][];
+		for(int outer = 0;outer<array.length;outer++)
+		{
+			for(int inner = 0; inner<array[outer].length;inner++)
+			{
+				result[outer] = addToArray(result[outer],array[outer][inner]);
+			}
+
+		}
+		result[result.length-1] = element;
+		return result;
+	}
+	
+	public Player[][] addToTwoDimensionalArray(Player[][] array, Player[] element)
+	{
+		Player[][] result = new Player[array.length+1][];
+		for(int outer = 0;outer<array.length;outer++)
+		{
+			for(int inner = 0; inner<array[outer].length;inner++)
+			{
+				result[outer] = addToArray(result[outer],array[outer][inner]);
+			}
+
+		}
+		result[result.length-1] = element;
+		return result;
+	}
+	
+	public Ownable[][] addToTwoDimensionalArray(Ownable[][] array, Ownable[] element)
+	{
+		Ownable[][] result = new Ownable[array.length+1][];
+		for(int outer = 0;outer<array.length;outer++)
+		{
+			for(int inner = 0; inner<array[outer].length;inner++)
+			{
+				result[outer] = addToArray(result[outer],array[outer][inner]);
+			}
+
+		}
+		result[result.length-1] = element;
+		return result;
+	}
+
+	public int[][] addToTwoDimensionalArray(int[][] array, int[] element)
+	{
+		int[][] result = new int[array.length+1][];
+		for(int outer = 0;outer<array.length;outer++)
+		{
+			for(int inner = 0; inner<array[outer].length;inner++)
+			{
+				result[outer] = addToArray(result[outer],array[outer][inner]);
+			}
+
+		}
+		result[result.length-1] = element;
+		return result;
+	}
+	
+	public String[][] addToTwoDimensionalArray(String[][] array, String[] element)
+	{
+		String[][] result = new String[array.length+1][];
 		for(int outer = 0;outer<array.length;outer++)
 		{
 			for(int inner = 0; inner<array[outer].length;inner++)

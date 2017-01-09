@@ -5,11 +5,9 @@ import java.util.ArrayList;
 public class PlayerList {
 	
 	private ArrayList<Player>playerList;
-<<<<<<< HEAD
-=======
 	private static PlayerList INSTANCE;
-	private PlayerCreationGUI playerCreateGUI;
->>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04.git
+	//private PlayerCreationGUI playerCreateGUI;
+
 
 	private int nPlayers;
 	
@@ -28,11 +26,11 @@ public class PlayerList {
 	
 	public void addPlayer(String name)
 	{
-		playerList.add(new Player(name));
+		//playerList.add(new Player(name));
 	}
 	
 	public int getNPlayers()
-	{0
+	{
 		return nPlayers;
 	}
 	
@@ -51,23 +49,23 @@ public class PlayerList {
 	
 	
 	
-	public void initPlayers()
-	{
-		//First choose number of players
-		nPlayers = playerCreateGUI.chooseNPlayers();
-		
-		for(int i = 0; i<nPlayers;i++)
-		{
-			String name = playerCreateGUI.chooseName(this);
-			String color = playerCreateGUI.chooseColor();//Chooses the color for the car
-			addPlayer(name);
-			playerList.get(i).setCar(playerCreateGUI.getColor(color));
-			playerCreateGUI.addPlayerToBoard(playerList.get(i));
-				
-			
-		}
-		
-	}
+//	public void initPlayers()
+//	{
+//		//First choose number of players
+//		//nPlayers = playerCreateGUI.chooseNPlayers();
+//		
+//		for(int i = 0; i<nPlayers;i++)
+//		{
+//			String name = playerCreateGUI.chooseName(this);
+//			String color = playerCreateGUI.chooseColor();//Chooses the color for the car
+//			addPlayer(name);
+//			playerList.get(i).setCar(playerCreateGUI.getColor(color));
+//			playerCreateGUI.addPlayerToBoard(playerList.get(i));
+//				
+//			
+//		}
+//		
+//	}
 	
 	
 	/**
