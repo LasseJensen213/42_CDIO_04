@@ -64,6 +64,7 @@ public class LandOnFieldController {
 			//nothing happens
 		}
 		else {
+<<<<<<< HEAD
 			// mangler metode til at trække dobbelt op på husleje og huse. 1000 er et midlertidigt tal.
 
 			player.getAccount().transfer(1000, f.getOwner().getAccount());
@@ -107,6 +108,65 @@ public class LandOnFieldController {
 			player.getAccount().transfer(1000, f.getOwner().getAccount());
 		}
 	}
+=======
+			int houses = f.getHouse();
+			int rent = f.getRent(houses);
+			if(houses == 0) {
+				rent = rent*2;
+			}
+			// mangler metode til at trække dobbelt op på husleje og huse. 1000 er et midlertidigt tal.
+
+			player.getAccount().transfer(rent, f.getOwner().getAccount());
+		}
+	}
+	
+	
+	// mangler udregning af leje
+	public void landOnBrewery(Player player, Brewery f){
+		if(f.getOwner() == null){
+			if(player.getAccount().getBalance()>(f.getPrice())){
+				if(LandOnFieldBoundary.buyChoice()){
+					player.getAccount().withdraw(f.getPrice());
+					f.setOwner(player);
+				}
+			}
+		}
+		else if(f.getOwner() == player){
+			//nothing happens
+		}
+		else {
+			int rent = player.getTotalFaceValue()*f.getRent()*100;
+			
+			player.getAccount().transfer(rent, f.getOwner().getAccount());
+		}
+	}
+	// mangler udregning af leje
+	
+	
+	
+	
+	public void landOnFleet(Player player, Fleet f){
+		if(f.getOwner() == null){
+			if(player.getAccount().getBalance()>(f.getPrice())){
+				if(LandOnFieldBoundary.buyChoice()){
+					player.getAccount().withdraw(f.getPrice());
+					f.setOwner(player);
+				}
+			}
+		}
+		else if(f.getOwner() == player){
+			//nothing happens
+		}
+		else {
+			int rent = player.getProperty().g
+			
+			player.getAccount().transfer(1000, f.getOwner().getAccount());
+		}
+	}
+	
+	
+	
+>>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
 	//færdig
 	public void landOnTax(Player player, Tax f){
 		player.getAccount().withdraw(f.getTax());

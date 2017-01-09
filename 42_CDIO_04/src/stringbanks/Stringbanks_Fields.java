@@ -81,7 +81,7 @@ public class Stringbanks_Fields {
 	private String field17Description = "";
 	private String field17subtext = "";
 	
-	private String field18Name = "ØStergade";
+	private String field18Name = "Østergade";
 	private String field18Description = "";
 	private String field18subtext = "";
 	
@@ -158,7 +158,7 @@ public class Stringbanks_Fields {
 	//Parking Lot information
 	private String field34Name = "Parkering";
 	private String field34Description = "";
-	private String field34subtext = "";
+	private String field34subtext = "Parkering";
 	
 	
 	//Territory arrays

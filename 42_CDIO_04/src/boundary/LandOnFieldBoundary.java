@@ -14,6 +14,8 @@ public class LandOnFieldBoundary {
 		GUI.setCar(10, name);
 	}
 	
-	
+	public static void setPlayerColorOnField(String name, int number){
+	GUI.setOwner(number, name);
+	}
 	
 }

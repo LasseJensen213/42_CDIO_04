@@ -4,10 +4,19 @@ import java.util.ArrayList;
 
 public class PlayerList {
 	
+<<<<<<< HEAD
 	private ArrayList<Player>playerList;
+=======
+	private ArrayList<Player>playerList;
+
+>>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
 	private static PlayerList INSTANCE;
+<<<<<<< HEAD
 	//private PlayerCreationGUI playerCreateGUI;
 
+=======
+	private PlayerCreationGUI playerCreateGUI;
+>>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
 
 	private int nPlayers;
 	
