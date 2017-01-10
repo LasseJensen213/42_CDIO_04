@@ -15,18 +15,21 @@ public class GameController {
 	private int playerIndex;
 
 	public GameController() {
-		playerCreate = new PlayerCreation();
-		pList = new PlayerList();
-		playerIndex = 0;								//Turn
+		playerIndex = 0;
 		gui = new GameControllerBoundary();
 		gLogic = new GameLogic();
 	}
 
 	public void startGame()
+<<<<<<< HEAD
+	{
+		playerCreate.createPlayers();
+=======
 	{ 	
 		
 		playerCreate.initPlayers();
 		
+>>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
 		pList = PlayerList.getPL();
 		Cardgenerator.generateCards();
 		

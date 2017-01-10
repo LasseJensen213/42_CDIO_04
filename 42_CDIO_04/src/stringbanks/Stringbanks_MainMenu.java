@@ -1,5 +1,7 @@
 package stringbanks;
 
+import desktop_codebehind.Car;
+
 public class Stringbanks_MainMenu {
 
 	private static String menuMsg  		  = "Vælg fra menuen";
@@ -23,4 +25,5 @@ public class Stringbanks_MainMenu {
 	{
 		return allMsgs[i];
 	}
+	
 }

@@ -436,11 +436,12 @@ public class PropertyController {
 	public Territory[] getValidHotelsUpgrades(Player p)
 	{
 		Territory[] result = new Territory[0];
-		for(int i = 0; i<p.getProperty().nFields();i++)
+		int nTer = p.getProperty().nTerritoriesOwned();
+		for(int i = 0; i<nTer;i++)
 		{
-			if(((Territory)p.getProperty().getField(i)).getHouse()==4)
+			if(p.getProperty().getTerritory(i)).getHouse()==4)
 			{
-				result = addToArray(result,(Territory)p.getProperty().getField(i));
+				result = addToArray(result,p.getProperty().getTerritory(i));
 			}
 		}
 		return result;
