@@ -15,6 +15,8 @@ public class PropertyControllerTest {
 	@Test
 	public void testAddToArray() {
 		PropertyController prop = new PropertyController();
+		PlayerList pList = PlayerList.getPL();
+		
 		String[] strArr = new String[0];
 		
 		strArr = prop.addToArray(strArr,"Bob");
