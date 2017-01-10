@@ -27,7 +27,7 @@ public class GameLogic {
 	{
 		int d1,d2;
 		prop.buyAssets(player);
-		gui.AskToRollDice();
+		gui.AskToRollDice(player.getName());
 		diceCup.rollDice();
 		d1 = diceCup.getDiceValue(0);
 		d2 = diceCup.getDiceValue(1);
