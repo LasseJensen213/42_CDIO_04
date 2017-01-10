@@ -6,15 +6,13 @@ import player.Player;
 
 public abstract class Ownable extends Field {
 	private int price;
-	private int rent;
 	private Player owner;
 	private boolean pawned;
 	
 	
-	public Ownable(String desc, String subtext, String title, int pos, int price, int rent) {
+	public Ownable(String desc, String subtext, String title, int pos, int price) {
 		super(desc,subtext,title,pos);
 		this.price = price;
-		this.rent = rent;
 		pawned = false;
 		owner = null;
 		
@@ -70,9 +68,6 @@ public abstract class Ownable extends Field {
 	}
 
 
-	public int getRent() {
-		return rent;
-	}
 
 
 	public Player getOwner() {
@@ -84,8 +79,35 @@ public abstract class Ownable extends Field {
 		return pawned;
 	}
 
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
 	
+
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
+	}
+
+
+	public void setPawned(boolean pawned) {
+		this.pawned = pawned;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Ownable [price=" + price + ", owner=" + owner + ", pawned=" + pawned + ", getDesc()=" + getDesc()
+				+ ", getSubtext()=" + getSubtext() + ", getTitle()=" + getTitle() + ", getFieldPosition()="
+				+ getFieldPosition() + ", toString()=" + super.toString() + ", getClass()=" + getClass() + "]";
+	}
+
 	
+
+
 	
 	
 }

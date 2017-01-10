@@ -1,5 +1,6 @@
 package field;
 
+
 import java.awt.Image;
 
 import dice.DiceCup;
@@ -26,7 +27,16 @@ public class Brewery extends Ownable{
 		if(amountOwned == 2) {
 			setRent(2 * DiceCup.getDiceTotal());
 		}
+
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Brewery [rent=" + rent + ", getPrice()=" + getPrice() + ", getOwner()=" + getOwner() + ", isPawned()="
+				+ isPawned() + ", toString()=" + super.toString() + ", getDesc()=" + getDesc() + ", getSubtext()="
+				+ getSubtext() + ", getTitle()=" + getTitle() + ", getFieldPosition()=" + getFieldPosition()
+				+ ", getClass()=" + getClass();
+	}
+
 
 }

@@ -11,11 +11,17 @@ public class CardDeck {
 	//The cards are intended to be generated in another class and then saved here in the active deck
 	private Card[] activeDeck;
 	private Card[] usedDeck;
+	private static CardDeck INSTANCE;
 	
 	
 	public CardDeck(Card[] cards) {
 		usedDeck = new Card[0];
 		activeDeck = cards;
+	}
+	
+	public CardDeck()
+	{
+		usedDeck = new Card[0];
 	}
 	/**
 	 * Draws the card at the top of the active deck, <br>
@@ -38,7 +44,7 @@ public class CardDeck {
 		//which would mean that no cards have been generated yet
 		if(activeDeck.length==0)
 		{
-			return new Card("","");
+			return new Card("");
 		}
 		Card cardDrawn = activeDeck[0];
 		
@@ -120,6 +126,13 @@ public class CardDeck {
 			}
 			activeDeck = newActiveDeck;
 		}
+	}
+	
+	public static CardDeck getCD()
+	{
+		if(INSTANCE==null)
+			INSTANCE = new CardDeck();
+		return INSTANCE;
 	}
 	
 	

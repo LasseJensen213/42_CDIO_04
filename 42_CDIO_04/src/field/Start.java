@@ -9,8 +9,7 @@ public class Start extends Field{
 	@Override
 	public String toString() {
 		return "Start [getDesc()=" + getDesc() + ", getSubtext()=" + getSubtext() + ", getTitle()=" + getTitle()
-				+ ", getFieldPosition()=" + getFieldPosition() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
+				+ ", getFieldPosition()=" + getFieldPosition() + ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
 	}	
 	
 	

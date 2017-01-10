@@ -37,15 +37,14 @@ public class Account {
 
 	//Transfer of "amount" to account "a"
 	
-	public void transfer(int amount, Account a)
-	{
-		//Makes sure you can't transfer money you don't have
+	public void transfer(int amount, Account a) {
 		
-		if(amount>this.balance)
-		{
-			amount = this.balance;
-		}
+    //Makes sure you can't transfer money you don't have
 		withdraw(amount);
+    
+		if(amount>this.balance) {
+			amount = this.balance;
+		}	
 		a.deposit(amount);
 	}
 	

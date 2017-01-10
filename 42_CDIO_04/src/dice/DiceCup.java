@@ -1,8 +1,11 @@
 package dice;
 import java.util.*;
 public class DiceCup {
+
+
 	//Dice Cup
 	private ArrayList<Dice> diceList;
+	private static DiceCup INSTANCE;
 
 	public DiceCup(int numOfDice, int numOfSides)
 	{
@@ -35,7 +38,8 @@ public class DiceCup {
 			diceList.add(new Dice(numOfSides));
 		}
 	}
-
+	
+	
 	public int getDiceTotal()
 	{
 		int total = 0;
@@ -45,4 +49,20 @@ public class DiceCup {
 		}
 		return total;
 	}
+
+	
+	public static DiceCup getDC()
+	{
+		if(INSTANCE == null)
+			INSTANCE = new DiceCup(2,6);
+		return INSTANCE;
+	}
+	
+	public boolean isEqual() {
+		if(getDiceValue(0) == getDiceValue(1)){
+			return true;	
+		}
+		return false;
+	}
+
 }

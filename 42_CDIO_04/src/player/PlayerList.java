@@ -1,12 +1,22 @@
 package player;
 
 import java.util.ArrayList;
-import gui.PlayerCreationGUI;
 
 public class PlayerList {
 	
+<<<<<<< HEAD
 	private ArrayList<Player>playerList;
+=======
+	private ArrayList<Player>playerList;
+
+>>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
+	private static PlayerList INSTANCE;
+<<<<<<< HEAD
+	//private PlayerCreationGUI playerCreateGUI;
+
+=======
 	private PlayerCreationGUI playerCreateGUI;
+>>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
 
 	private int nPlayers;
 	
@@ -14,7 +24,6 @@ public class PlayerList {
 	{
 		this.playerList = new ArrayList<Player>();
 		this.playerList.clear();
-		this.playerCreateGUI = new PlayerCreationGUI();	
 		
 	
 	}
@@ -26,7 +35,7 @@ public class PlayerList {
 	
 	public void addPlayer(String name)
 	{
-		playerList.add(new Player(name));
+		//playerList.add(new Player(name));
 	}
 	
 	public int getNPlayers()
@@ -49,23 +58,23 @@ public class PlayerList {
 	
 	
 	
-	public void initPlayers()
-	{
-		//First choose number of players
-		nPlayers = playerCreateGUI.chooseNPlayers();
-		
-		for(int i = 0; i<nPlayers;i++)
-		{
-			String name = playerCreateGUI.chooseName(this);
-			String color = playerCreateGUI.chooseColor();//Chooses the color for the car
-			addPlayer(name);
-			playerList.get(i).setCar(playerCreateGUI.getColor(color));
-			playerCreateGUI.addPlayerToBoard(playerList.get(i));
-				
-			
-		}
-		
-	}
+//	public void initPlayers()
+//	{
+//		//First choose number of players
+//		//nPlayers = playerCreateGUI.chooseNPlayers();
+//		
+//		for(int i = 0; i<nPlayers;i++)
+//		{
+//			String name = playerCreateGUI.chooseName(this);
+//			String color = playerCreateGUI.chooseColor();//Chooses the color for the car
+//			addPlayer(name);
+//			playerList.get(i).setCar(playerCreateGUI.getColor(color));
+//			playerCreateGUI.addPlayerToBoard(playerList.get(i));
+//				
+//			
+//		}
+//		
+//	}
 	
 	
 	/**
@@ -143,7 +152,14 @@ public class PlayerList {
 	}
 	
 	
-
+	public static PlayerList getPL()
+	{
+		if(INSTANCE == null)
+		{
+			INSTANCE = new PlayerList();
+		}
+		return INSTANCE;
+	}
 	
 	
 	
