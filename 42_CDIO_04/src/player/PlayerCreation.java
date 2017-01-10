@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import desktop_codebehind.Car;
+import desktop_codebehind.Car.Builder;
 import desktop_resources.GUI;
 import stringbanks.Stringbanks_PlayerCreation;
 
@@ -13,24 +15,12 @@ public class PlayerCreation {
 	//adding and defining colors from java import
 	private ArrayList<String> availableColors;
 	private Map<String,Color>colorMap;
-<<<<<<< HEAD
-	private Color[] colors = {Color.blue,Color.green, Color.red, Color.yellow, Color.white, Color.pink};
-=======
 	private Color[] colors = {Color.BLUE,Color.GREEN, Color.RED, Color.YELLOW, Color.WHITE, Color.PINK};
 
 	Stringbanks_PlayerCreation s = new Stringbanks_PlayerCreation();
 	PlayerList pList;
->>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
 
 
-<<<<<<< HEAD
-	//Creating the players
-	public void createPlayers(Player player) {
-		String name = player.getName();
-		int balance = player.getAccount().getBalance();
-		GUI.addPlayer(name, balance, player.getCar() );
-		GUI.setCar(1, name);
-=======
 
 
 	public PlayerCreation()
@@ -70,7 +60,6 @@ public class PlayerCreation {
 
 
 
->>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
 	}
 
 	//Choose name for players
@@ -79,48 +68,43 @@ public class PlayerCreation {
 		int nPlayersInList = pList.getPlayerList().size();
 		while(true)
 		{
-			String name = GUI.getUserString(String.format(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/, nPlayersInList+1));
+			String name = GUI.getUserString(s.getMessages(0));
 			if(name.length()>16)
 			{
-				GUI.showMessage(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/);
+				GUI.showMessage(s.getMessages(1));
 				continue;
 			}
 			else if(name.length()==0)
 			{
-				name = Stringbank_PlayerCreation.getPlayerName()+" "+(nPlayersInList+1);
+				name = s.getMessages(2)+" "+(nPlayersInList+1);
 			}
 			if(pList.nameTaken(name))
 			{
-				GUI.showMessage(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/);
+				GUI.showMessage(s.getMessages(3));
 			}
 			else 
 				return name;
 		}
 	}
 
+	public Color getColor (String color) {
+		return colorMap.get(color);
+
+	}
 
 	public String chooseColor() {
-		availableColors = new ArrayList<String>();
-		colorMap = new HashMap<String,Color>();
-		
-		for(int i = 0; i<colors.length;i++) {
-			availableColors.add(Stringbank_PlayerCreation.getColor(i));
-			colorMap.put(Stringbank_PlayerCreation.getColor(i), colors[i]);
-		}
-
-		
 		String[] colorArr = availableColors.toArray(new String[]{});
-		String color = GUI.getUserSelection(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/,colorArr);
+		String color = GUI.getUserSelection(s.getMessages(4),colorArr);
 
 		//removes colors already chosen by other players
 		availableColors.remove(color);
 		return color;
+
 	}
 
 
 	public int chooseNPlayers()
 	{
-		return Integer.parseInt(GUI.getUserSelection(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/, new String[]{"2","3","4","5","6"}));
+		return Integer.parseInt(GUI.getUserSelection(s.getMessages(5), new String[]{"2","3","4","5","6"}));
 	}
-
 }
