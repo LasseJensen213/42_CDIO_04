@@ -4,15 +4,15 @@ import boundary.GameControllerBoundary;
 import card.Cardgenerator;
 import player.PlayerCreation;
 import player.PlayerList;
+import player.PlayerManager;
 
 
 public class GameController {
-
 	private PlayerList pList;
 	private PlayerCreation playerCreate;
 	private GameControllerBoundary gui;
 	private GameLogic gLogic;
-	int playerIndex;
+	private int playerIndex;
 
 	public GameController() {
 		playerIndex = 0;
@@ -21,8 +21,15 @@ public class GameController {
 	}
 
 	public void startGame()
+<<<<<<< HEAD
 	{
 		playerCreate.createPlayers();
+=======
+	{ 	
+		
+		playerCreate.initPlayers();
+		
+>>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
 		pList = PlayerList.getPL();
 		Cardgenerator.generateCards();
 		

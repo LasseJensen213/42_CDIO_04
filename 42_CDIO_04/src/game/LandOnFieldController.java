@@ -32,7 +32,8 @@ public class LandOnFieldController {
 	 * @param player
 	 */
 	public void landOnField(Player player){
-		Board b = new Board();
+		System.out.println("What");
+		Board b = Board.Board();
 		field.Field f = b.getField(player.getPlayerPos());
 
 		if(f instanceof Territory){
@@ -76,6 +77,7 @@ public class LandOnFieldController {
 					player.getAccount().withdraw(f.getPrice());
 					((Territory)f).setOwner(player);
 					LandOnFieldBoundary.setPlayerColorOnField(player.getName(), player.getPlayerPos());
+					player.getProperty().addField(f);
 				}
 			}
 		}
@@ -105,6 +107,8 @@ public class LandOnFieldController {
 				if(LandOnFieldBoundary.buyChoice()){
 					player.getAccount().withdraw(f.getPrice());
 					f.setOwner(player);
+					player.getProperty().addField(f);
+
 				}
 			}
 		}
@@ -130,6 +134,8 @@ public class LandOnFieldController {
 				if(LandOnFieldBoundary.buyChoice()){
 					player.getAccount().withdraw(f.getPrice());
 					f.setOwner(player);
+					player.getProperty().addField(f);
+
 				}
 			}
 		}
@@ -221,22 +227,22 @@ public class LandOnFieldController {
 	 * @param f
 	 */
 	public void landOnChance(Player player, Chance f){
-		LandOnFieldBoundary.displayMessage(3);
-		card = cardDeck.draw();
-		LandOnFieldBoundary.displayCard(card.getDescription());
-		if(card instanceof Bail) {
-			cE.cardEffectBail(player, (Card)card);
-		}
-		else if(card instanceof GoToJailCard) {
-			cE.cardEffectGoToJail(player, (GoToJailCard)card);
-		}
-		else if(card instanceof MovePlayer) {
-			cE.cardEffectMovePlayer(player, (MovePlayer)card);
-		}
-		else if(card instanceof TransferMoney) {
-			cE.cardEffectTransferMoney(player, (TransferMoney)card);
-		}
-		
+//		LandOnFieldBoundary.displayMessage(3);
+//		card = cardDeck.draw();
+//		LandOnFieldBoundary.displayCard(card.getDescription());
+//		if(card instanceof Bail) {
+//			cE.cardEffectBail(player, (Card)card);
+//		}
+//		else if(card instanceof GoToJailCard) {
+//			cE.cardEffectGoToJail(player, (GoToJailCard)card);
+//		}
+//		else if(card instanceof MovePlayer) {
+//			cE.cardEffectMovePlayer(player, (MovePlayer)card);
+//		}
+//		else if(card instanceof TransferMoney) {
+//			cE.cardEffectTransferMoney(player, (TransferMoney)card);
+//		}
+//		
 	}
 	
 	

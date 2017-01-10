@@ -17,7 +17,7 @@ public class LandOnFieldBoundary {
 	}
 	
 	public static void setPlayerColorOnField(String name, int number){
-	GUI.setOwner(number, name);
+	GUI.setOwner(number+1, name);
 	}
 	
 	public static void payOtherPlayer(String s, int i) {
