@@ -4,15 +4,15 @@ import boundary.GameControllerBoundary;
 import card.Cardgenerator;
 import player.PlayerCreation;
 import player.PlayerList;
+import player.PlayerManager;
 
 
 public class GameController {
-
 	private PlayerList pList;
 	private PlayerCreation playerCreate;
 	private GameControllerBoundary gui;
 	private GameLogic gLogic;
-	int playerIndex;
+	private int playerIndex;
 
 	public GameController() {
 		playerCreate = new PlayerCreation();
@@ -26,6 +26,7 @@ public class GameController {
 	{ 	
 		
 		playerCreate.initPlayers();
+		
 		pList = PlayerList.getPL();
 		Cardgenerator.generateCards();
 		

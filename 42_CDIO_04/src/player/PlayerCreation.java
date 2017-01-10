@@ -18,13 +18,13 @@ public class PlayerCreation {
 	private Color[] colors = {Color.BLUE,Color.GREEN, Color.RED, Color.YELLOW, Color.WHITE, Color.PINK};
 
 	Stringbanks_PlayerCreation s = new Stringbanks_PlayerCreation();
-	PlayerManager pMan;
+	PlayerList pList;
 
 
 
 
 	public PlayerCreation()
-	{	pMan = new PlayerManager();
+	{	pList = PlayerList.getPL();
 		availableColors = new ArrayList<String>();
 		colorMap = new HashMap<String,Color>();
 		for(int i = 0; i<colors.length;i++)
@@ -44,15 +44,16 @@ public class PlayerCreation {
 	 */
 	public void initPlayers() {
 		int nPlayers = chooseNPlayers();
+		pList.setNPlayers(nPlayers);
 		for(int i = 0;i<nPlayers;i++){
-			String name = chooseName(pMan);
+			String name = chooseName(pList);
 			int balance = 30000;
 			Color color = getColor(chooseColor());
 			Builder car = new Car.Builder();
 			car.primaryColor(color).typeUfo();
 			GUI.addPlayer(name, balance);
 			GUI.setCar(1, name);
-			pMan.addPlayer(name, car, balance);
+			pList.addPlayer(name, car, balance);
 		}
 
 
@@ -62,9 +63,9 @@ public class PlayerCreation {
 	}
 
 	//Choose name for players
-	public String chooseName(PlayerManager playerManager)
+	public String chooseName(PlayerList pList)
 	{ 
-		int nPlayersInList = playerManager.getPlayerList().size();
+		int nPlayersInList = pList.getPlayerList().size();
 		while(true)
 		{
 			String name = GUI.getUserString(s.getMessages(0));
@@ -77,7 +78,7 @@ public class PlayerCreation {
 			{
 				name = s.getMessages(2)+" "+(nPlayersInList+1);
 			}
-			if(playerManager.nameTaken(name))
+			if(pList.nameTaken(name))
 			{
 				GUI.showMessage(s.getMessages(3));
 			}

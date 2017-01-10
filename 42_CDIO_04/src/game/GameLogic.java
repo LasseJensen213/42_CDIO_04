@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 
 import boundary.GameLogicBoundary;
+import desktop_resources.GUI;
 import dice.DiceCup;
 import game.LandOnFieldController;
 import player.Player;
@@ -59,7 +60,8 @@ public class GameLogic {
 			gui.movePlayerModel(player.getName(), player.getPlayerPos(), d1+d2);
 			updatePlayerPos(player,d1+d2);
 			landOn.landOnField(player);
-			
+			GUI.setBalance(player.getName(), player.getAccount().getBalance());
+
 			if(player.getAccount().getBalance()<=0)
 			{
 				//prop.sellAssets();
