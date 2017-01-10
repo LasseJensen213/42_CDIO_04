@@ -12,12 +12,13 @@ public class GameLogic {
 	DiceCup diceCup;
 	PropertyController prop;
 	LandOnFieldController landOn;
-	GameLogicBoundary gui = new GameLogicBoundary();
+	GameLogicBoundary gui;
 	public GameLogic() 
 	{
 		diceCup = DiceCup.getDC();
 		prop = new PropertyController();
 		landOn = new LandOnFieldController();
+		gui = new GameLogicBoundary();
 	}
 	
 	
@@ -30,6 +31,7 @@ public class GameLogic {
 		d1 = diceCup.getDiceValue(0);
 		d2 = diceCup.getDiceValue(1);
 		gui.showDiceRolling(d1,d2);
+		
 		if(d1==d2)
 		{
 			player.setEqualFaceValue(player.getEqualFaceValue()+1);
@@ -38,6 +40,8 @@ public class GameLogic {
 		{
 			player.setEqualFaceValue(0);
 		}
+		
+		
 		if(player.getEqualFaceValue()==3)
 		{
 			player.setJailed(true);
@@ -45,13 +49,13 @@ public class GameLogic {
 			int distance;
 			distance = 40-player.getPlayerPos()+10;
 			gui.movePlayerModel(player.getName(), player.getPlayerPos(), distance);
-			updatePlayerPos(player,d1+d2);
+			updatePlayerPos(player,distance);
 			player.setPlayerPos(10);
 			
 		}
 		else
 		{
-			gui.movePlayerModel(player.getName(), player.getPlayerPos(), distance);
+			gui.movePlayerModel(player.getName(), player.getPlayerPos(), d1+d2);
 			updatePlayerPos(player,d1+d2);
 			landOn.landOnField(player);
 			
@@ -88,12 +92,14 @@ public class GameLogic {
 		int d1,d2;
 		if(choice.equals("Kast med terningerne... Brian"))
 		{
+			player.setTimeInJail(player.getTimeInJail()+1);
 			diceCup.rollDice();
 			d1 = diceCup.getDiceValue(0);
 			d2 = diceCup.getDiceValue(1);
 			gui.showDiceRolling(d1, d2);
 			if(d1==d2)
 			{
+				player.setTimeInJail(0);
 				player.setJailed(false);
 				player.setEqualFaceValue(player.getEqualFaceValue()+1);
 				gui.movePlayerModel(player.getName(), player.getPlayerPos(), d1+d2);
@@ -110,15 +116,20 @@ public class GameLogic {
 					playerIsBroke(player);
 				}
 			}
-			else if()
+			else if(player.getTimeInJail()==3)
+			{
+				
+			}
 		}
 		else if(choice.equals("Betal kautionen på 1000"))
 		{
 			player.setJailed(false);
+			player.setTimeInJail(0);
 		}
 		else if(choice.equals("Brug benådelses kort"))
 		{
-			
+			player.setJailed(false);
+			player.setTimeInJail(0);
 		}
 		
 	}
@@ -129,9 +140,13 @@ public class GameLogic {
 		player.getAccount().setBalance(0);
 		for(int i = 0 ; i<player.getProperty().nFields();i++)
 		{
-			player.getProperty().get(i);
-			gui.removeOwner(player.getProperty().get(i).getFieldPosition());
-			player.getProperty().removeField(player.getProperty().get(i));
+			player.getProperty().getField(i);
+			gui.removeOwner(player.getProperty().getField(i).getFieldPosition());
+			player.getProperty().removeField(player.getProperty().getField(i));
+		}
+		for(int i = 0 ; i<player.getProperty().nCards();i++)
+		{
+			
 		}
 		gui.removeCar(player.getName(),player.getPlayerPos());
 	}

@@ -1,6 +1,9 @@
 package player;
 
 
+import java.awt.Color;
+import java.util.ArrayList;
+
 import card.Card;
 import field.Brewery;
 import field.Fleet;
@@ -31,7 +34,8 @@ public class Property {
 	public int nBreweriesOwned()
 	{
 		int result = 0;
-		for(int i = 0; i<nFields();i++)
+		int nFields = nFields();
+		for(int i = 0; i<nFields;i++)
 		{
 			if(fieldsOwned[i] instanceof Brewery)
 			{
@@ -45,7 +49,8 @@ public class Property {
 	public int nTerritoriesOwned()
 	{
 		int result = 0;
-		for(int i = 0; i<nFields();i++)
+		int nFields = nFields();
+		for(int i = 0; i<nFields;i++)
 		{
 			if(fieldsOwned[i] instanceof Territory)
 				result++;
@@ -56,7 +61,8 @@ public class Property {
 	public int nFleetsOwned()
 	{
 		int result = 0;
-		for(int i = 0; i<nFields();i++)
+		int nFields = nFields();
+		for(int i = 0; i<nFields;i++)
 		{
 			if(fieldsOwned[i] instanceof Fleet)
 			{
@@ -77,7 +83,8 @@ public class Property {
 		}
 		else
 		{
-			for(int i = 0; i<nFields();i++)
+			int nFields = nFields();
+			for(int i = 0; i<nFields;i++)
 			{
 				newOwnableArr[i]=fieldsOwned[i];
 			}
@@ -93,7 +100,8 @@ public class Property {
 
 		if(hasField (notOwned))
 		{
-			for(int i = 0; i<nFields();i++)
+			int nFields = nFields();
+			for(int i = 0; i<nFields;i++)
 			{
 				if(fieldsOwned[i]==notOwned)
 				{			
@@ -104,7 +112,7 @@ public class Property {
 			//now removes the fields
 			Ownable[] newOwnableArr = new Ownable[nFields()-1];
 			int newOwnableIndex = 0;
-			for(int i = 0; i<nFields();i++)
+			for(int i = 0; i<nFields;i++)
 			{
 				if(fieldsOwned[i]!=null)
 				{
@@ -116,10 +124,24 @@ public class Property {
 			fieldsOwned=newOwnableArr;
 		}
 
-
-
-
-
+	}
+	/**
+	 * removes one bail out card from the players cards
+	 */
+	public void removeCard()
+	{
+		if(bailCards.length==0){
+			
+		}
+		else
+		{
+			Card[] newBailCards = new Card[bailCards.length-1];
+			for(int i = 1; i<bailCards.length;i++)
+			{
+				newBailCards[i-1] = bailCards[i];
+			}
+			bailCards = newBailCards;
+		}
 	}
 	
 	/**
@@ -131,7 +153,8 @@ public class Property {
 	public Territory getTerritory(int index)
 	{
 		int territoriesReached = 0;
-		for(int i = 0; i<nFields();i++)
+		int nFields = nFields();
+		for(int i = 0; i<nFields;i++)
 		{
 			if(fieldsOwned[i] instanceof Territory)
 			{
@@ -151,7 +174,8 @@ public class Property {
 	public Brewery getBrewery(int index)
 	{
 		int breweriesReached = 0;
-		for(int i = 0; i<nFields();i++)
+		int nFields = nFields();
+		for(int i = 0; i<nFields;i++)
 		{
 			if(fieldsOwned[i] instanceof Brewery)
 			{
@@ -172,7 +196,8 @@ public class Property {
 	public Fleet getFleet(int index)
 	{
 		int fleetReached = 0;
-		for(int i = 0; i<nFields();i++)
+		int nFields = nFields();
+		for(int i = 0; i<nFields;i++)
 		{
 			if(fieldsOwned[i] instanceof Fleet)
 			{
@@ -192,14 +217,15 @@ public class Property {
 	 * @param index = the n'th territory
 	 * @return
 	 */
-	public Territory getTerritoryOfId(String id, int index)
+	public Territory getTerritoryOfId(Color series, int index)
 	{
 		int fieldsIndex = 0;
 		int sameIdReached = 0;
-		for(int i = 0; i<nParticularSeries(id);i++)
+		int nPart = nParticularSeries(series);
+		for(int i = 0; i<nPart;i++)
 		{
 			if(fieldsOwned[fieldsIndex] instanceof Territory && 
-			  ((Territory)fieldsOwned[i]).getId().equals(id))		
+			  ((Territory)fieldsOwned[i]).getColor().equals(series))		
 			{
 				if(sameIdReached==index)
 					return (Territory)fieldsOwned[i];
@@ -229,7 +255,13 @@ public class Property {
 		return false;
 	}
 
-	public Ownable get(int i)
+	public Card getCard(int i)
+	{
+		return bailCards[i];
+	}
+	
+
+	public Ownable getField(int i)
 	{
 		return fieldsOwned[i];
 	}
@@ -243,20 +275,21 @@ public class Property {
 	 */
 	public int nDifferentSeries()
 	{
-		ArrayList<String> alreadyCounted = new ArrayList<String>();
+		ArrayList<Color> alreadyCounted = new ArrayList<Color>();
 		boolean isIn = false;
-		for(int i = 0; i<nTerritoriesOwned();i++)
+		int nTer = nTerritoriesOwned();
+		for(int i = 0; i<nTer;i++)
 		{
 			isIn = false;
 			for(int k = 0; k<alreadyCounted.size();k++)
 			{
-				if(getTerritory(i).getId().equals(alreadyCounted.get(k)))
+				if(getTerritory(i).getColor().equals(alreadyCounted.get(k)))
 				{
 					isIn = true;
 				}
 			}
 			if(!isIn)
-				alreadyCounted.add(getTerritory(i).getId());
+				alreadyCounted.add(getTerritory(i).getColor());
 		}
 		return alreadyCounted.size();
 	}
@@ -264,22 +297,67 @@ public class Property {
 	
 
 	/**
-	 * Returns the number of territories the player owns that has the same id
+	 * Returns the number of territories the player owns that has the same color
 	 * @param id = the territory group
 	 * @return
 	 */
-	public int nParticularSeries(String id)
+	public int nParticularSeries(Color series)
 	{
 		int result = 0;
-		for(int i = 0;i<nTerritoriesOwned();i++)
+		int nTer = nTerritoriesOwned();
+		for(int i = 0;i<nTer;i++)
 		{
-			if(id.equals(getTerritory(i).getId()))
+			if(series.equals(getTerritory(i).getColor()))
 			{
 				result++;
 			}
 		}
 		return result;
 	}
+	
+	/**
+	 * Returns true if the player owns the complete series with the same color
+	 * @param series
+	 * @return
+	 */
+	public boolean completeSeries(Color series)
+	{
+		if(getTerritoryOfId(series, 0)==null)
+		{
+			return false;
+		}
+		else
+		{
+			int max = getTerritoryOfId(series, 0).getSeries();
+			int owned = nParticularSeries(series);
+			return max == owned;
+		}
+		
+	}
+	
+	public int totalValueOfAssets()
+	{
+		int result = 0;
+		int nTer = nTerritoriesOwned();
+		int nBre = nBreweriesOwned();
+		int nFle = nFleetsOwned();
+		for(int i = 0; i<nTer;i++)
+		{
+			result += getTerritory(i).getHouse()*getTerritory(i).getHousePrice();
+			result+= getTerritory(i).getPrice();
+		}
+		for(int i = 0; i<nBre;i++)
+		{
+			result += getBrewery(i).getPrice();
+		}
+		for(int i = 0; i<nFle ; i++)
+		{
+			result += getFleet(i).getPrice();
+		}
+		return result;
+	}
+	
+	
 	
 	
 	

@@ -37,11 +37,11 @@ public class Account {
 	public void transfer(int amount, Account a)
 	{
 		//checks if the amount is greater than this accounts balance, since only available funds can be transfered
+		withdraw(amount);
 		if(amount>this.balance)
 		{
 			amount = this.balance;
-		}
-		withdraw(amount);
+		}	
 		a.deposit(amount);
 	}
 	
