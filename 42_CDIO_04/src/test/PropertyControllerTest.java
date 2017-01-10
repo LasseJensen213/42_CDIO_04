@@ -24,10 +24,9 @@ public class PropertyControllerTest {
 		
 		strArr = prop.addToArray(strArr, "WoW");
 		assertEquals(strArr[1],"WoW");
-
-
-		
 		
 	}
+	
+	
 
 }

@@ -1,13 +1,14 @@
 package game;
 
+import boundary.GameControllerBoundary;
+import card.Cardgenerator;
 import player.PlayerList;
-import player.PlayerManager;
+
 
 public class GameController {
 
 	private PlayerList pList;
 	//private PlayerCreation playerCreate;
-	//	private CardGenerator cardGen;
 	private GameControllerBoundary gui;
 	private GameLogic gLogic;
 	int playerIndex;
@@ -22,7 +23,8 @@ public class GameController {
 	{
 		//playerCreate.createPlayers();
 		pList = PlayerList.getPL();
-		//cardGen.createCards();
+		Cardgenerator.generateCards();
+		
 		while(true)
 		{
 			if(pList.get(playerIndex).isJailed())
@@ -51,6 +53,15 @@ public class GameController {
 
 
 		}
+		endGameSession();
+	}
+	
+	/**
+	 * This resets all the singletons instances, so that new ones can be made for a new game
+	 */
+	public void endGameSession()
+	{
+		
 	}
 
 }
