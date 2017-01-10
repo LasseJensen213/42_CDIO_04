@@ -15,17 +15,14 @@ public class GameController {
 	int playerIndex;
 
 	public GameController() {
-		playerCreate = new PlayerCreation();
-		pList = new PlayerList();
-		playerIndex = 0;								//Turn
+		playerIndex = 0;
 		gui = new GameControllerBoundary();
 		gLogic = new GameLogic();
 	}
 
 	public void startGame()
-	{ 	
-		
-		playerCreate.initPlayers();
+	{
+		playerCreate.createPlayers();
 		pList = PlayerList.getPL();
 		Cardgenerator.generateCards();
 		

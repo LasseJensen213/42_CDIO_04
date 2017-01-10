@@ -40,12 +40,14 @@ public class Account {
 	public void transfer(int amount, Account a) {
 		
     //Makes sure you can't transfer money you don't have
+		int actualAmount = amount;
+		if(amount>this.balance) {
+			actualAmount = this.balance;
+		}	
 		withdraw(amount);
     
-		if(amount>this.balance) {
-			amount = this.balance;
-		}	
-		a.deposit(amount);
+		
+		a.deposit(actualAmount);
 	}
 	
 	

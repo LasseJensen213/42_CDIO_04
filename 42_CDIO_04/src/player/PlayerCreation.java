@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import desktop_codebehind.Car;
-import desktop_codebehind.Car.Builder;
 import desktop_resources.GUI;
 import stringbanks.Stringbanks_PlayerCreation;
 
@@ -15,50 +13,15 @@ public class PlayerCreation {
 	//adding and defining colors from java import
 	private ArrayList<String> availableColors;
 	private Map<String,Color>colorMap;
-	private Color[] colors = {Color.BLUE,Color.GREEN, Color.RED, Color.YELLOW, Color.WHITE, Color.PINK};
-
-	Stringbanks_PlayerCreation s = new Stringbanks_PlayerCreation();
-	PlayerManager pMan;
+	private Color[] colors = {Color.blue,Color.green, Color.red, Color.yellow, Color.white, Color.pink};
 
 
-
-
-	public PlayerCreation()
-	{	pMan = new PlayerManager();
-		availableColors = new ArrayList<String>();
-		colorMap = new HashMap<String,Color>();
-		for(int i = 0; i<colors.length;i++)
-		{
-			availableColors.add(s.getColors(i));
-			colorMap.put(s.getColors(i), colors[i]);
-		}
-
-
-	}
-
-
-
-
-	/**
-	 * Creates players:
-	 */
-	public void initPlayers() {
-		int nPlayers = chooseNPlayers();
-		for(int i = 0;i<nPlayers;i++){
-			String name = chooseName(pMan);
-			int balance = 30000;
-			Color color = getColor(chooseColor());
-			Builder car = new Car.Builder();
-			car.primaryColor(color).typeUfo();
-			GUI.addPlayer(name, balance);
-			GUI.setCar(1, name);
-			pMan.addPlayer(name, car, balance);
-		}
-
-
-
-
-
+	//Creating the players
+	public void createPlayers(Player player) {
+		String name = player.getName();
+		int balance = player.getAccount().getBalance();
+		GUI.addPlayer(name, balance, player.getCar() );
+		GUI.setCar(1, name);
 	}
 
 	//Choose name for players
@@ -67,63 +30,48 @@ public class PlayerCreation {
 		int nPlayersInList = playerManager.getPlayerList().size();
 		while(true)
 		{
-			String name = GUI.getUserString(s.getMessages(0));
+			String name = GUI.getUserString(String.format(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/, nPlayersInList+1));
 			if(name.length()>16)
 			{
-				GUI.showMessage(s.getMessages(1));
+				GUI.showMessage(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/);
 				continue;
 			}
 			else if(name.length()==0)
 			{
-				name = s.getMessages(2)+" "+(nPlayersInList+1);
+				name = Stringbank_PlayerCreation.getPlayerName()+" "+(nPlayersInList+1);
 			}
 			if(playerManager.nameTaken(name))
 			{
-				GUI.showMessage(s.getMessages(3));
+				GUI.showMessage(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/);
 			}
 			else 
 				return name;
 		}
 	}
 
-	public Color getColor (String color) {
-		return colorMap.get(color);
-
-	}
 
 	public String chooseColor() {
+		availableColors = new ArrayList<String>();
+		colorMap = new HashMap<String,Color>();
+		
+		for(int i = 0; i<colors.length;i++) {
+			availableColors.add(Stringbank_PlayerCreation.getColor(i));
+			colorMap.put(Stringbank_PlayerCreation.getColor(i), colors[i]);
+		}
+
+		
 		String[] colorArr = availableColors.toArray(new String[]{});
-		String color = GUI.getUserSelection(s.getMessages(4),colorArr);
+		String color = GUI.getUserSelection(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/,colorArr);
 
 		//removes colors already chosen by other players
 		availableColors.remove(color);
 		return color;
-
 	}
 
 
 	public int chooseNPlayers()
 	{
-		return Integer.parseInt(GUI.getUserSelection(s.getMessages(5), new String[]{"2","3","4","5","6"}));
+		return Integer.parseInt(GUI.getUserSelection(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/, new String[]{"2","3","4","5","6"}));
 	}
-
-	//	public void initPlayers()
-	//	{
-	//		//First choose number of players
-	//		//nPlayers = playerCreateGUI.chooseNPlayers();
-	//
-	//		for(int i = 0; i<nPlayers;i++)
-	//		{
-	//			String name = playerCreate.chooseName(this);
-	//			String color = playerCreate.chooseColor();//Chooses the color for the car
-	//			addPlayer(name);
-	//			playerList.get(i).setCar(playerCreate.getColor(color));
-	//			playerCreate.addPlayerToBoard(playerList.get(i));
-	//
-	//
-	//		}
-	//
-	//	}
-
 
 }
