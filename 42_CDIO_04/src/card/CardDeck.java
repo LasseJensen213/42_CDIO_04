@@ -44,7 +44,7 @@ public class CardDeck {
 		//which would mean that no cards have been generated yet
 		if(activeDeck.length==0)
 		{
-			return new Card("","");
+			return new Card("");
 		}
 		Card cardDrawn = activeDeck[0];
 		
