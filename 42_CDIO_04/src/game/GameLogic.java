@@ -122,7 +122,7 @@ public class GameLogic {
 				
 			}
 		}
-		else if(choice.equals(Stringbanks_GameLogic.inJailTurn(3))
+		else if(choice.equals(Stringbanks_GameLogic.inJailTurn(3)))
 		{
 			player.setJailed(false);
 			player.setTimeInJail(0);
@@ -182,7 +182,7 @@ public class GameLogic {
 		for(int i = 0;i<distance;i++ )
 		{
 			player.setPlayerPos((player.getPlayerPos()+1)%40);
-			if(player.getPlayerPos()==0)
+			if(player.getPlayerPos()==1)
 			{
 				if(player.isPassedStart())
 					player.getAccount().deposit(4000);
