@@ -439,7 +439,7 @@ public class PropertyController {
 		int nTer = p.getProperty().nTerritoriesOwned();
 		for(int i = 0; i<nTer;i++)
 		{
-			if(p.getProperty().getTerritory(i)).getHouse()==4)
+			if(p.getProperty().getTerritory(i).getHouse()==4)
 			{
 				result = addToArray(result,p.getProperty().getTerritory(i));
 			}
