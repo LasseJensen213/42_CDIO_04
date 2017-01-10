@@ -372,12 +372,11 @@ public class PropertyController {
 		{
 			int smallestNumOfHouses = 4;
 			int nPartSeries = p.getProperty().nParticularSeries(id[i]);
-			Territory[] singleSeries = new Territory[nPartSeries];
+			Territory[] singleSeries = new Territory[0];
 			int[] numOfHouses = new int[0];
 			
-			if(singleSeries.length == 0)
+			if(nPartSeries == 0)
 			{
-				i--;
 				continue;
 			}
 			if(p.getProperty().completeSeries(id[i]))
@@ -406,18 +405,24 @@ public class PropertyController {
 			numOfHousesSeries = addToTwoDimensionalArray(numOfHousesSeries, numOfHouses );
 		}
 		Territory[] result = new Territory[0];
-		for(int outer = 0; outer<series.length;outer++)
-		{
-			if(numOfHousesSeries[outer][numOfHousesSeries[outer].length-1]==4)
-				continue;
-
-			for(int inner = 0; inner<series[outer].length;inner++)
-			{
-				if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
-					result = addToArray(result, series[outer][inner]);
-			}
-
+		if(numOfHousesSeries.length == 0) {
+			
 		}
+		else {
+			for(int outer = 0; outer<series.length;outer++)
+			{
+				if(numOfHousesSeries[outer][numOfHousesSeries[outer].length-1]==4)
+					continue;
+
+				for(int inner = 0; inner<series[outer].length;inner++)
+				{
+					if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
+						result = addToArray(result, series[outer][inner]);
+				}
+
+			}
+		}
+		
 		return result;
 
 
