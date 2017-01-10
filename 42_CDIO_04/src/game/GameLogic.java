@@ -140,9 +140,9 @@ public class GameLogic {
 		player.getAccount().setBalance(0);
 		for(int i = 0 ; i<player.getProperty().nFields();i++)
 		{
-			player.getProperty().get(i);
-			gui.removeOwner(player.getProperty().get(i).getFieldPosition());
-			player.getProperty().removeField(player.getProperty().get(i));
+			player.getProperty().getField(i);
+			gui.removeOwner(player.getProperty().getField(i).getFieldPosition());
+			player.getProperty().removeField(player.getProperty().getField(i));
 		}
 		for(int i = 0 ; i<player.getProperty().nCards();i++)
 		{
