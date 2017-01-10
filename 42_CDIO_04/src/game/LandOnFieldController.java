@@ -2,6 +2,7 @@ package game;
 
 import board.Board;
 import boundary.LandOnFieldBoundary;
+import desktop_resources.GUI;
 import field.Brewery;
 import field.Chance;
 import field.Field;
@@ -113,9 +114,11 @@ public class LandOnFieldController {
 			//nothing happens
 		}
 		else {
-			int rent = player.getProperty().g
+			int fleetsOwned = player.getProperty().nFleetsOwned();
+			int rentArray[] = f.getRent();
+			int rent = rentArray[fleetsOwned];
 			
-			player.getAccount().transfer(1000, f.getOwner().getAccount());
+			player.getAccount().transfer(rent, f.getOwner().getAccount());
 		}
 	}
 	
@@ -123,8 +126,26 @@ public class LandOnFieldController {
 	
 	//færdig
 	public void landOnTax(Player player, Tax f){
-		player.getAccount().withdraw(f.getTax());
-		ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+f.getTax());
+		String choice[] = {"4000","10% af balance"};
+		int rent = 0;
+		if(f.getPercentange() == 0){
+			rent = f.getTax();
+			player.getAccount().withdraw(rent);
+
+		}
+		else if(f.getPercentange() == 10){
+			String input = GUI.getUserSelection("Vælg imellem:", choice);
+			if(input == choice[0]) {
+				player.getAccount().withdraw(f.getTax());
+			}
+			else if(input == choice[1]) {
+				GUI.showMessage("PAY");
+				rent = player.getAccount().getBalance()*10/100;
+				player.getAccount().withdraw(rent);
+			}
+		}
+		ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+rent);
+		
 	}
 	//færdig
 	public void landOnParkingLot(Player player){
@@ -133,6 +154,7 @@ public class LandOnFieldController {
 	}
 	//færdig
 	public void landOnJail(Player player, Jail f){
+		GUI.showMessage("Du er på besøg i fængslet.");
 
 	}
 	//færdig
@@ -143,10 +165,16 @@ public class LandOnFieldController {
 		player.setJailed(true);
 
 	}
-	//ikke lavet
+	/**
+	 * Nothing is supposed to happen on this field.
+	 * @param player
+	 * @param f
+	 */
 	public void landOnStart(Player player, Start f){
+		
 	}
-	//ikke lavet
+	
+	
 	public void landOnChance(Player player, Chance f){
 
 	}
