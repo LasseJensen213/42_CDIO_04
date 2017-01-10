@@ -4,46 +4,40 @@ import java.util.Arrays;
 
 public class Fleet extends Ownable{
 
-	private int amountOwned;
-  private int rent[];
+    private int rent[];
 
 
-	public Fleet(String desc, String subtext, String title, Image i, int pos, int price, int rent) {
-		super(desc, subtext, title, i, pos, price, rent);
+	public Fleet(String desc, String subtext, String title, int pos, int price, int[] rent) {
+		super(desc, subtext, title, pos, price);
     this.rent = rent;
 	}
 	
 	
 	//Calculates rent for 1 to 4 "amountOwned" of fleets
 	
-	public void calculateRent() {
+	public int calculateRent(int amountOwned) {
+		int rent = 0;
 		if(amountOwned == 1){
-			setRent(500);
+			rent = 500;
 		}
-		if(amountOwned == 2){
-			setRent(1000);
+		else if(amountOwned == 2){
+			rent =  1000;
 		}
-		if(amountOwned == 3){
-			setRent(2000);
+		else if(amountOwned == 3){
+			rent = 2000;
 		}
-		if(amountOwned == 4){
-			setRent(4000);
+		else if(amountOwned == 4){
+			rent = 4000;
 		}
+		return rent;
+		
 	}
 	
 	
-	//Getters and setters for "amountOwned" of fleets owned
 
-	public int getAmountOwned() {
-		return amountOwned;
-	}
-
-	public void setAmountOwned(int amountOwned) {
-		this.amountOwned = amountOwned;
-	}
   
   //Getters and setters for "rent"
-	}
+
 
 	public int[] getRent() {
 		return rent;
