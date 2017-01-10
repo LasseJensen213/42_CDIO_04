@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+
 import boundary.PropertyBoundary;
 import field.Ownable;
 import field.Territory;
@@ -365,16 +367,21 @@ public class PropertyController {
 		int[][] numOfHousesSeries = new int[nDiffSeries][0];
 		
 		//Placeholder for the different ID's
-		String[] id = {"Y","R","B","BL","W"};
+		Color[] id = {Color.BLUE,Color.ORANGE,Color.GREEN, Color.GRAY,Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
 		for(int i = 0; i<series.length;i++)
 		{
 			int smallestNumOfHouses = 4;
 			int nPartSeries = p.getProperty().nParticularSeries(id[i]);
 			Territory[] singleSeries = new Territory[nPartSeries];
 			int[] numOfHouses = new int[0];
+			
 			if(singleSeries.length == 0)
 			{
 				i--;
+				continue;
+			}
+			if(p.getProperty().completeSeries(id[i]))
+			{
 				continue;
 			}
 			for(int k = 0; k<singleSeries.length;k++)

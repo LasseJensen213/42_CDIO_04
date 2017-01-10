@@ -335,6 +335,28 @@ public class Property {
 		
 	}
 	
+	public int totalValueOfAssets()
+	{
+		int result = 0;
+		int nTer = nTerritoriesOwned();
+		int nBre = nBreweriesOwned();
+		int nFle = nFleetsOwned();
+		for(int i = 0; i<nTer;i++)
+		{
+			result += getTerritory(i).getHouse()*getTerritory(i).getHousePrice();
+			result+= getTerritory(i).getPrice();
+		}
+		for(int i = 0; i<nBre;i++)
+		{
+			result += getBrewery(i).getPrice();
+		}
+		for(int i = 0; i<nFle ; i++)
+		{
+			result += getFleet(i).getPrice();
+		}
+		return result;
+	}
+	
 	
 	
 	
