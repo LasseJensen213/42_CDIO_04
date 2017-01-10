@@ -5,78 +5,53 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import boundary.PlayerCreationBoundary;
 import desktop_resources.GUI;
 import stringbanks.Stringbanks_PlayerCreation;
 
-public class PlayerCreation {
+public class PlayerCreationController {
 
 	//adding and defining colors from java import
 	private ArrayList<String> availableColors;
 	private Map<String,Color>colorMap;
-<<<<<<< HEAD
-	private Color[] colors = {Color.blue,Color.green, Color.red, Color.yellow, Color.white, Color.pink};
-=======
-	private Color[] colors = {Color.BLUE,Color.GREEN, Color.RED, Color.YELLOW, Color.WHITE, Color.PINK};
+	private Color[] colors; = {Color.blue,Color.green, Color.red, Color.yellow, Color.white, Color.pink};
+	private PlayerCreationBoundary gui;
 
-	Stringbanks_PlayerCreation s = new Stringbanks_PlayerCreation();
-	PlayerList pList;
->>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
-
-
-<<<<<<< HEAD
+	
+	public PlayerCreationController()
+	{
+		gui = new PlayerCreationBoundary();
+		for(int i = 0 i<colors)
+		Stringbanks_PlayerCreation.getColors(number)
+	}
 	//Creating the players
-	public void createPlayers(Player player) {
-		String name = player.getName();
+	public void createPlayers() {
+		PlayerList pList = PlayerList.getPL();
+		String name;
 		int balance = player.getAccount().getBalance();
 		GUI.addPlayer(name, balance, player.getCar() );
 		GUI.setCar(1, name);
-=======
-
-
-	public PlayerCreation()
-	{	pList = PlayerList.getPL();
-		availableColors = new ArrayList<String>();
-		colorMap = new HashMap<String,Color>();
-		for(int i = 0; i<colors.length;i++)
-		{
-			availableColors.add(s.getColors(i));
-			colorMap.put(s.getColors(i), colors[i]);
-		}
-
-
+		
+		//First choose number of players
+				nPlayers = playerCreateGUI.chooseNPlayers();
+				
+				for(int i = 0; i<nPlayers;i++)
+				{
+					String name = playerCreateGUI.chooseName(this);
+					String color = playerCreateGUI.chooseColor();//Chooses the color for the car
+					addPlayer(name);
+					playerList.get(i).setCar(playerCreateGUI.getColor(color));
+					playerCreateGUI.addPlayerToBoard(playerList.get(i));
+						
+					
+				}
 	}
 
-
-
-
-	/**
-	 * Creates players:
-	 */
-	public void initPlayers() {
-		int nPlayers = chooseNPlayers();
-		pList.setNPlayers(nPlayers);
-		for(int i = 0;i<nPlayers;i++){
-			String name = chooseName(pList);
-			int balance = 30000;
-			Color color = getColor(chooseColor());
-			Builder car = new Car.Builder();
-			car.primaryColor(color).typeUfo();
-			GUI.addPlayer(name, balance);
-			GUI.setCar(1, name);
-			pList.addPlayer(name, car, balance);
-		}
-
-
-
-
-
->>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
-	}
-
+	
 	//Choose name for players
-	public String chooseName(PlayerList pList)
+	public String chooseName()
 	{ 
-		int nPlayersInList = pList.getPlayerList().size();
+		int nPlayersInList = playerManager.getPlayerList().size();
 		while(true)
 		{
 			String name = GUI.getUserString(String.format(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/, nPlayersInList+1));
@@ -89,7 +64,7 @@ public class PlayerCreation {
 			{
 				name = Stringbank_PlayerCreation.getPlayerName()+" "+(nPlayersInList+1);
 			}
-			if(pList.nameTaken(name))
+			if(playerManager.nameTaken(name))
 			{
 				GUI.showMessage(Stringbank_PlayerCreation.get/*STRINGBANKBESKED!!!*/);
 			}

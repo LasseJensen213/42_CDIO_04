@@ -14,10 +14,18 @@ import desktop_fields.Tax;
 import desktop_resources.GUI;
 
 public class Board {
+	private static Board INSTANCE ; 
+	
+	
+	
 	field.Field[] ourFields = new field.Field[40];
 	Field[] fields = new Field[40];
 
-
+	public static Board Board() {
+		if(INSTANCE == null) 
+			INSTANCE = new Board();
+		return INSTANCE;
+	}
 
 	public void generateBoard() {
 		FieldGenerator fg = new FieldGenerator();

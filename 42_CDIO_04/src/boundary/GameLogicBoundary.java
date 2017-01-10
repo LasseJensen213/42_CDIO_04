@@ -1,6 +1,9 @@
 package boundary;
 
+<<<<<<< HEAD
 import java.util.Random;
+=======
+>>>>>>> refs/heads/develop
 import java.util.concurrent.TimeUnit;
 
 import board.FieldGenerator;
@@ -67,6 +70,7 @@ public class GameLogicBoundary {
 					pos = (pos+1)%40;
 					GUI.setCar(pos+1, name);
 					try {
+<<<<<<< HEAD
 						TimeUnit.MILLISECONDS.sleep(180);
 
 					} catch (InterruptedException e) {
@@ -76,6 +80,16 @@ public class GameLogicBoundary {
 
 				}
 		
+=======
+						TimeUnit.MILLISECONDS.sleep(100);
+
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+>>>>>>> refs/heads/develop
 	}
 	
 	public void updatePlayerBalance(String name, int balance)

@@ -2,6 +2,8 @@ package player;
 
 import java.util.ArrayList;
 
+import desktop_codebehind.Car;
+
 public class PlayerList {
 	
 	private ArrayList<Player>playerList;
@@ -25,9 +27,9 @@ public class PlayerList {
 		this.nPlayers = nPlayers;
 	}
 	
-	public void addPlayer(String name)
+	public void addPlayer(String name,Car.Builder car,int i)
 	{
-		//playerList.add(new Player(name));
+		playerList.add(new Player(name,car,i));
 	}
 	
 	public int getNPlayers()
@@ -50,23 +52,23 @@ public class PlayerList {
 	
 	
 	
-//	public void initPlayers()
-//	{
-//		//First choose number of players
-//		//nPlayers = playerCreateGUI.chooseNPlayers();
-//		
-//		for(int i = 0; i<nPlayers;i++)
-//		{
-//			String name = playerCreateGUI.chooseName(this);
-//			String color = playerCreateGUI.chooseColor();//Chooses the color for the car
-//			addPlayer(name);
-//			playerList.get(i).setCar(playerCreateGUI.getColor(color));
-//			playerCreateGUI.addPlayerToBoard(playerList.get(i));
-//				
-//			
-//		}
-//		
-//	}
+	public void initPlayers()
+	{
+		//First choose number of players
+		nPlayers = playerCreateGUI.chooseNPlayers();
+		
+		for(int i = 0; i<nPlayers;i++)
+		{
+			String name = playerCreateGUI.chooseName(this);
+			String color = playerCreateGUI.chooseColor();//Chooses the color for the car
+			addPlayer(name);
+			playerList.get(i).setCar(playerCreateGUI.getColor(color));
+			playerCreateGUI.addPlayerToBoard(playerList.get(i));
+				
+			
+		}
+		
+	}
 	
 	
 	/**

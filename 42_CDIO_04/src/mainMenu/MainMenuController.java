@@ -1,17 +1,23 @@
 package mainMenu;
 
+<<<<<<< HEAD
 import board.Board;
+=======
+>>>>>>> refs/heads/develop
 import game.GameController;
 import stringbanks.Stringbanks_MainMenu;
+import board.Board;
 
 public class MainMenuController {
 	
 
-
 	public void MainMenu()
 	{
-		board.Board board = new board.Board();
+
+		Board board = Board.Board();
 		board.generateBoard();
+		GameController game = new GameController();
+
 		MainMenuBoundary gui = new MainMenuBoundary();
 		GameController game;
 		while(true)
