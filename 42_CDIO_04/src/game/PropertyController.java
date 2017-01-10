@@ -573,6 +573,26 @@ public class PropertyController {
 		result[result.length-1] = element;
 		return result;
 	}
+	
+	public void setHousesUsed(int housesUsed)
+	{
+		this.housesUsed = housesUsed;
+	}
+	
+	public int getHousesUsed()
+	{
+		return housesUsed;
+	}
+	
+	public void setHotelsUsed(int hotelsUsed)
+	{
+		this.hotelsUsed = hotelsUsed;
+	}
+	
+	public int getHotelsUsed()
+	{
+		return hotelsUsed;
+	}
 
 
 }
