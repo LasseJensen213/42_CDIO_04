@@ -21,15 +21,11 @@ public class GameController {
 	}
 
 	public void startGame()
-<<<<<<< HEAD
-	{
-		playerCreate.createPlayers();
-=======
+
 	{ 	
 		
 		playerCreate.initPlayers();
 		
->>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
 		pList = PlayerList.getPL();
 		Cardgenerator.generateCards();
 		

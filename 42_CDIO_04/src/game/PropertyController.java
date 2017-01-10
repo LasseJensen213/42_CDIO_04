@@ -372,10 +372,10 @@ public class PropertyController {
 		{
 			int smallestNumOfHouses = 4;
 			int nPartSeries = p.getProperty().nParticularSeries(id[i]);
-			Territory[] singleSeries = new Territory[nPartSeries];
+			Territory[] singleSeries = new Territory[0];
 			int[] numOfHouses = new int[0];
 			
-			if(singleSeries.length == 0)
+			if(nPartSeries == 0)
 			{
 				i--;
 				continue;
