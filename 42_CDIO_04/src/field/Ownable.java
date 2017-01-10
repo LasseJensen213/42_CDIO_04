@@ -1,7 +1,5 @@
 package field;
 
-import java.awt.Image;
-
 import player.Player;
 
 public abstract class Ownable extends Field {
@@ -21,7 +19,7 @@ public abstract class Ownable extends Field {
 	//Set owner for "player" to null
 	
 	public void freeOwner(Player player, int pos) {
-		if(this.getOwner != null) {
+		if(this.getOwner() != null) {
 			if(this.getOwner().getName().equals(player.getName())) {
 				this.setOwner(null);
 			}
@@ -46,13 +44,7 @@ public abstract class Ownable extends Field {
 		this.owner = owner;
 	}
 
-	public int getRent() {
-		return rent;
-	}
 
-	public void setRent(int rent) {
-		this.rent = rent;
-	}
 
 	public boolean isPawned() {
 		return pawned;
@@ -60,43 +52,10 @@ public abstract class Ownable extends Field {
 
 	public void setPawned(boolean pawned) {
 		this.pawned = pawned;
-	}
-
-
-	public int getPrice() {
-		return price;
-	}
-
-
-
-
-	public Player getOwner() {
-		return owner;
-	}
-
-
-	public boolean isPawned() {
-		return pawned;
-	}
-
-
-	public void setPrice(int price) {
-		this.price = price;
 	}
 
 
 	
-
-
-	public void setOwner(Player owner) {
-		this.owner = owner;
-	}
-
-
-	public void setPawned(boolean pawned) {
-		this.pawned = pawned;
-	}
-
 
 	@Override
 	public String toString() {

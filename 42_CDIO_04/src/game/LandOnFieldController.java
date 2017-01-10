@@ -26,7 +26,11 @@ public class LandOnFieldController {
 	CardEffect cE = new CardEffect();
 	Card card;
 
-
+	/**
+	 * Call this function every time a player lands on a field.
+	 * It'll call the fields corresponding function.
+	 * @param player
+	 */
 	public void landOnField(Player player){
 		Board b = new Board();
 		field.Field f = b.getField(player.getPlayerPos());
@@ -59,15 +63,19 @@ public class LandOnFieldController {
 			landOnTax(player,(Tax)f);
 		}
 	}
-	
-	
-	
+		
+	/**
+	 * Decides what happens when a player lands on a territory field.
+	 * @param player
+	 * @param f
+	 */
 	public void landOnTerritory(Player player, Territory f){
 		if(f.getOwner() == null){
 			if(player.getAccount().getBalance()>(f.getPrice())){
 				if(LandOnFieldBoundary.buyChoice()){
 					player.getAccount().withdraw(f.getPrice());
 					((Territory)f).setOwner(player);
+					LandOnFieldBoundary.setPlayerColorOnField(player.getName(), player.getPlayerPos());
 				}
 			}
 		}
@@ -86,8 +94,11 @@ public class LandOnFieldController {
 		}
 	}
 	
-	
-	// mangler udregning af leje
+	/**
+	 * Decides what happens when a player lands on a brewery field.
+	 * @param player
+	 * @param f
+	 */
 	public void landOnBrewery(Player player, Brewery f){
 		if(f.getOwner() == null){
 			if(player.getAccount().getBalance()>(f.getPrice())){
@@ -104,13 +115,15 @@ public class LandOnFieldController {
 			int rent = player.getTotalFaceValue()*f.getRent()*100;
 			
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
+			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
 		}
 	}
-	// mangler udregning af leje
 	
-	
-	
-	
+	/**
+	 * Decides what happens when a player lands on a fleet field.	
+	 * @param player
+	 * @param f
+	 */
 	public void landOnFleet(Player player, Fleet f){
 		if(f.getOwner() == null){
 			if(player.getAccount().getBalance()>(f.getPrice())){
@@ -125,16 +138,19 @@ public class LandOnFieldController {
 		}
 		else {
 			int fleetsOwned = player.getProperty().nFleetsOwned();
-			int rentArray[] = f.getRent();
-			int rent = rentArray[fleetsOwned];
-			
+			int rent = 500*(int)Math.pow(2, fleetsOwned-1);
+					
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
+			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
+
 		}
 	}
-	
-	
-	
-	//færdig
+			
+	/**
+	 * Decides what happens when player lands on a tax field.
+	 * @param player
+	 * @param f
+	 */
 	public void landOnTax(Player player, Tax f){
 		String choice[] = {"4000","10% af balance"};
 		int rent = 0;
@@ -150,43 +166,64 @@ public class LandOnFieldController {
 			}
 			else if(input == choice[1]) {
 				GUI.showMessage("PAY");
-				rent = player.getAccount().getBalance()*10/100;
+				rent = (player.getAccount().getBalance()+player.getProperty().totalValueOfAssets())*10/100;
 				player.getAccount().withdraw(rent);
+				LandOnFieldBoundary.payTax(rent);
 			}
 		}
 		ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+rent);
 		
 	}
-	//færdig
+
+	/**
+	 * Decides what hapens when a player lands on a parkinglot field.
+	 * @param player
+	 */
 	public void landOnParkingLot(Player player){
 		player.getAccount().deposit(ParkingLot.getTaxMoney());
 		ParkingLot.setTaxMoney(0);
 	}
-	//færdig
+	
+	/**
+	 * Decides what happens when player lands on a jail field.
+	 * @param player
+	 * @param f
+	 */
 	public void landOnJail(Player player, Jail f){
-		GUI.showMessage("Du er på besøg i fængslet.");
-
+		LandOnFieldBoundary.displayMessage(0);
 	}
-	//færdig
+	
+	/**
+	 * Decides what happens when a player lands on a gotojail field.
+	 * @param player
+	 * @param f
+	 */
 	public void landOnGoToJail(Player player, GoToJail f){
-
+		LandOnFieldBoundary.displayMessage(2);
 		LandOnFieldBoundary.moveToJail(player.getName(), player.getPlayerPos());
 		player.setPlayerPos(10);
 		player.setJailed(true);
 
 	}
+	
 	/**
 	 * Nothing is supposed to happen on this field.
 	 * @param player
 	 * @param f
 	 */
 	public void landOnStart(Player player, Start f){
-		
+		LandOnFieldBoundary.displayMessage(1);
 	}
 	
-	
+	/**
+	 * Draws a chance card and executes it's purpose.
+	 * @param player
+	 * @param f
+	 */
 	public void landOnChance(Player player, Chance f){
+		LandOnFieldBoundary.displayMessage(3);
 		card = cardDeck.draw();
+		LandOnFieldBoundary.displayCard(card.getDescription());
 		if(card instanceof Bail) {
 			cE.cardEffectBail(player, (Card)card);
 		}

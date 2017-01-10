@@ -80,9 +80,6 @@ public class Territory extends Ownable {
 	}
 
 
-	public String getId() {
-		return id;
-
 
 	public int getSeries() {
 		return seriesMax;

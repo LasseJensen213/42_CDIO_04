@@ -9,6 +9,8 @@ public class Test {
 		Board board = new Board();
 		board.generateBoard();
 		GUI.showMessage("asdf");
+		GUI.displayChanceCard("WTF");
+
 		
 	}
 
