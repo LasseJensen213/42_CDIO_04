@@ -9,10 +9,11 @@ public class Brewery extends Ownable{
 	private int amountOwned;
  
 	
+
 	//String desc, String subtext, String title, Image i, int pos, int price, int rent, int priceIncr
 	
 	public Brewery(String desc, String subtext, String title, Image i, int pos, int price, int rent) {
-		super(desc, subtext, title, i, pos, price, rent);	
+		super(desc, subtext, title, i, pos, price, rent);
 	}
 	
 	

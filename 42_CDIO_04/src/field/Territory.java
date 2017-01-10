@@ -7,8 +7,8 @@ public class Territory extends Ownable {
 	private int hotel;
 	private String id;
 	
-	public Territory(String desc, String subtext, String title, Image i, int pos, int price, int rent, int priceIncr, String id) {
-		super(desc, subtext, title, i, pos, price, rent);
+	public Territory(String desc, String subtext, String title, int pos, int price, int rent, int priceIncr, String id) {
+		super(desc, subtext, title, pos, price, rent);
 		this.id = id;
 		house = 0;
 		hotel = 0;
