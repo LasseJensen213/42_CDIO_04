@@ -6,6 +6,7 @@ import boundary.GameLogicBoundary;
 import dice.DiceCup;
 import field.LandOnFieldController;
 import player.Player;
+import stringbanks.Stringbanks_GameLogic;
 
 public class GameLogic {
 
@@ -26,7 +27,7 @@ public class GameLogic {
 	{
 		int d1,d2;
 		prop.buyAssets(player);
-		gui.AskToRollDice();
+		gui.AskToRollDice(player.getName());
 		diceCup.rollDice();
 		d1 = diceCup.getDiceValue(0);
 		d2 = diceCup.getDiceValue(1);
@@ -80,7 +81,7 @@ public class GameLogic {
 		ArrayList<String> optionsList = new ArrayList<String>();
 		if(player.getProperty().nCards()>0)
 		{
-			optionsList.add("Brug benådelses kort");
+			optionsList.add(Stringbanks_GameLogic.inJailTurn(2));
 		}
 		if(player.getAccount().getBalance()>1000)
 		{
