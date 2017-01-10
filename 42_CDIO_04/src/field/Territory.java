@@ -13,28 +13,16 @@ public class Territory extends Ownable {
 		house = 0;
 		hotel = 0;
 	}
-
+	
+	
+	//Adds and removes houses
+	
 	public void addHouse(int amount) {
 		house +=amount;
 	}
 	
-	
 	public void removeHouse(int amount) {
 		house -= amount;
-	}
-	
-	public void addHotel(int amount) {
-		if(house==5) {
-			house = 0;
-			hotel = 1;
-		}
-	}
-	
-	public void removeHotel(int amount) {
-		if(hotel==1) {
-			hotel = 0;
-			house = 4;
-		}
 	}
 	
 	

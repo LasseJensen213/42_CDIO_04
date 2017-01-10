@@ -9,6 +9,8 @@ public class Account {
 		this.balance = balance;
 	}
 	
+	//withdraw and deposit methods
+	
 	public boolean withdraw(int amount)
 	{
 		
@@ -21,6 +23,8 @@ public class Account {
 		this.balance += amount;
 		return true;
 	}
+	
+	//Getters and setters for balance
 
 	public int getBalance() {
 		return balance;
@@ -35,7 +39,7 @@ public class Account {
 	
 	public void transfer(int amount, Account a)
 	{
-		//checks if the amount is greater than this accounts balance, since only available funds can be transfered
+		//Makes sure you can't transfer money you don't have
 		
 		if(amount>this.balance)
 		{
