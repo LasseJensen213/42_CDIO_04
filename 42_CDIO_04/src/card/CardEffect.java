@@ -8,7 +8,7 @@ public class CardEffect {
 
 	}
 
-	public void cardEffectGoToJail(Player player, GoToJail card){
+	public void cardEffectGoToJail(Player player, GoToJailCard card){
 		if(card.equals(Cardgenerator.getCardDeckGenerator(4)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(5))){
 			player.setPlayerPos(10);
@@ -25,7 +25,6 @@ public class CardEffect {
 	 * @param Player
 	 * @param MovePlayer
 	 */
-
 	public void cardEffectMovePlayer(Player player, MovePlayer card){
 		if( card.equals(Cardgenerator.getCardDeckGenerator(33)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(34))){
