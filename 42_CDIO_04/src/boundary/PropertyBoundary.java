@@ -39,25 +39,25 @@ public class PropertyBoundary {
 	
 	public String chooseWhatToTradeWith(String[] options, String playerName)
 	{
-		return GUI.getUserButtonPressed(Stringbanks_Property.get(3), options);
+		return GUI.getUserButtonPressed(String.format(Stringbanks_Property.get(3), playerName), options);
 	}
 	
 	public boolean confirmTrade(String opposingPlayer, String otherPlayersField, String yourField)
 	{
-		return GUI.getUserLeftButtonPressed(Stringbanks_Property.get(7), 
+		return GUI.getUserLeftButtonPressed(String.format(Stringbanks_Property.get(7), opposingPlayer,otherPlayersField,yourField), 
 											Stringbanks_Property.get(8), 
 											Stringbanks_Property.get(9));
 	}
 	
 	public void updateHouseCount(int fieldNumber, int houseCount)
 	{
-		GUI.setHouses(fieldNumber, houseCount);
+		GUI.setHouses(fieldNumber+1, houseCount);
 	}
 	
 	public void updateHotelPlacement(int fieldNumber, boolean hasHotel)
 	{
-		GUI.setHouses(fieldNumber, 0);
-		GUI.setHotel(fieldNumber, hasHotel);
+		GUI.setHouses(fieldNumber+1, 0);
+		GUI.setHotel(fieldNumber+1, hasHotel);
 	}
 	//Gets called when someone buys a house / upgrades to hotel
 	public void updatePlayerBalance(String name, int balance)
@@ -67,6 +67,6 @@ public class PropertyBoundary {
 	
 	public void setOwner(String name, int fieldNumber)
 	{
-		GUI.setOwner(fieldNumber, name);
+		GUI.setOwner(fieldNumber+1, name);
 	}
 }

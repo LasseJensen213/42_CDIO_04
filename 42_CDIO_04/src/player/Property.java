@@ -219,19 +219,16 @@ public class Property {
 	 */
 	public Territory getTerritoryOfId(Color series, int index)
 	{
-		int fieldsIndex = 0;
 		int sameIdReached = 0;
-		int nPart = nParticularSeries(series);
-		for(int i = 0; i<nPart;i++)
+		for(int i = 0; i<fieldsOwned.length;i++)
 		{
-			if(fieldsOwned[fieldsIndex] instanceof Territory && 
+			if(fieldsOwned[i] instanceof Territory && 
 			  ((Territory)fieldsOwned[i]).getColor().equals(series))		
 			{
 				if(sameIdReached==index)
 					return (Territory)fieldsOwned[i];
 				sameIdReached++;
 			}
-			fieldsIndex++;
 		}
 		return null;
 	}
