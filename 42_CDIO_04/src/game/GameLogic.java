@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import boundary.GameLogicBoundary;
 import dice.DiceCup;
-import field.LandOnFieldController;
+import game.LandOnFieldController;
 import player.Player;
 import stringbanks.Stringbanks_GameLogic;
 
@@ -89,7 +89,7 @@ public class GameLogic {
 		}
 		optionsList.add("Kast med terningerne... Brian");
 		String[] options = new String[0];
-		String choice = gui.jailChoices(optionsList.toArray(options));
+		String choice = gui.jailChoices(player.getName(),optionsList.toArray(options));
 		int d1,d2;
 		if(choice.equals("Kast med terningerne... Brian"))
 		{

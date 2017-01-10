@@ -2,26 +2,30 @@ package game;
 
 import boundary.GameControllerBoundary;
 import card.Cardgenerator;
+import player.PlayerCreation;
 import player.PlayerList;
 
 
 public class GameController {
 
 	private PlayerList pList;
-	//private PlayerCreation playerCreate;
+	private PlayerCreation playerCreate;
 	private GameControllerBoundary gui;
 	private GameLogic gLogic;
 	int playerIndex;
 
 	public GameController() {
-		playerIndex = 0;
+		playerCreate = new PlayerCreation();
+		pList = new PlayerList();
+		playerIndex = 0;								//Turn
 		gui = new GameControllerBoundary();
 		gLogic = new GameLogic();
 	}
 
 	public void startGame()
-	{
-		//playerCreate.createPlayers();
+	{ 	
+		
+		playerCreate.initPlayers();
 		pList = PlayerList.getPL();
 		Cardgenerator.generateCards();
 		
