@@ -5,10 +5,12 @@ import java.util.Arrays;
 
 public class Territory extends Ownable {
 	private int house;
+	private String id;
 	private int seriesMax;
 	private Color color;
 	private int rent[];
 	private int housePrice;
+
 	
 	
 	
@@ -17,16 +19,22 @@ public class Territory extends Ownable {
 	public Territory(String desc, String subtext, String title, int pos, int price, int[] rent, int series, Color color, int housePrice) {
 		super(desc, subtext, title, pos, price);
 		house = 0;
+
 		this.seriesMax = series;
 		this.color = color;
 		this.rent = rent;
 		this.housePrice = housePrice;
-	}
 
+	}
+	
+	
+	//Adds and removes houses
+	
 	public void addHouse(int amount) {
 		house +=amount;
 	}
 	
+
 	
 	public int getSeriesMax() {
 		return seriesMax;
@@ -61,6 +69,8 @@ public class Territory extends Ownable {
 
 	
 	
+	//Getters and Setters
+	
 	public int getHouse() {
 		return house;
 	}
@@ -70,6 +80,9 @@ public class Territory extends Ownable {
 	}
 
 
+	public String getId() {
+		return id;
+
 
 	public int getSeries() {
 		return seriesMax;
@@ -77,11 +90,13 @@ public class Territory extends Ownable {
 
 	public void setSeries(int series) {
 		this.seriesMax = series;
+
 	}
 
 	public Color getColor() {
 		return color;
 	}
+
 
 	public void setColor(Color color) {
 		this.color = color;
@@ -95,10 +110,5 @@ public class Territory extends Ownable {
 				+ getDesc() + ", getSubtext()=" + getSubtext() + ", getTitle()=" + getTitle() + ", getFieldPosition()="
 				+ getFieldPosition() + ", getClass()=" + getClass() + "]";
 	}
-
-
-	
-
-
 
 }

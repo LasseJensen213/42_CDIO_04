@@ -17,6 +17,50 @@ public abstract class Ownable extends Field {
 		owner = null;
 		
 	}
+	
+	//Set owner for "player" to null
+	
+	public void freeOwner(Player player, int pos) {
+		if(this.getOwner != null) {
+			if(this.getOwner().getName().equals(player.getName())) {
+				this.setOwner(null);
+			}
+		}
+	}
+	
+	//Getters and Setters
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public Player getOwner() {
+		return owner;
+	}
+	
+	public void setOwner(Player owner) {
+		this.owner = owner;
+	}
+
+	public int getRent() {
+		return rent;
+	}
+
+	public void setRent(int rent) {
+		this.rent = rent;
+	}
+
+	public boolean isPawned() {
+		return pawned;
+	}
+
+	public void setPawned(boolean pawned) {
+		this.pawned = pawned;
+	}
 
 
 	public int getPrice() {
