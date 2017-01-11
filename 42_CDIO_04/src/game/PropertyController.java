@@ -53,7 +53,7 @@ public class PropertyController {
 
 			options =  addToArray(options,Stringbanks_Property.get(6));
 
-			String choice = gui.chooseWhatToBuy(options);
+			String choice = gui.chooseWhatToBuy(player.getName(),options);
 
 			if(choice.equals(Stringbanks_Property.get(11)))
 			{

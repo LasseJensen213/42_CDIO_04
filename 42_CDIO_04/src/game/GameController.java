@@ -32,6 +32,7 @@ public class GameController {
 		
 		while(true)
 		{
+			gui.announceTurn(pList.get(playerIndex));
 			if(pList.get(playerIndex).isJailed())
 			{
 				gLogic.inJailTurn(pList.get(playerIndex));

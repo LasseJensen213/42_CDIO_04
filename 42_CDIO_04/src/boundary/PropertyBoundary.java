@@ -21,9 +21,9 @@ public class PropertyBoundary {
 		return GUI.getUserButtonPressed(Stringbanks_Property.get(2), options);
 	}
 	
-	public String chooseWhatToBuy(String[] options)
+	public String chooseWhatToBuy(String name, String[] options)
 	{
-		return GUI.getUserButtonPressed(Stringbanks_Property.get(0), options);
+		return GUI.getUserButtonPressed(String.format(Stringbanks_Property.get(0), name), options);
 	}
 	
 	public String chooseWhoToTradeWith(String[] options)

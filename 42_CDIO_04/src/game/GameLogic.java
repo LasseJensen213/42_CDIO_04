@@ -87,13 +87,13 @@ public class GameLogic {
 		}
 		if(player.getAccount().getBalance()>1000)
 		{
-			optionsList.add("Betal kautionen på 1000");
+			optionsList.add(Stringbanks_GameLogic.inJailTurn(3));
 		}
-		optionsList.add("Kast med terningerne... Brian");
+		optionsList.add(Stringbanks_GameLogic.inJailTurn(1));
 		String[] options = new String[0];
 		String choice = gui.jailChoices(player.getName(),optionsList.toArray(options));
 		int d1,d2;
-		if(choice.equals("Kast med terningerne... Brian"))
+		if(choice.equals(Stringbanks_GameLogic.inJailTurn(1)))
 		{
 			player.setTimeInJail(player.getTimeInJail()+1);
 			diceCup.rollDice();
@@ -124,12 +124,12 @@ public class GameLogic {
 				
 			}
 		}
-		else if(choice.equals("Betal kautionen på 1000"))
+		else if(choice.equals(Stringbanks_GameLogic.inJailTurn(3)))
 		{
 			player.setJailed(false);
 			player.setTimeInJail(0);
 		}
-		else if(choice.equals("Brug benådelses kort"))
+		else if(choice.equals(Stringbanks_GameLogic.inJailTurn(2)))
 		{
 			player.setJailed(false);
 			player.setTimeInJail(0);

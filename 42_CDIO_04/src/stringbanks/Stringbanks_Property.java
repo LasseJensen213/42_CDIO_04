@@ -2,7 +2,7 @@ package stringbanks;
 
 public class Stringbanks_Property {
 
-	private static String mainPropertyMenuMsg = "Vælg mellem at bygge huse/hoteller eller bytte grunde";
+	private static String mainPropertyMenuMsg = "%s: Vælg mellem at bygge huse/hoteller eller bytte grunde";
 	private static String whereToBuyHouses = "Vælg hvor du vil bygge huse";
 	private static String whereToUpgradeHotel = "Vælg hvor du vil bygge hotel";
 	private static String chooseWhatToTradeWith = "Vælg en af %s's grunde";
