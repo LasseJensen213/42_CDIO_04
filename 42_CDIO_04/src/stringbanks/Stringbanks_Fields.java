@@ -7,7 +7,7 @@ public class Stringbanks_Fields {
 	 * Chance Card information
 	 */
 	private String ChanceName = "Prøv Lykken";
-	private String ChanceDescription = " ";
+	private String ChanceDescription = "Træk et chancekort på dette felt";
 	private String Chancesubtext = " ";
 	
 	//Start information
@@ -15,7 +15,9 @@ public class Stringbanks_Fields {
 	private String field1Description = "";
 	private String field1subtext = "";
 
-	
+	/**
+	 * <
+	 */
 	//Territory information
 	private String field2Name = "Rødovrevej";
 	private String field2Description = "";
