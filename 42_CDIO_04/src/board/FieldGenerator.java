@@ -107,8 +107,8 @@ public class FieldGenerator {
 	private final static int fleetRent[] = {500,1000,2000,4000};
 
 	//Tax related information.
-	private final static int taxAmount[] = {2000,4000};
-	private final static int taxRate[] = {0,10};
+	private final static int taxAmount[] = {4000,2000};
+	private final static int taxRate[] = {10,0};
 	private final static int taxPlace[] = {4,38};
 
 	//Chance related information

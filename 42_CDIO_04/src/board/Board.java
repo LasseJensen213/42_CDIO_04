@@ -150,6 +150,9 @@ public class Board {
 		return ourFields[pos];
 	}
 
+	public field.Field[] getOurFields() {
+		return ourFields;
+	}
 
 	public Field[] getFields() {
 		return fields;

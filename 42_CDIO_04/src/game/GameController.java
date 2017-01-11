@@ -4,7 +4,6 @@ import boundary.GameControllerBoundary;
 import card.Cardgenerator;
 import player.PlayerCreation;
 import player.PlayerList;
-import player.PlayerManager;
 
 
 public class GameController {

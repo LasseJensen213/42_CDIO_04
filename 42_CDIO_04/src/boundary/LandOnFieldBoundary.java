@@ -1,14 +1,16 @@
 package boundary;
 
 import desktop_resources.GUI;
+import field.Field;
+import field.Ownable;
 import stringbanks.Stringbanks_LandOnFieldBoundary;
 
 public class LandOnFieldBoundary {
 	Stringbanks_LandOnFieldBoundary s = new Stringbanks_LandOnFieldBoundary();
 
-	public static boolean buyChoice(){
+	public static boolean buyChoice(Field f){
 		String[] options = {"Ja", "Nej"};
-		return GUI.getUserButtonPressed("Vil du købe?", options).equals(options[0]);
+		return GUI.getUserButtonPressed("Vil du købe " + f.getTitle() +". Pris: " + ((Ownable)f).getPrice(), options).equals(options[0]);
 	}
 	
 	public static void moveToJail(String name, int pos){
@@ -21,14 +23,14 @@ public class LandOnFieldBoundary {
 	}
 	
 	public static void payOtherPlayer(String s, int i) {
-		String message = "De skal betale @s @d kroner.";
+		String message = "De skal betale %s %d kroner.";
 		message = String.format(message,s, i);
 		GUI.showMessage(message);
 		
 	}
 	
 	public static void payTax(int rent) {
-		String message = "De skal betale @d i skat";
+		String message = "De skal betale %d i skat";
 		message = String.format(message, rent);
 		GUI.showMessage(message);
 	}
@@ -39,6 +41,7 @@ public class LandOnFieldBoundary {
 	 * 1 : landOnStart <br>
 	 * 2 : landOnGoToJail <br>
 	 * 3 : landOnChance <br> 
+	 * 4 : pawned <br>
 	 * @param number
 	 * 
 	 */

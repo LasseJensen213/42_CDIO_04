@@ -49,11 +49,11 @@ public class PlayerCreation {
 			String name = chooseName(pList);
 			int balance = 30000;
 			Color color = getColor(chooseColor());
-			Builder car = new Car.Builder();
-			car.primaryColor(color).typeUfo();
-			GUI.addPlayer(name, balance);
-			GUI.setCar(1, name);
+			Car car = new Car.Builder().primaryColor(color).typeTractor().build();
 			pList.addPlayer(name, car, balance);
+
+			GUI.addPlayer(name, balance, car);
+			GUI.setCar(1, name);
 		}
 
 
