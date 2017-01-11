@@ -51,6 +51,8 @@ public class PropertyTest {
 		assertEquals(actual,20);
 		assertFalse(propTest.completeSeries(Color.BLACK));
 		assertFalse(propTest.hasField(new Territory("","","",0,0,new int[]{4,5,6,7,8},seriesMax,Color.blue,3000)));
+
+		
 		
 	}
 

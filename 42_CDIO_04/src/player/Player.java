@@ -43,6 +43,7 @@ public class Player
 	}
 
 
+
 	public Player(String name , Car car , int startBalance)
 	{
 		this.name = name;
@@ -52,7 +53,7 @@ public class Player
 		this.jailed = false;
 		this.passedStart = false;
 		account = new Account(startBalance);
-		this.car = car;
+		this.car = car2;
 		this.property = new Property();
 		this.playerPos = 0;
 	}

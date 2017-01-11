@@ -4,7 +4,6 @@ import boundary.GameControllerBoundary;
 import card.Cardgenerator;
 import player.PlayerCreation;
 import player.PlayerList;
-import player.PlayerManager;
 
 
 public class GameController {
@@ -15,26 +14,24 @@ public class GameController {
 	private int playerIndex;
 
 	public GameController() {
-		playerIndex = 0;
+		playerCreate = new PlayerCreation();
+		pList = new PlayerList();
+		playerIndex = 0;								//Turn
 		gui = new GameControllerBoundary();
 		gLogic = new GameLogic();
 	}
 
 	public void startGame()
-<<<<<<< HEAD
-	{
-		playerCreate.createPlayers();
-=======
 	{ 	
-		
+
 		playerCreate.initPlayers();
-		
->>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04
+
 		pList = PlayerList.getPL();
 		Cardgenerator.generateCards();
-		
+
 		while(true)
 		{
+			gui.announceTurn(pList.get(playerIndex).getName());
 			if(pList.get(playerIndex).isJailed())
 			{
 				gLogic.inJailTurn(pList.get(playerIndex));
@@ -43,6 +40,8 @@ public class GameController {
 			{
 				gLogic.normalTurn(pList.get(playerIndex));
 			}
+
+			updateAllBalance();
 			//Checks to see if the player gets an extra turn
 			if(pList.get(playerIndex).getEqualFaceValue()>0)
 			{
@@ -63,13 +62,24 @@ public class GameController {
 		}
 		endGameSession();
 	}
-	
+
 	/**
 	 * This resets all the singletons instances, so that new ones can be made for a new game
 	 */
+
+	public void updateAllBalance()
+	{
+		for(int i = 0; i<pList.getNPlayers();i++)
+		{
+			String name = pList.get(i).getName();
+			int balance = pList.get(i).getAccount().getBalance();
+			gui.updateBalance(name,balance);
+		}
+
+	}
 	public void endGameSession()
 	{
-		
+
 	}
 
 }

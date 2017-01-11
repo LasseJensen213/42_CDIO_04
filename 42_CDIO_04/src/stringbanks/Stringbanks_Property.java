@@ -2,7 +2,7 @@ package stringbanks;
 
 public class Stringbanks_Property {
 
-	private static String mainPropertyMenuMsg = "Vælg mellem at bygge huse/hoteller eller bytte grunde";
+	private static String mainPropertyMenuMsg = "%s: Vælg mellem at bygge huse/hoteller, bytte grunde, pantsætte grunde, eller sælge huse og hoteller";
 	private static String whereToBuyHouses = "Vælg hvor du vil bygge huse";
 	private static String whereToUpgradeHotel = "Vælg hvor du vil bygge hotel";
 	private static String chooseWhatToTradeWith = "Vælg en af %s's grunde";
@@ -13,16 +13,25 @@ public class Stringbanks_Property {
 	private static String confirmTradeYes = "Ja";
 	private static String confirmTradeNo = "Nej";
 	private static String chooseYourLot = "Vælg en af dine grunde du vil bytte med";
+	private static String chooseWhatToSell = "%s: Vælg en grund du vil sælge. nuværende balance: %d";
+	private static String choosePawnOptionsForField = "%s: ";
 	
+	private static String pawnOption = "Pantsæt";
+	private static String sellHotelOption = "Sælg hotel";
+	private static String sellHouseOption = "Sælg et hus";
+	private static String sellOrPawnOption = "Salg og pantsætning";
 	private static String buyHouseOption = "Køb huse";
 	private static String buyHotelOption = "Køb hotel";
 	private static String tradeOption = "Byt grunde";
+	
+	private static String pawnedDescription = "Pantsat";
 	
 	private static String[] strings = {mainPropertyMenuMsg, whereToBuyHouses, 
 									  whereToUpgradeHotel,chooseWhatToTradeWith,
 									  chooseWhoToTradeWith,goBack,pass, confirmTradeMsg, 
 									  confirmTradeYes,confirmTradeNo,chooseYourLot,buyHouseOption,
-									  buyHotelOption,tradeOption};
+									  buyHotelOption,tradeOption,chooseWhatToSell, choosePawnOptionsForField,
+									  pawnOption, sellHotelOption,sellHouseOption, sellOrPawnOption, pawnedDescription};
 		
 	/**
 	 * 0 = mainPropertMenuMsg<br>
@@ -39,6 +48,13 @@ public class Stringbanks_Property {
 	 * 11 = buyHouseOption<br>
 	 * 12 = buyHotelOption<br>
 	 * 13 = tradeOption <br>
+	 * 14 = chooseWhatToSell<br>
+	 * 15 = choosePawnOptionsForField<br>
+	 * 16 = pawnOption<br>
+	 * 17 = sellHotelOption<br>
+	 * 18 = sellHouseOption<br>
+	 * 19 = sellOrPawnOption<br>
+	 * 20 = pawnedDescription<br>
 	 * @param i 
 	 * @return
 	 */

@@ -32,7 +32,6 @@ public class LandOnFieldController {
 	 * @param player
 	 */
 	public void landOnField(Player player){
-		System.out.println("What");
 		Board b = Board.Board();
 		field.Field f = b.getField(player.getPlayerPos());
 
@@ -73,7 +72,7 @@ public class LandOnFieldController {
 	public void landOnTerritory(Player player, Territory f){
 		if(f.getOwner() == null){
 			if(player.getAccount().getBalance()>(f.getPrice())){
-				if(LandOnFieldBoundary.buyChoice()){
+				if(LandOnFieldBoundary.buyChoice(f)){
 					player.getAccount().withdraw(f.getPrice());
 					((Territory)f).setOwner(player);
 					LandOnFieldBoundary.setPlayerColorOnField(player.getName(), player.getPlayerPos());
@@ -83,6 +82,9 @@ public class LandOnFieldController {
 		}
 		else if(f.getOwner() == player){
 			//nothing happens
+		}
+		else if(f.isPawned()){
+			LandOnFieldBoundary.displayMessage(4);
 		}
 		else {
 
@@ -104,16 +106,20 @@ public class LandOnFieldController {
 	public void landOnBrewery(Player player, Brewery f){
 		if(f.getOwner() == null){
 			if(player.getAccount().getBalance()>(f.getPrice())){
-				if(LandOnFieldBoundary.buyChoice()){
+				if(LandOnFieldBoundary.buyChoice(f)){
 					player.getAccount().withdraw(f.getPrice());
 					f.setOwner(player);
 					player.getProperty().addField(f);
+					GUI.setOwner(player.getPlayerPos()+1, player.getName());
 
 				}
 			}
 		}
 		else if(f.getOwner() == player){
 			//nothing happens
+		}
+		else if(f.isPawned()){
+			LandOnFieldBoundary.displayMessage(4);
 		}
 		else {
 			int rent = player.getTotalFaceValue()*f.getRent()*100;
@@ -131,16 +137,20 @@ public class LandOnFieldController {
 	public void landOnFleet(Player player, Fleet f){
 		if(f.getOwner() == null){
 			if(player.getAccount().getBalance()>(f.getPrice())){
-				if(LandOnFieldBoundary.buyChoice()){
+				if(LandOnFieldBoundary.buyChoice(f)){
 					player.getAccount().withdraw(f.getPrice());
 					f.setOwner(player);
 					player.getProperty().addField(f);
+					GUI.setOwner(player.getPlayerPos()+1, player.getName());
 
 				}
 			}
 		}
 		else if(f.getOwner() == player){
 			//nothing happens
+		}
+		else if(f.isPawned()){
+			LandOnFieldBoundary.displayMessage(4);
 		}
 		else {
 			int fleetsOwned = player.getProperty().nFleetsOwned();
@@ -168,11 +178,11 @@ public class LandOnFieldController {
 		else if(f.getPercentange() == 10){
 			String input = GUI.getUserSelection("Vælg imellem:", choice);
 			if(input == choice[0]) {
-				player.getAccount().withdraw(f.getTax());
+				rent = f.getTax();
+				player.getAccount().withdraw(rent);
 			}
 			else if(input == choice[1]) {
-				GUI.showMessage("PAY");
-				rent = (player.getAccount().getBalance()+player.getProperty().totalValueOfAssets())*10/100;
+				rent = ((player.getAccount().getBalance()+player.getProperty().totalValueOfAssets())*10)/100;
 				player.getAccount().withdraw(rent);
 				LandOnFieldBoundary.payTax(rent);
 			}
@@ -206,9 +216,11 @@ public class LandOnFieldController {
 	 */
 	public void landOnGoToJail(Player player, GoToJail f){
 		LandOnFieldBoundary.displayMessage(2);
+		GUI.removeCar(player.getPlayerPos(), player.getName());
 		LandOnFieldBoundary.moveToJail(player.getName(), player.getPlayerPos());
 		player.setPlayerPos(10);
 		player.setJailed(true);
+		GUI.setCar(10, player.getName());
 
 	}
 	
@@ -227,7 +239,7 @@ public class LandOnFieldController {
 	 * @param f
 	 */
 	public void landOnChance(Player player, Chance f){
-//		LandOnFieldBoundary.displayMessage(3);
+		LandOnFieldBoundary.displayMessage(3);
 //		card = cardDeck.draw();
 //		LandOnFieldBoundary.displayCard(card.getDescription());
 //		if(card instanceof Bail) {
@@ -242,7 +254,7 @@ public class LandOnFieldController {
 //		else if(card instanceof TransferMoney) {
 //			cE.cardEffectTransferMoney(player, (TransferMoney)card);
 //		}
-//		
+		
 	}
 	
 	

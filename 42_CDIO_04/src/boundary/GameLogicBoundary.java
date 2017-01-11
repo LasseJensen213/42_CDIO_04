@@ -2,7 +2,6 @@ package boundary;
 
 import java.util.concurrent.TimeUnit;
 
-import board.FieldGenerator;
 import desktop_resources.GUI;
 import stringbanks.Stringbanks_GameLogic;
 
@@ -49,12 +48,12 @@ public class GameLogicBoundary {
 	
 	public void removeOwner(int fieldNumber)
 	{
-		GUI.removeOwner(fieldNumber);
+		GUI.removeOwner(fieldNumber+1);
 	}
 	
 	public void removeCar(String name, int fieldNumber)
 	{
-		GUI.removeCar(fieldNumber, name);
+		GUI.removeCar(fieldNumber+1, name);
 	}
 	
 	public String jailChoices(String name, String[] options)
@@ -62,4 +61,8 @@ public class GameLogicBoundary {
 		return GUI.getUserButtonPressed(String.format(Stringbanks_GameLogic.inJailTurn(0), name), options);
 	}
 
+	public void playerIsBroke(String name)
+	{
+		GUI.showMessage(String.format(Stringbanks_GameLogic.normalTurn(2), name));
+	}
 }

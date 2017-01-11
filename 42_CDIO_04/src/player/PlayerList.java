@@ -10,7 +10,6 @@ public class PlayerList {
 
 	private static PlayerList INSTANCE;
 
-	private PlayerCreationGUI playerCreateGUI;
 
 	private int nPlayers;
 	
@@ -27,7 +26,7 @@ public class PlayerList {
 		this.nPlayers = nPlayers;
 	}
 	
-	public void addPlayer(String name,Car.Builder car,int i)
+	public void addPlayer(String name,Car car,int i)
 	{
 		playerList.add(new Player(name,car,i));
 	}
@@ -52,23 +51,7 @@ public class PlayerList {
 	
 	
 	
-	public void initPlayers()
-	{
-		//First choose number of players
-		nPlayers = playerCreateGUI.chooseNPlayers();
-		
-		for(int i = 0; i<nPlayers;i++)
-		{
-			String name = playerCreateGUI.chooseName(this);
-			String color = playerCreateGUI.chooseColor();//Chooses the color for the car
-			addPlayer(name);
-			playerList.get(i).setCar(playerCreateGUI.getColor(color));
-			playerCreateGUI.addPlayerToBoard(playerList.get(i));
-				
-			
-		}
-		
-	}
+	
 	
 	
 	/**
