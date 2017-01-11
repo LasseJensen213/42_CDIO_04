@@ -6,6 +6,7 @@ import card.Bail;
 import card.Card;
 import card.CardDeck;
 import card.CardEffect;
+import card.Cardgenerator;
 import card.GoToJailCard;
 import card.MovePlayer;
 import card.TransferMoney;
@@ -22,9 +23,13 @@ import field.Territory;
 import player.Player;
 
 public class LandOnFieldController {
-	CardDeck cardDeck = new CardDeck();
+	CardDeck cardDeck = CardDeck.CardDeck();
 	CardEffect cE = new CardEffect();
 	Card card;
+	Board b = Board.Board();
+
+	
+	private boolean doubleRent = false;
 
 	/**
 	 * Call this function every time a player lands on a field.
@@ -32,7 +37,6 @@ public class LandOnFieldController {
 	 * @param player
 	 */
 	public void landOnField(Player player){
-		Board b = Board.Board();
 		field.Field f = b.getField(player.getPlayerPos());
 
 		if(f instanceof Territory){
@@ -155,6 +159,9 @@ public class LandOnFieldController {
 		else {
 			int fleetsOwned = player.getProperty().nFleetsOwned();
 			int rent = 500*(int)Math.pow(2, fleetsOwned-1);
+			if(doubleRent) {
+				rent = rent*2;
+			}
 					
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
@@ -240,20 +247,27 @@ public class LandOnFieldController {
 	 */
 	public void landOnChance(Player player, Chance f){
 		LandOnFieldBoundary.displayMessage(3);
-//		card = cardDeck.draw();
-//		LandOnFieldBoundary.displayCard(card.getDescription());
-//		if(card instanceof Bail) {
-//			cE.cardEffectBail(player, (Card)card);
-//		}
-//		else if(card instanceof GoToJailCard) {
-//			cE.cardEffectGoToJail(player, (GoToJailCard)card);
-//		}
-//		else if(card instanceof MovePlayer) {
-//			cE.cardEffectMovePlayer(player, (MovePlayer)card);
-//		}
-//		else if(card instanceof TransferMoney) {
-//			cE.cardEffectTransferMoney(player, (TransferMoney)card);
-//		}
+		card = cardDeck.draw();
+		LandOnFieldBoundary.displayCard(card.getDescription());
+		if(card instanceof Bail) {
+			//cE.cardEffectBail(player, (Card)card);
+		}
+		else if(card instanceof GoToJailCard) {
+			cE.cardEffectGoToJail(player, (GoToJailCard)card);
+		}
+		else if(card instanceof MovePlayer) {
+			int posBefore = player.getPlayerPos();
+			cE.cardEffectMovePlayer(player, (MovePlayer)card);
+			this.doubleRent = cE.isDoubleRent();
+			if(posBefore != player.getPlayerPos()) {
+				landOnField(player);
+			}
+			
+		}
+		else if(card instanceof TransferMoney) {
+			cE.cardEffectTransferMoney(player, (TransferMoney)card);
+		}
+		
 		
 	}
 	

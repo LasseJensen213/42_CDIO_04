@@ -26,20 +26,20 @@ public class GameLogicBoundary {
 	public void movePlayerModel(String name, int pos, int distance)
 	{
 		//only moves the player on the board. Doesn't actually update their position
-				for(int i = 0; i<distance; i++)
-				{
-					GUI.removeCar(pos+1, name);
-					pos = (pos+1)%40;
-					GUI.setCar(pos+1, name);
-					try {
-						TimeUnit.MILLISECONDS.sleep(100);
+		for(int i = 0; i<distance; i++)
+		{
+			GUI.removeCar(pos+1, name);
+			pos = (pos+1)%40;
+			GUI.setCar(pos+1, name);
+			try {
+				TimeUnit.MILLISECONDS.sleep(100);
 
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-				}
+		}
 	}
 	
 	public void updatePlayerBalance(String name, int balance)

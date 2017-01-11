@@ -255,6 +255,17 @@ public class Property {
 		return false;
 	}
 
+	
+	public void addCard(Card newCard) {
+		Card[] card = new Card[bailCards.length+1];
+		for(int i = 0;i<bailCards.length;i++) {
+			card[i] = bailCards[i];
+			
+		}
+		card[card.length-1] = newCard;
+		bailCards = card;
+		
+	}
 	public Card getCard(int i)
 	{
 		return bailCards[i];

@@ -38,7 +38,8 @@ public class Dice {
 	
 	public void roll()
 	{
-		this.faceValue = rand.nextInt(this.numOfSides)+1; 
+		this.faceValue = 1;
+		//this.faceValue = rand.nextInt(this.numOfSides)+1; 
 	}
 
 }

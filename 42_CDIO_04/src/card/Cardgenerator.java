@@ -56,8 +56,12 @@ public class Cardgenerator {
 	
 	public static void generateCards()
 	{
+		Card[] cardDeck = new Card[45];
+		for(int i = 0;i<cardDeckGenerator.length;i++) {
+			cardDeck[i] = getCardDeckGenerator(i);
+		}
 		CardDeck deck = CardDeck.getCD();
-		deck.setActiveDeck(cardDeckGenerator);
+		deck.setActiveDeck(cardDeck);
 		deck.shuffle();
 	}
 
