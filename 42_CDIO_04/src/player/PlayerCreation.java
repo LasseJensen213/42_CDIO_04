@@ -49,7 +49,7 @@ public class PlayerCreation {
 			String name = chooseName(pList);
 			int balance = 30000;
 			Color color = getColor(chooseColor());
-			Car car = new Car.Builder().primaryColor(color).secondaryColor(Color.BLUE).typeUfo().build();
+			Car car = new Car.Builder().typeUfo().primaryColor(color).secondaryColor(Color.BLUE).typeUfo().build();
 			if(name.toLowerCase().equals("Lasse".toLowerCase()))
 			{
 				car = new Car.Builder().primaryColor(color).secondaryColor(Color.BLUE).typeTractor().build();

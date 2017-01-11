@@ -31,6 +31,16 @@ public class PropertyBoundary {
 		return GUI.getUserButtonPressed(Stringbanks_Property.get(4), options);
 	}
 	
+	public String sellMenu(String name, String[] options, int balance)
+	{
+		return GUI.getUserButtonPressed(String.format(Stringbanks_Property.get(14), name, balance), options);
+	}
+	
+	public String pawnMenu(String fieldName, String[] options, int balance)
+	{
+		return GUI.getUserButtonPressed(String.format(Stringbanks_Property.get(15), fieldName, balance), options);
+	}
+	
 	
 	public String chooseYourLots(String[] options)
 	{
@@ -68,5 +78,10 @@ public class PropertyBoundary {
 	public void setOwner(String name, int fieldNumber)
 	{
 		GUI.setOwner(fieldNumber+1, name);
+	}
+	
+	public void pawnField(int fieldNumber)
+	{
+		GUI.setSubText(fieldNumber+1, Stringbanks_Property.get(20));
 	}
 }

@@ -14,15 +14,14 @@ import stringbanks.Stringbanks_Property;
 
 public class PropertyController {
 
-	private final int MAX_HOUSES = 32;
-	private final int MAX_HOTELS = 12;
-	private int housesUsed = 0;
-	private int hotelsUsed = 0;
-	PropertyBoundary gui; 
-	PlayerList pList;
+
+	private Bank bank;
+	private PropertyBoundary gui; 
+	private PlayerList pList;
 
 	public PropertyController()
 	{
+		bank = Bank.getBank();
 		gui = new PropertyBoundary();
 		pList = PlayerList.getPL();
 	}
@@ -31,6 +30,92 @@ public class PropertyController {
 	 * This is the menu where you choose whether you want to buy houses/hotels or trade with other players
 	 * @param player
 	 */
+
+	public void sellAssets(Player player)
+	{
+		while(true)
+		{
+			String[] options = new String[0];
+			int nFields = player.getProperty().nFields();
+			for(int i = 0; i<nFields;i++)
+			{
+				if(!player.getProperty().getField(i).isPawned())
+					options = addToArray(options, player.getProperty().getField(i).getTitle());
+			}
+
+			if(player.getAccount().getBalance()>0)
+			{
+				options = addToArray(options, Stringbanks_Property.get(5));
+			}
+
+			String choice = gui.sellMenu(player.getName(),options,player.getAccount().getBalance());
+
+			if(choice.equals(Stringbanks_Property.get(5)))
+				break;
+			for(int i = 0; i<nFields;i++)
+			{
+				if(choice.equals(player.getProperty().getField(i).getTitle()));
+				{
+					pawnAField(player, player.getProperty().getField(i));
+				}
+			}
+		}
+	}
+
+	public void pawnAField(Player player, Ownable field)
+	{
+		while(true)
+		{
+			String[] options = new String[0];
+			
+			if(field.isPawned())
+				break;
+			if(field instanceof Brewery || field instanceof Fleet)
+				options = addToArray(options, Stringbanks_Property.get(16));
+			else
+			{
+				Territory t = (Territory)field;
+				if(t.getHouse()==5)
+					options = addToArray(options, Stringbanks_Property.get(17));
+				else if(t.getHouse()<=4 && t.getHouse()>0)
+					options = addToArray(options, Stringbanks_Property.get(18));
+				else
+					options = addToArray(options, Stringbanks_Property.get(16));
+			}
+			options = addToArray(options, Stringbanks_Property.get(5));
+
+			String choice = gui.pawnMenu(field.getTitle(), options, player.getAccount().getBalance());
+
+			if(choice.equals(Stringbanks_Property.get(5)))
+				break;
+			else if(choice.equals(Stringbanks_Property.get(16)))
+			{
+				field.setPawned(true);
+				player.getAccount().deposit(field.getPrice()/2);
+				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
+				gui.pawnField(field.getFieldPosition());
+			}
+			else if(choice.equals(Stringbanks_Property.get(17)))
+			{
+				Territory t = (Territory)field;
+				t.removeHouse(1);
+				gui.updateHotelPlacement(t.getFieldPosition(), false);
+				player.getAccount().deposit(t.getHousePrice()/2);
+				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
+				bank.hotelsFreed(1);
+			}
+			else
+			{
+				Territory t = (Territory)field;
+				t.removeHouse(1);
+				gui.updateHouseCount(t.getFieldPosition(), t.getHouse());
+				player.getAccount().deposit(t.getHousePrice()/2);
+				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
+				bank.housesFreed(1);
+			}
+
+		}
+	}
 	public void buyAssets(Player player)
 	{
 		while(true)
@@ -42,14 +127,16 @@ public class PropertyController {
 			int cheapestHouse = cheapestHousePrice(validHousePlacements);
 			int cheapestHotel = cheapestHousePrice(validHotelUpgrades);
 
-			if(validHousePlacements.length>0 && housesUsed < MAX_HOUSES && player.getAccount().getBalance()>cheapestHouse)
+			if(validHousePlacements.length>0 && bank.getHousesUsed() < bank.getMAX_HOUSES() && player.getAccount().getBalance()>cheapestHouse)
 				options = addToArray(options,Stringbanks_Property.get(11));
 
-			if(validHotelUpgrades.length>0 && hotelsUsed < MAX_HOTELS && player.getAccount().getBalance()>cheapestHotel)
+			if(validHotelUpgrades.length>0 && bank.getHotelsUsed() < bank.getMAX_HOTELS() && player.getAccount().getBalance()>cheapestHotel)
 				options = addToArray(options,Stringbanks_Property.get(12));
 
 			if(canTrade(player) && validTradePlayers.length>0)
 				options = addToArray(options, Stringbanks_Property.get(13));
+			if(player.getProperty().nFields()>0)
+				options = addToArray(options, Stringbanks_Property.get(19));
 
 			options =  addToArray(options,Stringbanks_Property.get(6));
 
@@ -67,6 +154,8 @@ public class PropertyController {
 			{
 				tradeWithPlayer(player);
 			}
+			else if(choice.equals(Stringbanks_Property.get(19)))
+				sellAssets(player);
 			else if(choice.equals(Stringbanks_Property.get(6)))
 			{
 				break;
@@ -84,7 +173,7 @@ public class PropertyController {
 		{	
 			String options[] = new String[0];
 			Territory[] validFields = getValidHousePlacements(player);
-			if(player.getAccount().getBalance()>cheapestHousePrice(validFields) && housesUsed<MAX_HOUSES )
+			if(player.getAccount().getBalance()>cheapestHousePrice(validFields) && bank.getHousesUsed()<bank.getMAX_HOUSES() )
 			{
 				for(Territory t : validFields)
 				{
@@ -103,7 +192,7 @@ public class PropertyController {
 				{
 					validFields[i].addHouse(1);
 					player.getAccount().withdraw(validFields[i].getHousePrice());
-					housesUsed++;
+					bank.useHouses(1);
 					gui.updateHouseCount(validFields[i].getFieldPosition(), validFields[i].getHouse());
 					gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
 				}
@@ -127,7 +216,7 @@ public class PropertyController {
 
 			for(Territory t : validFields)
 			{
-				if(player.getAccount().getBalance()>t.getHousePrice() && hotelsUsed<MAX_HOTELS)
+				if(player.getAccount().getBalance()>t.getHousePrice() && bank.getHotelsUsed()<bank.getMAX_HOTELS())
 				{
 					options = addToArray(options, t.getTitle());
 				}
@@ -147,8 +236,8 @@ public class PropertyController {
 				if(validFields[i].getTitle().equals(choice))
 				{
 					validFields[i].addHouse(1);
-					housesUsed-=4;
-					hotelsUsed++;
+					bank.housesFreed(4);
+					bank.useHotels(1);
 					player.getAccount().withdraw(validFields[i].getHousePrice());
 					gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
 					gui.updateHotelPlacement(validFields[i].getFieldPosition(), true);
@@ -582,24 +671,6 @@ public class PropertyController {
 		return result;
 	}
 
-	public void setHousesUsed(int housesUsed)
-	{
-		this.housesUsed = housesUsed;
-	}
-	
-	public int getHousesUsed()
-	{
-		return housesUsed;
-	}
-	
-	public void setHotelsUsed(int hotelsUsed)
-	{
-		this.hotelsUsed = hotelsUsed;
-	}
-	
-	public int getHotelsUsed()
-	{
-		return hotelsUsed;
-	}
+
 
 }
