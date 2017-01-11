@@ -144,8 +144,7 @@ public class Player
 			}
 			else
 				equalFaceValue = 0;
-		}
-		
+		}		
 	}
 	public void gotoJail() {
 		if(equalFaceValue == 3) 
