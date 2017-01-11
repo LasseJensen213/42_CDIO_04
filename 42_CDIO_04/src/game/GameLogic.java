@@ -69,6 +69,7 @@ public class GameLogic {
 			//Checking if the player managed to sell enough assets
 			if(player.getAccount().getBalance()<=0)
 			{
+				gui.playerIsBroke(player.getName());
 				playerIsBroke(player);
 			}
 		}
@@ -116,6 +117,7 @@ public class GameLogic {
 				//Checking if the player managed to sell enough assets
 				if(player.getAccount().getBalance()<=0)
 				{
+					gui.playerIsBroke(player.getName());
 					playerIsBroke(player);
 				}
 			}

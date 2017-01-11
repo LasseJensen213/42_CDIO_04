@@ -16,5 +16,10 @@ public class GameControllerBoundary {
 	{
 		GUI.showMessage(String.format(Stringbanks_GameController.get(1), name));
 	}
+	
+	public void updateBalance(String name, int newBalance)
+	{
+		GUI.setBalance(name, newBalance);
+	}
 
 }
