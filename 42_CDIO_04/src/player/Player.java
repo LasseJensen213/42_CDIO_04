@@ -6,7 +6,7 @@ import dice.DiceCup;
 
 public class Player 
 {
-	private Car.Builder car;
+	private Car car;
 	private String name;
 	private Account account;
 	private boolean broke;
@@ -43,7 +43,7 @@ public class Player
 	}
 
 
-	public Player(String name , Car.Builder car , int startBalance)
+	public Player(String name , Car car , int startBalance)
 	{
 		this.name = name;
 		this.timeInJail = 0;
@@ -90,7 +90,7 @@ public class Player
 		this.playerPos = playerPos;
 	}
 	
-	public Car.Builder getCar()
+	public Car getCar()
 	{
 		return car;
 	}
@@ -100,7 +100,7 @@ public class Player
 	 * Creates new car object with the color that's input
 	 * @param color
 	 */
-	public void setCar(Car.Builder car)
+	public void setCar(Car car)
 	{
 		this.car = car;
 	}
