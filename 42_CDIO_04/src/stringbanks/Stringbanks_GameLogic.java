@@ -7,15 +7,18 @@ public class Stringbanks_GameLogic {
 	private static String inJailUseCard = "Brug benådelses kort";
 	private static String inJailPayBail = "Betal kaution: 1000kr";
 	
-	private static String normalTurnMenuMsg = "Det er %s's tur";
-	private static String normalTurnThrowDice = "Kast med terningerne";
+	private static String normalTurnMenuMsg = "%s: Kast med terningerne";
+	private static String normalTurnThrowDice = "Kast";
 	
-	private static String[] normalTurn = {normalTurnMenuMsg,normalTurnThrowDice};
+	private static String playerIsBroke = "%s er gået konkurs";
+	
+	private static String[] normalTurn = {normalTurnMenuMsg,normalTurnThrowDice, playerIsBroke};
 	private static String[] inJailTurn = {inJailMenuMsg, inJailRollDice, inJailUseCard, inJailPayBail};
 	
 	/**
 	 * 0 = normalTurnMsg(needs player name)<br>
 	 * 1 = normalTurnThrowDice<br>
+	 * 2 = playerIsBroke (Needs name)
 	 * @param i
 	 * @return
 	 */

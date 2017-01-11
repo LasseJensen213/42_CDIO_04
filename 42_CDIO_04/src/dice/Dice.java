@@ -41,5 +41,9 @@ public class Dice {
 		this.faceValue = 1;
 		//this.faceValue = rand.nextInt(this.numOfSides)+1; 
 	}
+	
+	
+		
+	}
 
-}
+

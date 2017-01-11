@@ -43,7 +43,8 @@ public class Player
 	}
 
 
-	public Player(String name , Car car2 , int startBalance)
+
+	public Player(String name , Car car , int startBalance)
 	{
 		this.name = name;
 		this.timeInJail = 0;
@@ -52,7 +53,7 @@ public class Player
 		this.jailed = false;
 		this.passedStart = false;
 		account = new Account(startBalance);
-		this.car = car2;
+		this.car = car;
 		this.property = new Property();
 		this.playerPos = 0;
 	}
@@ -143,8 +144,7 @@ public class Player
 			}
 			else
 				equalFaceValue = 0;
-		}
-		
+		}		
 	}
 	public void gotoJail() {
 		if(equalFaceValue == 3) 

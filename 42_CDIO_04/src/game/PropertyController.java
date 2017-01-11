@@ -1,8 +1,12 @@
 package game;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import boundary.PropertyBoundary;
+import desktop_resources.GUI;
+import field.Brewery;
+import field.Fleet;
 import field.Ownable;
 import field.Territory;
 import player.Player;
@@ -11,23 +15,126 @@ import stringbanks.Stringbanks_Property;
 
 public class PropertyController {
 
-	private final int MAX_HOUSES = 32;
-	private final int MAX_HOTELS = 12;
-	private int housesUsed = 0;
-	private int hotelsUsed = 0;
-	PropertyBoundary gui; 
-	PlayerList pList;
+
+	private Bank bank;
+	private PropertyBoundary gui; 
+	private PlayerList pList;
 
 	public PropertyController()
 	{
+		bank = Bank.getBank();
 		gui = new PropertyBoundary();
 		pList = PlayerList.getPL();
 	}
 
-	/**
-	 * This is the menu where you choose whether you want to buy houses/hotels or trade with other players
-	 * @param player
-	 */
+
+
+
+	public void sellAssets(Player player)
+	{
+		while(true)
+		{
+			String[] options = new String[0];
+			int nFields = player.getProperty().nFields();
+			for(int i = 0; i<nFields;i++)
+			{
+				if(player.getProperty().getField(i).isPawned() && player.getProperty().getField(i).getPrice()/2<player.getAccount().getBalance())
+					options = addToArray(options, player.getProperty().getField(i).getTitle()+Stringbanks_Property.get(22));
+				else
+					options = addToArray(options, player.getProperty().getField(i).getTitle());
+			}
+
+			if(player.getAccount().getBalance()>0)
+			{
+				options = addToArray(options, Stringbanks_Property.get(5));
+			}
+
+			String choice = gui.sellMenu(player.getName(),options,player.getAccount().getBalance());
+
+			if(choice.equals(Stringbanks_Property.get(5)))
+				break;
+			for(int i = 0; i<nFields;i++)
+			{
+				if(choice.equals(player.getProperty().getField(i).getTitle()))
+				{
+					pawnAField(player, player.getProperty().getField(i));
+				}
+				else if(choice.equals(player.getProperty().getField(i).getTitle()+Stringbanks_Property.get(22)))
+				{
+					pawnAField(player, player.getProperty().getField(i));
+				}
+			}
+		}
+	}
+
+	public void pawnAField(Player player, Ownable field)
+	{
+		while(true)
+		{
+			String[] options = new String[0];
+
+			if(field.isPawned())
+			{
+				if(field.getPrice()/2<player.getAccount().getBalance())
+					options = addToArray(options, Stringbanks_Property.get(21));
+				else
+					break;
+			}
+
+			else if(field instanceof Brewery || field instanceof Fleet)
+				options = addToArray(options, Stringbanks_Property.get(16));
+			else
+			{
+				Territory t = (Territory)field;
+				if(t.getHouse()==5)
+					options = addToArray(options, Stringbanks_Property.get(17));
+				else if(t.getHouse()<=4 && t.getHouse()>0)
+					options = addToArray(options, Stringbanks_Property.get(18));
+				else
+					options = addToArray(options, Stringbanks_Property.get(16));
+			}
+			options = addToArray(options, Stringbanks_Property.get(5));
+
+			String choice = gui.pawnMenu(field.getTitle(), options, player.getAccount().getBalance());
+
+			if(choice.equals(Stringbanks_Property.get(5)))
+				break;
+			else if(choice.equals(Stringbanks_Property.get(16)))
+			{
+				field.setPawned(true);
+				player.getAccount().deposit(field.getPrice()/2);
+				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
+				gui.pawnField(field.getFieldPosition());
+			}
+			else if(choice.equals(Stringbanks_Property.get(17)))
+			{
+				Territory t = (Territory)field;
+				t.removeHouse(1);
+				gui.updateHotelPlacement(t.getFieldPosition(), false);
+				player.getAccount().deposit(t.getHousePrice()/2);
+				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
+				bank.hotelsFreed(1);
+			}
+			else if(choice.equals(Stringbanks_Property.get(21)))
+			{
+				field.setPawned(false);
+				player.getAccount().withdraw(field.getPrice()/2);
+				GUI.setSubText(field.getFieldPosition()+1, "");
+				gui.setOwner(player.getName(), field.getFieldPosition());
+				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
+			}
+			else
+			{
+				Territory t = (Territory)field;
+				t.removeHouse(1);
+				gui.updateHouseCount(t.getFieldPosition(), t.getHouse());
+				player.getAccount().deposit(t.getHousePrice()/2);
+				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
+				bank.housesFreed(1);
+			}
+
+		}
+	}
 	public void buyAssets(Player player)
 	{
 		while(true)
@@ -39,18 +146,20 @@ public class PropertyController {
 			int cheapestHouse = cheapestHousePrice(validHousePlacements);
 			int cheapestHotel = cheapestHousePrice(validHotelUpgrades);
 
-			if(validHousePlacements.length>0 && housesUsed < MAX_HOUSES && player.getAccount().getBalance()>cheapestHouse)
+			if(validHousePlacements.length>0 && bank.getHousesUsed() < bank.getMAX_HOUSES() && player.getAccount().getBalance()>cheapestHouse)
 				options = addToArray(options,Stringbanks_Property.get(11));
 
-			if(validHotelUpgrades.length>0 && hotelsUsed < MAX_HOTELS && player.getAccount().getBalance()>cheapestHotel)
+			if(validHotelUpgrades.length>0 && bank.getHotelsUsed() < bank.getMAX_HOTELS() && player.getAccount().getBalance()>cheapestHotel)
 				options = addToArray(options,Stringbanks_Property.get(12));
 
 			if(canTrade(player) && validTradePlayers.length>0)
 				options = addToArray(options, Stringbanks_Property.get(13));
+			if(player.getProperty().nFields()>0)
+				options = addToArray(options, Stringbanks_Property.get(19));
 
 			options =  addToArray(options,Stringbanks_Property.get(6));
 
-			String choice = gui.chooseWhatToBuy(options);
+			String choice = gui.chooseWhatToBuy(player.getName(),options);
 
 			if(choice.equals(Stringbanks_Property.get(11)))
 			{
@@ -64,6 +173,8 @@ public class PropertyController {
 			{
 				tradeWithPlayer(player);
 			}
+			else if(choice.equals(Stringbanks_Property.get(19)))
+				sellAssets(player);
 			else if(choice.equals(Stringbanks_Property.get(6)))
 			{
 				break;
@@ -81,7 +192,7 @@ public class PropertyController {
 		{	
 			String options[] = new String[0];
 			Territory[] validFields = getValidHousePlacements(player);
-			if(player.getAccount().getBalance()>cheapestHousePrice(validFields) && housesUsed<MAX_HOUSES )
+			if(player.getAccount().getBalance()>cheapestHousePrice(validFields) && bank.getHousesUsed()<bank.getMAX_HOUSES() )
 			{
 				for(Territory t : validFields)
 				{
@@ -100,7 +211,7 @@ public class PropertyController {
 				{
 					validFields[i].addHouse(1);
 					player.getAccount().withdraw(validFields[i].getHousePrice());
-					housesUsed++;
+					bank.useHouses(1);
 					gui.updateHouseCount(validFields[i].getFieldPosition(), validFields[i].getHouse());
 					gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
 				}
@@ -124,7 +235,7 @@ public class PropertyController {
 
 			for(Territory t : validFields)
 			{
-				if(player.getAccount().getBalance()>t.getHousePrice() && hotelsUsed<MAX_HOTELS)
+				if(player.getAccount().getBalance()>t.getHousePrice() && bank.getHotelsUsed()<bank.getMAX_HOTELS())
 				{
 					options = addToArray(options, t.getTitle());
 				}
@@ -144,8 +255,8 @@ public class PropertyController {
 				if(validFields[i].getTitle().equals(choice))
 				{
 					validFields[i].addHouse(1);
-					housesUsed-=4;
-					hotelsUsed++;
+					bank.housesFreed(4);
+					bank.useHotels(1);
 					player.getAccount().withdraw(validFields[i].getHousePrice());
 					gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
 					gui.updateHotelPlacement(validFields[i].getFieldPosition(), true);
@@ -197,6 +308,10 @@ public class PropertyController {
 								players[i].getProperty().removeField(otherPlayersField);
 								players[i].getProperty().addField(yourField);
 								gui.setOwner(players[i].getName(), yourField.getFieldPosition());
+								if(yourField.isPawned())
+									gui.pawnField(yourField.getFieldPosition());
+								if(otherPlayersField.isPawned())
+									gui.pawnField(otherPlayersField.getFieldPosition());
 							}
 						}
 					}
@@ -231,8 +346,8 @@ public class PropertyController {
 		return null;
 
 	}
-	
-	
+
+
 	/**
 	 * a Player choose another player's field, that he wishes to trade for
 	 * @param player
@@ -258,9 +373,9 @@ public class PropertyController {
 		return null;
 
 	}
-	
-	
-	
+
+
+
 	public int cheapestHousePrice(Territory[] territories)
 	{
 		int result = 500000;
@@ -312,7 +427,8 @@ public class PropertyController {
 			{
 				return true;
 			}
-			else
+			else if (player.getProperty().getField(k) instanceof Brewery || 
+					player.getProperty().getField(k) instanceof Fleet )
 			{
 				return true;
 			}
@@ -346,49 +462,52 @@ public class PropertyController {
 		{
 			if(pList.get(i)==player)
 				continue;
-			for(int k = 0; k<pList.get(i).getProperty().nFields();k++)
+
+			//Checks if the Field has any structures
+			if(canTrade(pList.get(i)))
 			{
-				//Checks if the Field has any structures
-				if(canTrade(pList.get(i)))
-				{
-					validPlayers = addToArray(validPlayers, pList.get(i));
-				}
-			}	
+				validPlayers = addToArray(validPlayers, pList.get(i));
+			}
+
 		}
 		return validPlayers;
 	}
-	
+
 	public Territory[] getValidHousePlacements(Player p)
 	{
-		int nDiffSeries = p.getProperty().nDifferentSeries();
-		// a 2-dimensional array has to be uses here since territories are grouped by some ID
-		// on the game board this is color that they've got in common
-		Territory[][] series = new Territory[nDiffSeries][0];
-		int[][] numOfHousesSeries = new int[nDiffSeries][0];
-		
+
+
 		//Placeholder for the different ID's
 		Color[] id = {Color.BLUE,Color.ORANGE,Color.GREEN, Color.GRAY,Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
-		for(int i = 0; i<series.length;i++)
+		ArrayList<Color> completeSeries = new ArrayList<Color>();
+		for(int i = 0; i<id.length; i++)
 		{
-			int smallestNumOfHouses = 4;
-			int nPartSeries = p.getProperty().nParticularSeries(id[i]);
-			Territory[] singleSeries = new Territory[0];
-			int[] numOfHouses = new int[0];
-			
-			if(nPartSeries == 0)
-			{
-				continue;
-			}
 			if(p.getProperty().completeSeries(id[i]))
 			{
-				continue;
+				completeSeries.add(id[i]);
 			}
-			for(int k = 0; k<singleSeries.length;k++)
+		}
+
+		// a 2-dimensional array has to be uses here since territories are grouped by some ID
+		// on the game board this is color that they've got in common
+		Territory[][] series = new Territory[0][0];
+		int[][] numOfHousesSeries = new int[0][0];
+		Territory[] singleSeries = new Territory[0];
+		int[] numOfHouses = new int[0];
+
+		for(int i = 0; i<completeSeries.size();i++)
+		{
+			int smallestNumOfHouses = 4;
+			int numberOfFieldsInSeries = p.getProperty().getTerritoryOfId(completeSeries.get(i), 0).getSeriesMax();
+			singleSeries = new Territory[0];
+			numOfHouses = new int[0];
+
+			for(int k = 0; k<numberOfFieldsInSeries;k++)
 			{
-				int housePrice = p.getProperty().getTerritoryOfId(id[i], k).getHousePrice();
+				int housePrice = p.getProperty().getTerritoryOfId(completeSeries.get(i), k).getHousePrice();
 				if(housePrice<p.getAccount().getBalance())
 				{
-					singleSeries =  addToArray(singleSeries, p.getProperty().getTerritoryOfId(id[i], k));
+					singleSeries =  addToArray(singleSeries, p.getProperty().getTerritoryOfId(completeSeries.get(i), k));
 
 					int houseCount = singleSeries[k].getHouse();
 					numOfHouses = addToArray(numOfHouses,houseCount);
@@ -400,29 +519,24 @@ public class PropertyController {
 			}
 			//The last index in the numOfHouses array is the smallest number of houses of that series
 			//This is needed to be known since there has to be an equal distribution of houses
-			numOfHouses =  addToArray(numOfHouses,smallestNumOfHouses);
-			series =  addToTwoDimensionalArray(series, singleSeries);
-			numOfHousesSeries = addToTwoDimensionalArray(numOfHousesSeries, numOfHouses );
+			series = addToTwoDimensionalArray(series, singleSeries);
+			numOfHouses = addToArray(numOfHouses, smallestNumOfHouses);
+			numOfHousesSeries = addToTwoDimensionalArray(numOfHousesSeries,numOfHouses);
+
 		}
 		Territory[] result = new Territory[0];
-		if(numOfHousesSeries.length == 0) {
-			
-		}
-		else {
-			for(int outer = 0; outer<series.length;outer++)
+		for(int outer = 0; outer<completeSeries.size();outer++)
+		{
+			if(numOfHousesSeries[outer][numOfHousesSeries[outer].length-1]>=4)
+				continue;
+
+			for(int inner = 0; inner<series[outer].length-1;inner++)
 			{
-				if(numOfHousesSeries[outer][numOfHousesSeries[outer].length-1]==4)
-					continue;
-
-				for(int inner = 0; inner<series[outer].length;inner++)
-				{
-					if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
-						result = addToArray(result, series[outer][inner]);
-				}
-
+				if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
+					result = addToArray(result, series[outer][inner]);
 			}
+
 		}
-		
 		return result;
 
 
@@ -446,7 +560,7 @@ public class PropertyController {
 		}
 		return result;
 	}
-	
+
 
 
 
@@ -462,8 +576,8 @@ public class PropertyController {
 		result[result.length-1] = element;
 		return result;
 	}
-	
-	
+
+
 	public Player[] addToArray(Player[] array, Player element)
 	{
 		Player[] result = new Player[array.length+1];
@@ -509,7 +623,7 @@ public class PropertyController {
 
 	public Territory[][] addToTwoDimensionalArray(Territory[][] array, Territory[] element)
 	{
-		Territory[][] result = new Territory[array.length+1][];
+		Territory[][] result = new Territory[array.length+1][0];
 		for(int outer = 0;outer<array.length;outer++)
 		{
 			for(int inner = 0; inner<array[outer].length;inner++)
@@ -524,7 +638,7 @@ public class PropertyController {
 
 	public Player[][] addToTwoDimensionalArray(Player[][] array, Player[] element)
 	{
-		Player[][] result = new Player[array.length+1][];
+		Player[][] result = new Player[array.length+1][0];
 		for(int outer = 0;outer<array.length;outer++)
 		{
 			for(int inner = 0; inner<array[outer].length;inner++)
@@ -539,7 +653,7 @@ public class PropertyController {
 
 	public Ownable[][] addToTwoDimensionalArray(Ownable[][] array, Ownable[] element)
 	{
-		Ownable[][] result = new Ownable[array.length+1][];
+		Ownable[][] result = new Ownable[array.length+1][0];
 		for(int outer = 0;outer<array.length;outer++)
 		{
 			for(int inner = 0; inner<array[outer].length;inner++)
@@ -554,7 +668,7 @@ public class PropertyController {
 
 	public int[][] addToTwoDimensionalArray(int[][] array, int[] element)
 	{
-		int[][] result = new int[array.length+1][];
+		int[][] result = new int[array.length+1][0];
 		for(int outer = 0;outer<array.length;outer++)
 		{
 			for(int inner = 0; inner<array[outer].length;inner++)
@@ -569,7 +683,7 @@ public class PropertyController {
 
 	public String[][] addToTwoDimensionalArray(String[][] array, String[] element)
 	{
-		String[][] result = new String[array.length+1][];
+		String[][] result = new String[array.length+1][0];
 		for(int outer = 0;outer<array.length;outer++)
 		{
 			for(int inner = 0; inner<array[outer].length;inner++)
@@ -581,6 +695,7 @@ public class PropertyController {
 		result[result.length-1] = element;
 		return result;
 	}
+
 
 
 }

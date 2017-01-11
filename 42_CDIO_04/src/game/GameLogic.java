@@ -11,19 +11,21 @@ import stringbanks.Stringbanks_GameLogic;
 
 public class GameLogic {
 
-	DiceCup diceCup;
-	PropertyController prop;
-	LandOnFieldController landOn;
-	GameLogicBoundary gui;
+	private DiceCup diceCup;
+	private PropertyController prop;
+	private LandOnFieldController landOn;
+	private GameLogicBoundary gui;
+	private Bank bank;
 	public GameLogic() 
 	{
+		bank = Bank.getBank();
 		diceCup = DiceCup.getDC();
 		prop = new PropertyController();
 		landOn = new LandOnFieldController();
 		gui = new GameLogicBoundary();
 	}
-	
-	
+
+
 	public void normalTurn(Player player)
 	{
 		int d1,d2;
@@ -35,7 +37,7 @@ public class GameLogic {
 		d1 = diceCup.getDiceValue(0);
 		d2 = diceCup.getDiceValue(1);
 		gui.showDiceRolling(d1,d2);
-		
+
 		if(d1==d2)
 		{
 			player.setEqualFaceValue(player.getEqualFaceValue()+1);
@@ -44,8 +46,8 @@ public class GameLogic {
 		{
 			player.setEqualFaceValue(0);
 		}
-		
-		
+
+
 		if(player.getEqualFaceValue()==3)
 		{
 			player.setJailed(true);
@@ -55,7 +57,7 @@ public class GameLogic {
 			gui.movePlayerModel(player.getName(), player.getPlayerPos(), distance);
 			updatePlayerPos(player,distance);
 			player.setPlayerPos(10);
-			
+
 		}
 		else
 		{
@@ -66,20 +68,22 @@ public class GameLogic {
 
 			if(player.getAccount().getBalance()<=0)
 			{
-				//prop.sellAssets();
+				if(player.getProperty().totalValueOfAssets()>Math.abs(player.getAccount().getBalance()))
+					prop.sellAssets(player);
 			}
 			//Checking if the player managed to sell enough assets
 			if(player.getAccount().getBalance()<=0)
 			{
+				gui.playerIsBroke(player.getName());
 				playerIsBroke(player);
 			}
 		}
-		
 
-		
+
+
 	}
-	
-	
+
+
 	public void inJailTurn(Player player)
 	{
 		ArrayList<String> optionsList = new ArrayList<String>();
@@ -89,13 +93,13 @@ public class GameLogic {
 		}
 		if(player.getAccount().getBalance()>1000)
 		{
-			optionsList.add("Betal kautionen på 1000");
+			optionsList.add(Stringbanks_GameLogic.inJailTurn(3));
 		}
-		optionsList.add("Kast med terningerne... Brian");
+		optionsList.add(Stringbanks_GameLogic.inJailTurn(1));
 		String[] options = new String[0];
 		String choice = gui.jailChoices(player.getName(),optionsList.toArray(options));
 		int d1,d2;
-		if(choice.equals("Kast med terningerne... Brian"))
+		if(choice.equals(Stringbanks_GameLogic.inJailTurn(1)))
 		{
 			player.setTimeInJail(player.getTimeInJail()+1);
 			diceCup.rollDice();
@@ -110,52 +114,79 @@ public class GameLogic {
 				gui.movePlayerModel(player.getName(), player.getPlayerPos(), d1+d2);
 				updatePlayerPos(player,d1+d2);
 				landOn.landOnField(player);
-				
+
 				if(player.getAccount().getBalance()<=0)
 				{
-					//prop.sellAssets();
+					if(player.getProperty().totalValueOfAssets()>Math.abs(player.getAccount().getBalance()))
+						prop.sellAssets(player);
 				}
 				//Checking if the player managed to sell enough assets
 				if(player.getAccount().getBalance()<=0)
 				{
+					gui.playerIsBroke(player.getName());
 					playerIsBroke(player);
 				}
 			}
 			else if(player.getTimeInJail()==3)
 			{
-				
+
 			}
 		}
-		else if(choice.equals("Betal kautionen på 1000"))
+		else if(choice.equals(Stringbanks_GameLogic.inJailTurn(3)))
 		{
 			player.setJailed(false);
 			player.setTimeInJail(0);
 		}
-		else if(choice.equals("Brug benådelses kort"))
+		else if(choice.equals(Stringbanks_GameLogic.inJailTurn(2)))
 		{
 			player.setJailed(false);
 			player.setTimeInJail(0);
 		}
-		
+
 	}
-	
+
 	public void playerIsBroke(Player player)
 	{
 		player.setBroke(true);
 		player.getAccount().setBalance(0);
-		for(int i = 0 ; i<player.getProperty().nFields();i++)
+		int nTer = player.getProperty().nTerritoriesOwned();
+		//First loops over the territories, since the houses has to be freed aswell
+		for(int i = 0 ; i<nTer;i++)
 		{
-			player.getProperty().getField(i);
-			gui.removeOwner(player.getProperty().getField(i).getFieldPosition());
-			player.getProperty().removeField(player.getProperty().getField(i));
+			player.getProperty().getTerritory(i).
+			freeOwner(player, player.getProperty().getTerritory(i).getFieldPosition());
+
+
+			gui.removeOwner(player.getProperty().getTerritory(i).getFieldPosition());
+
+			int housesUsed = player.getProperty().getTerritory(i).getHouse();
+			if(housesUsed == 5)
+			{
+				player.getProperty().getTerritory(i).setHouse(0);
+				bank.hotelsFreed(1);
+			}
+			else{
+				bank.housesFreed(housesUsed);;
+				player.getProperty().getTerritory(i).setHouse(0);
+			}
+			player.getProperty().removeField(player.getProperty().getTerritory(i));
 		}
+
+		int restOfFields = player.getProperty().nFields();
+		for(int i = 0; i<restOfFields;i++)
+		{
+			player.getProperty().getField(i).freeOwner(player, 
+					player.getProperty().getField(i).getFieldPosition());
+			gui.removeOwner(player.getProperty().getField(i).getFieldPosition());
+		}
+
 		for(int i = 0 ; i<player.getProperty().nCards();i++)
 		{
-			
+
 		}
 		gui.removeCar(player.getName(),player.getPlayerPos());
 	}
-	
+
 	public void updatePlayerPos(Player player, int distance)
 	{
 		for(int i = 0;i<distance;i++ )
@@ -170,7 +201,7 @@ public class GameLogic {
 			}
 		}
 	}
-	
-	
+
+
 
 }
