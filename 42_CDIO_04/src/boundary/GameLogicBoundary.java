@@ -65,4 +65,8 @@ public class GameLogicBoundary {
 	{
 		GUI.showMessage(String.format(Stringbanks_GameLogic.normalTurn(2), name));
 	}
+	
+	public void goToJail() {
+		GUI.showMessage("De har slået 3 ens og rykker derfor i fængsel");
+	}
 }

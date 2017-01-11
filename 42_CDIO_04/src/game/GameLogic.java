@@ -49,11 +49,12 @@ public class GameLogic {
 
 
 		if(player.getEqualFaceValue()==3)
-		{
+		{	
+			gui.goToJail();
 			player.setJailed(true);
 			player.setEqualFaceValue(0);
 			int distance;
-			distance = 40-player.getPlayerPos()+10;
+			distance = (40-player.getPlayerPos()+10)%40;
 			gui.movePlayerModel(player.getName(), player.getPlayerPos(), distance);
 			updatePlayerPos(player,distance);
 			player.setPlayerPos(10);
