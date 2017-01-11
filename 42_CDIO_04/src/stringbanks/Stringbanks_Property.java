@@ -16,6 +16,8 @@ public class Stringbanks_Property {
 	private static String chooseWhatToSell = "%s: Vælg en grund du vil sælge. nuværende balance: %d";
 	private static String choosePawnOptionsForField = "%s: ";
 	
+	private static String dePawnOption ="Ophæv pantsætning";
+
 	private static String pawnOption = "Pantsæt";
 	private static String sellHotelOption = "Sælg hotel";
 	private static String sellHouseOption = "Sælg et hus";
@@ -31,7 +33,7 @@ public class Stringbanks_Property {
 									  chooseWhoToTradeWith,goBack,pass, confirmTradeMsg, 
 									  confirmTradeYes,confirmTradeNo,chooseYourLot,buyHouseOption,
 									  buyHotelOption,tradeOption,chooseWhatToSell, choosePawnOptionsForField,
-									  pawnOption, sellHotelOption,sellHouseOption, sellOrPawnOption, pawnedDescription};
+									  pawnOption, sellHotelOption,sellHouseOption, sellOrPawnOption, pawnedDescription, dePawnOption};
 		
 	/**
 	 * 0 = mainPropertMenuMsg<br>

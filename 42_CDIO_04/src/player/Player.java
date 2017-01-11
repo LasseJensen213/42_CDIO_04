@@ -53,7 +53,7 @@ public class Player
 		this.jailed = false;
 		this.passedStart = false;
 		account = new Account(startBalance);
-		this.car = car2;
+		this.car = car;
 		this.property = new Property();
 		this.playerPos = 0;
 	}

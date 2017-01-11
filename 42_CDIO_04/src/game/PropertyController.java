@@ -26,11 +26,9 @@ public class PropertyController {
 		pList = PlayerList.getPL();
 	}
 
-	/**
-	 * This is the menu where you choose whether you want to buy houses/hotels or trade with other players
-	 * @param player
-	 */
+	
 
+	
 	public void sellAssets(Player player)
 	{
 		while(true)
@@ -69,8 +67,12 @@ public class PropertyController {
 			String[] options = new String[0];
 			
 			if(field.isPawned())
-				break;
-			if(field instanceof Brewery || field instanceof Fleet)
+			{
+				if(fields.)
+				options = addToArray(options, Stringbanks_Property.get(21));
+			}
+				
+			else if(field instanceof Brewery || field instanceof Fleet)
 				options = addToArray(options, Stringbanks_Property.get(16));
 			else
 			{
@@ -103,6 +105,10 @@ public class PropertyController {
 				player.getAccount().deposit(t.getHousePrice()/2);
 				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
 				bank.hotelsFreed(1);
+			}
+			else if(choice.equals(Stringbanks_Property.get(21)))
+			{
+				
 			}
 			else
 			{
@@ -289,6 +295,10 @@ public class PropertyController {
 								players[i].getProperty().removeField(otherPlayersField);
 								players[i].getProperty().addField(yourField);
 								gui.setOwner(players[i].getName(), yourField.getFieldPosition());
+								if(yourField.isPawned())
+									gui.pawnField(yourField.getFieldPosition());
+								if(otherPlayersField.isPawned())
+									gui.pawnField(otherPlayersField.getFieldPosition());
 							}
 						}
 					}
