@@ -109,4 +109,5 @@ public class GameLogicBoundary {
 	public void goToJail() {
 		GUI.showMessage("De har slået 3 ens og rykker derfor i fængsel");
 	}
+
 }

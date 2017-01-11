@@ -1,7 +1,10 @@
 package game;
 
+import board.Board;
 import boundary.GameControllerBoundary;
+import card.CardDeck;
 import card.Cardgenerator;
+import desktop_resources.GUI;
 import player.PlayerCreation;
 import player.PlayerList;
 
@@ -63,9 +66,7 @@ public class GameController {
 		endGameSession();
 	}
 
-	/**
-	 * This resets all the singletons instances, so that new ones can be made for a new game
-	 */
+	
 
 	public void updateAllBalance()
 	{
@@ -77,9 +78,15 @@ public class GameController {
 		}
 
 	}
+	/**
+	 * This resets all the singletons instances, so that new ones can be made for a new game
+	 */
 	public void endGameSession()
 	{
-
+		PlayerList.resetPlayerList();
+		Board.resetBoard();
+		CardDeck.resetCardDeck();
+				
 	}
 
 }

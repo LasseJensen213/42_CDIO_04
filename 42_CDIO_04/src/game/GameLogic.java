@@ -32,41 +32,43 @@ public class GameLogic {
 		if(player.getProperty().nFields() != 0) {
 			prop.buyAssets(player);
 		}
-		gui.AskToRollDice(player.getName());
-		diceCup.rollDice();
-		d1 = diceCup.getDiceValue(0);
-		d2 = diceCup.getDiceValue(1);
-		gui.showDiceRolling(d1,d2);
+		if(!player.isBroke()) {
+			gui.AskToRollDice(player.getName());
+			diceCup.rollDice();
+			d1 = diceCup.getDiceValue(0);
+			d2 = diceCup.getDiceValue(1);
+			gui.showDiceRolling(d1,d2);
 
-		if(d1==d2)
-		{
-			player.setEqualFaceValue(player.getEqualFaceValue()+1);
-		}
-		else
-		{
-			player.setEqualFaceValue(0);
-		}
+			if(d1==d2)
+			{
+				player.setEqualFaceValue(player.getEqualFaceValue()+1);
+			}
+			else
+			{
+				player.setEqualFaceValue(0);
+			}
 
 
-		if(player.getEqualFaceValue()==3)
-		{	
-			gui.goToJail();
-			player.setJailed(true);
-			player.setEqualFaceValue(0);
-			int distance;
-			distance = (40-player.getPlayerPos()+10)%40;
-			gui.movePlayerModel(player.getName(), player.getPlayerPos(), distance);
-			updatePlayerPos(player,distance);
-			player.setPlayerPos(10);
+			if(player.getEqualFaceValue()==3)
+			{	
+				gui.goToJail();
+				player.setJailed(true);
+				player.setEqualFaceValue(0);
+				int distance;
+				distance = (40-player.getPlayerPos()+10)%40;
+				gui.movePlayerModel(player.getName(), player.getPlayerPos(), distance);
+				updatePlayerPos(player,distance);
+				player.setPlayerPos(10);
 
-		}
-		else
-		{
-			gui.movePlayerModel(player.getName(), player.getPlayerPos(), d1+d2);
-			updatePlayerPos(player,d1+d2);
-			landOn.landOnField(player);
-			GUI.setBalance(player.getName(), player.getAccount().getBalance());
-
+			}
+			else
+			{
+				gui.movePlayerModel(player.getName(), player.getPlayerPos(), d1+d2);
+				updatePlayerPos(player,d1+d2);
+				landOn.landOnField(player);
+				GUI.setBalance(player.getName(), player.getAccount().getBalance());
+			}
+			
 			if(player.getAccount().getBalance()<=0)
 			{
 				if(player.getProperty().totalValueOfAssets()>Math.abs(player.getAccount().getBalance()))
@@ -78,6 +80,10 @@ public class GameLogic {
 				gui.playerIsBroke(player.getName());
 				playerIsBroke(player);
 			}
+		}
+		else if(player.isBroke()) {
+			gui.playerIsBroke(player.getName());
+			playerIsBroke(player);
 		}
 
 

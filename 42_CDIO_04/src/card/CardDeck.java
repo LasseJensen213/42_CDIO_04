@@ -19,11 +19,14 @@ public class CardDeck {
 	
 	private static CardDeck INSTANCE;
 	
-	
 	public CardDeck(Card[] cards) {
 		originalDeck = new Card[45];
 		usedDeck = new Card[0];
 		activeDeck = cards;
+	}
+	
+	public static void resetCardDeck() {
+		INSTANCE = null;
 	}
 	
 	public CardDeck()

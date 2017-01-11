@@ -158,6 +158,7 @@ public class PropertyController {
 				options = addToArray(options, Stringbanks_Property.get(19));
 
 			options =  addToArray(options,Stringbanks_Property.get(6));
+			options = addToArray(options,Stringbanks_Property.get(23));
 
 			String choice = gui.chooseWhatToBuy(player.getName(),options);
 
@@ -175,6 +176,10 @@ public class PropertyController {
 			}
 			else if(choice.equals(Stringbanks_Property.get(19)))
 				sellAssets(player);
+			else if(choice.equals(Stringbanks_Property.get(23))) {
+				player.setBroke(true);
+				break;
+			}
 			else if(choice.equals(Stringbanks_Property.get(6)))
 			{
 				break;
