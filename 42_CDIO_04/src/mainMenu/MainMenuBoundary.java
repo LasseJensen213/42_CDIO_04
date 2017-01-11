@@ -16,7 +16,8 @@ public class MainMenuBoundary {
 	
 	public void gameRules()
 	{
-		GUI.showMessage(Stringbanks_MainMenu.getString(3));
+		Rules showRules = new Rules();
+		showRules.open();
 	}
 	
 	public boolean confirmInput()

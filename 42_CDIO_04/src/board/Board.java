@@ -43,7 +43,6 @@ public class Board {
 		String title = "";
 		Color fgColor = Color.BLACK;
 		Color bgColor = Color.BLACK;
-
 		for(int i = 0;i<fields.length;i++) {
 
 
@@ -65,7 +64,7 @@ public class Board {
 				bgColor = FieldGenerator.getTerritoryFields(territoryReached).getColor();
 
 				ourFields[i] = FieldGenerator.getTerritoryFields(territoryReached);
-				fields[i] = new Street.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).build();
+				fields[i] = new Street.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setRent("1 hus = ghetto\n 2 huse = 500valuta").setBgColor(bgColor).setFgColor(fgColor).build();
 				territoryReached++;
 			}
 			else if(breweryReached<2  && (FieldGenerator.getBreweryFields(breweryReached).getFieldPosition()==i)) {
