@@ -55,7 +55,11 @@ public class PropertyController {
 				break;
 			for(int i = 0; i<nFields;i++)
 			{
-				if(choice.equals(player.getProperty().getField(i).getTitle()));
+				if(choice.equals(player.getProperty().getField(i).getTitle()))
+				{
+					pawnAField(player, player.getProperty().getField(i));
+				}
+				else if(choice.equals(player.getProperty().getField(i).getTitle()+Stringbanks_Property.get(22)))
 				{
 					pawnAField(player, player.getProperty().getField(i));
 				}

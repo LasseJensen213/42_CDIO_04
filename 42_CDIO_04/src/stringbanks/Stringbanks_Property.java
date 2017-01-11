@@ -13,7 +13,7 @@ public class Stringbanks_Property {
 	private static String confirmTradeYes = "Ja";
 	private static String confirmTradeNo = "Nej";
 	private static String chooseYourLot = "Vælg en af dine grunde du vil bytte med";
-	private static String chooseWhatToSell = "%s: Vælg en grund du vil sælge. nuværende balance: %d";
+	private static String chooseWhatToSell = "%s: Vælg en grund du vil pantsætte. nuværende balance: %d";
 	private static String choosePawnOptionsForField = "%s: ";
 	
 	private static String dePawnOption ="Ophæv pantsætning";
