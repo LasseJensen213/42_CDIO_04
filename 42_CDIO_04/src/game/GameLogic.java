@@ -141,12 +141,37 @@ public class GameLogic {
 	{
 		player.setBroke(true);
 		player.getAccount().setBalance(0);
-		for(int i = 0 ; i<player.getProperty().nFields();i++)
+		int nTer = player.getProperty().nTerritoriesOwned();
+		//First loops over the territories, since the houses has to be freed aswell
+		for(int i = 0 ; i<nTer;i++)
 		{
-			player.getProperty().getField(i);
-			gui.removeOwner(player.getProperty().getField(i).getFieldPosition());
-			player.getProperty().removeField(player.getProperty().getField(i));
+			player.getProperty().getTerritory(i).
+			freeOwner(player, player.getProperty().getTerritory(i).getFieldPosition());
+			
+			
+			gui.removeOwner(player.getProperty().getTerritory(i).getFieldPosition());
+			
+			int housesUsed = player.getProperty().getTerritory(i).getHouse();
+			if(housesUsed == 5)
+			{
+				player.getProperty().getTerritory(i).setHouse(0);
+				prop.setHotelsUsed(prop.getHotelsUsed()+1);
+			}
+			else{
+				prop.setHousesUsed(prop.getHousesUsed()+housesUsed);
+				player.getProperty().getTerritory(i).setHouse(0);
+			}
+			player.getProperty().removeField(player.getProperty().getTerritory(i));
 		}
+		
+		int restOfFields = player.getProperty().nFields();
+		for(int i = 0; i<restOfFields;i++)
+		{
+			player.getProperty().getField(i).freeOwner(player, 
+				   player.getProperty().getField(i).getFieldPosition());
+			gui.removeOwner(player.getProperty().getField(i).getFieldPosition());
+		}
+		
 		for(int i = 0 ; i<player.getProperty().nCards();i++)
 		{
 			
