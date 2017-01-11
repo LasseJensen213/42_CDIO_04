@@ -33,6 +33,7 @@ public class MainMenuController {
 			else
 			{
 				if(gui.confirmInput())
+					ingame = false;
 					break;
 			}
 		}
