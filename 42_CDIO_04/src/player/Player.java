@@ -43,7 +43,8 @@ public class Player
 	}
 
 
-	public Player(String name , Car car2 , int startBalance)
+
+	public Player(String name , Car car , int startBalance)
 	{
 		this.name = name;
 		this.timeInJail = 0;

@@ -25,13 +25,13 @@ public class PlayerCreation {
 
 	public PlayerCreation()
 	{	pList = PlayerList.getPL();
-		availableColors = new ArrayList<String>();
-		colorMap = new HashMap<String,Color>();
-		for(int i = 0; i<colors.length;i++)
-		{
-			availableColors.add(s.getColors(i));
-			colorMap.put(s.getColors(i), colors[i]);
-		}
+	availableColors = new ArrayList<String>();
+	colorMap = new HashMap<String,Color>();
+	for(int i = 0; i<colors.length;i++)
+	{
+		availableColors.add(s.getColors(i));
+		colorMap.put(s.getColors(i), colors[i]);
+	}
 
 
 	}
@@ -49,11 +49,12 @@ public class PlayerCreation {
 			String name = chooseName(pList);
 			int balance = 30000;
 			Color color = getColor(chooseColor());
+
 			Car car = new Car.Builder().primaryColor(color).typeTractor().build();
 			pList.addPlayer(name, car, balance);
-
 			GUI.addPlayer(name, balance, car);
 			GUI.setCar(1, name);
+
 		}
 
 
