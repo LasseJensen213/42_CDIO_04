@@ -21,6 +21,10 @@ public class PlayerList {
 	
 	}
 
+	public static void resetPlayerList() {
+		INSTANCE = null;
+	}
+	
 	public void setNPlayers(int nPlayers)
 	{
 		this.nPlayers = nPlayers;

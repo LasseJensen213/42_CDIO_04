@@ -26,7 +26,10 @@ public class Board {
 			INSTANCE = new Board();
 		return INSTANCE;
 	}
-
+	public static void resetBoard() {
+		INSTANCE = null;
+	}
+	
 	public void generateBoard() {
 		FieldGenerator fg = new FieldGenerator();
 

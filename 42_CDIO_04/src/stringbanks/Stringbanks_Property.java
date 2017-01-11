@@ -28,13 +28,15 @@ public class Stringbanks_Property {
 	private static String pawnIdentifier = "[PANTSAT]";
 	private static String pawnedDescription = "Pantsat";
 	
+	private static String surrender = "Giv op";
+	
 	private static String[] strings = {mainPropertyMenuMsg, whereToBuyHouses, 
 									  whereToUpgradeHotel,chooseWhatToTradeWith,
 									  chooseWhoToTradeWith,goBack,pass, confirmTradeMsg, 
 									  confirmTradeYes,confirmTradeNo,chooseYourLot,buyHouseOption,
 									  buyHotelOption,tradeOption,chooseWhatToSell, choosePawnOptionsForField,
 									  pawnOption, sellHotelOption,sellHouseOption, sellOrPawnOption, 
-									  pawnedDescription, dePawnOption,pawnIdentifier};
+									  pawnedDescription, dePawnOption,pawnIdentifier,surrender};
 		
 	/**
 	 * 0 = mainPropertMenuMsg<br>

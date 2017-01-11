@@ -14,13 +14,15 @@ public class MainMenuController {
 		GameController game = new GameController();
 
 		MainMenuBoundary gui = new MainMenuBoundary();
-		while(true)
+		boolean ingame = true;
+		while(ingame)
 		{
 			String input = gui.MainMenuDropDownMenu();
 			if(input.equals(Stringbanks_MainMenu.getString(1)))
 			{
 				game = new GameController();
 				game.startGame();
+				ingame = false;
 				gui.close();
 				
 			}
