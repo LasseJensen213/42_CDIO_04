@@ -26,7 +26,7 @@ public class PlayerList {
 		this.nPlayers = nPlayers;
 	}
 	
-	public void addPlayer(String name,Car.Builder car,int i)
+	public void addPlayer(String name,Car car,int i)
 	{
 		playerList.add(new Player(name,car,i));
 	}
