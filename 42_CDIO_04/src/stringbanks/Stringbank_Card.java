@@ -29,10 +29,10 @@ public class Stringbank_Card {
 
 	
 	//Player-pays-Player card
-	private static String ppp1 = "De skal holde familiefest og f�r tilskud fra hver medspiller p� kr. 500.";
+	private static String ppp1 = "De skal holde familiefest og får tilskud fra hver medspiller på kr. 500.";
 	private static String ppp2 = "De har lagt penge ud til et sammenskudsgilde."
-			+ " M�rkv�rdigvis betaler alle straks. Modtag fra hver medspiller kr. 500";
-	private static String ppp3 = "Det er Deres f�dselsdag. Modtag af hver medspiller kr. 200."; 
+			+ " Mærkværdigvis betaler alle straks. Modtag fra hver medspiller kr. 500";
+	private static String ppp3 = "Det er Deres fødselsdag. Modtag af hver medspiller kr. 200."; 
 
 	private static String[] playerPaysPlayerCard = {ppp1,ppp2,ppp3};
 
