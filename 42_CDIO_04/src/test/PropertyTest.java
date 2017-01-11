@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.awt.Color;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,8 +22,9 @@ public class PropertyTest {
 	}
 	
 	
+	
 	@Test
-	public void AddFieldstest()
+	public void AddFleettest()
 	{
 		Fleet fleet = new Fleet("","","",0,0,new int[]{2,3,4,5});
 		propTest.addField(fleet);
@@ -35,6 +37,12 @@ public class PropertyTest {
 		actual = propTest.nFields();
 		assertEquals(actual,0);
 		
+	}
+	
+	@Test
+	public void test20TerritoriesInProperty()
+	{
+		int actual = 0;
 		int seriesMax = 20;
 		for(int i = 0; i<seriesMax;i++)
 		{
@@ -45,15 +53,12 @@ public class PropertyTest {
 		actual = propTest.nDifferentSeries();
 		assertEquals(actual,1);
 		actual = propTest.nParticularSeries(Color.blue);
-		assertEquals(actual, 20);
+		assertEquals(actual, seriesMax);
 		assertTrue(propTest.completeSeries(Color.blue));
 		actual = propTest.nTerritoriesOwned();
-		assertEquals(actual,20);
+		assertEquals(actual,seriesMax);
 		assertFalse(propTest.completeSeries(Color.BLACK));
 		assertFalse(propTest.hasField(new Territory("","","",0,0,new int[]{4,5,6,7,8},seriesMax,Color.blue,3000)));
-
-		
-		
 	}
 
 }

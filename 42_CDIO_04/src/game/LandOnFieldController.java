@@ -157,7 +157,7 @@ public class LandOnFieldController {
 			LandOnFieldBoundary.displayMessage(4);
 		}
 		else {
-			int fleetsOwned = player.getProperty().nFleetsOwned();
+			int fleetsOwned = f.getOwner().getProperty().nFleetsOwned();
 			int rent = 500*(int)Math.pow(2, fleetsOwned-1);
 			if(doubleRent) {
 				rent = rent*2;
