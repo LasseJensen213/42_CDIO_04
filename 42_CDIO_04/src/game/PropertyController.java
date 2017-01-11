@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import boundary.PropertyBoundary;
+import desktop_resources.GUI;
 import field.Brewery;
 import field.Fleet;
 import field.Ownable;
@@ -26,9 +27,9 @@ public class PropertyController {
 		pList = PlayerList.getPL();
 	}
 
-	
 
-	
+
+
 	public void sellAssets(Player player)
 	{
 		while(true)
@@ -37,7 +38,9 @@ public class PropertyController {
 			int nFields = player.getProperty().nFields();
 			for(int i = 0; i<nFields;i++)
 			{
-				if(!player.getProperty().getField(i).isPawned())
+				if(player.getProperty().getField(i).isPawned() && player.getProperty().getField(i).getPrice()/2<player.getAccount().getBalance())
+					options = addToArray(options, player.getProperty().getField(i).getTitle()+Stringbanks_Property.get(22));
+				else
 					options = addToArray(options, player.getProperty().getField(i).getTitle());
 			}
 
@@ -65,13 +68,15 @@ public class PropertyController {
 		while(true)
 		{
 			String[] options = new String[0];
-			
+
 			if(field.isPawned())
 			{
-				if(fields.)
-				options = addToArray(options, Stringbanks_Property.get(21));
+				if(field.getPrice()/2<player.getAccount().getBalance())
+					options = addToArray(options, Stringbanks_Property.get(21));
+				else
+					break;
 			}
-				
+
 			else if(field instanceof Brewery || field instanceof Fleet)
 				options = addToArray(options, Stringbanks_Property.get(16));
 			else
@@ -108,7 +113,11 @@ public class PropertyController {
 			}
 			else if(choice.equals(Stringbanks_Property.get(21)))
 			{
-				
+				field.setPawned(false);
+				player.getAccount().withdraw(field.getPrice()/2);
+				GUI.setSubText(field.getFieldPosition()+1, "");
+				gui.setOwner(player.getName(), field.getFieldPosition());
+				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
 			}
 			else
 			{
@@ -563,8 +572,8 @@ public class PropertyController {
 		result[result.length-1] = element;
 		return result;
 	}
-	
-	
+
+
 	public Player[] addToArray(Player[] array, Player element)
 	{
 		Player[] result = new Player[array.length+1];

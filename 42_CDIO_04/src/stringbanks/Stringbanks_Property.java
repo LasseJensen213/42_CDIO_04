@@ -25,7 +25,7 @@ public class Stringbanks_Property {
 	private static String buyHouseOption = "Køb huse";
 	private static String buyHotelOption = "Køb hotel";
 	private static String tradeOption = "Byt grunde";
-	
+	private static String pawnIdentifier = "[PANTSAT]";
 	private static String pawnedDescription = "Pantsat";
 	
 	private static String[] strings = {mainPropertyMenuMsg, whereToBuyHouses, 
@@ -33,7 +33,8 @@ public class Stringbanks_Property {
 									  chooseWhoToTradeWith,goBack,pass, confirmTradeMsg, 
 									  confirmTradeYes,confirmTradeNo,chooseYourLot,buyHouseOption,
 									  buyHotelOption,tradeOption,chooseWhatToSell, choosePawnOptionsForField,
-									  pawnOption, sellHotelOption,sellHouseOption, sellOrPawnOption, pawnedDescription, dePawnOption};
+									  pawnOption, sellHotelOption,sellHouseOption, sellOrPawnOption, 
+									  pawnedDescription, dePawnOption,pawnIdentifier};
 		
 	/**
 	 * 0 = mainPropertMenuMsg<br>
@@ -57,6 +58,8 @@ public class Stringbanks_Property {
 	 * 18 = sellHouseOption<br>
 	 * 19 = sellOrPawnOption<br>
 	 * 20 = pawnedDescription<br>
+	 * 21 = dePawnOption<br>
+	 * 22 = pawnIdentifier<br>
 	 * @param i 
 	 * @return
 	 */
