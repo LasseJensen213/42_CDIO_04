@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import boundary.PropertyBoundary;
+import field.Brewery;
+import field.Fleet;
 import field.Ownable;
 import field.Territory;
 import player.Player;
@@ -313,7 +315,8 @@ public class PropertyController {
 			{
 				return true;
 			}
-			else
+			else if (player.getProperty().getField(k) instanceof Brewery || 
+					player.getProperty().getField(k) instanceof Fleet )
 			{
 				return true;
 			}
