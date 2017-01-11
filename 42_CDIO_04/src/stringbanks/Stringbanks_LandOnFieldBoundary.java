@@ -7,8 +7,9 @@ public class Stringbanks_LandOnFieldBoundary {
 	String landOnStart = "De er landet på \"START\"";
 	String landOnGoToJail = "De skal i fængsel";
 	String landOnChance = "Træk et chancekort";
+	String pawned = "Feltet er pantsæt, og de skal derfor ikke betale nogen leje";
 
-	String messages[] = {landOnJail,landOnStart,landOnGoToJail,landOnChance};
+	String messages[] = {landOnJail,landOnStart,landOnGoToJail,landOnChance,pawned};
 	
 	
 	/**
@@ -16,6 +17,7 @@ public class Stringbanks_LandOnFieldBoundary {
 	 * 1 : landOnStart <br>
 	 * 2 : landOnGoToJail <br>
 	 * 3 : landOnChance <br>
+	 * 4 : pawned <br>
 	 * @param number
 	 * @return landOnField message
 	 */

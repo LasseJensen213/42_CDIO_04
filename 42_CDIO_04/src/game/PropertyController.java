@@ -553,6 +553,8 @@ public class PropertyController {
 		result[result.length-1] = element;
 		return result;
 	}
+	
+	
 	public Player[] addToArray(Player[] array, Player element)
 	{
 		Player[] result = new Player[array.length+1];

@@ -29,7 +29,9 @@ public class GameLogic {
 	public void normalTurn(Player player)
 	{
 		int d1,d2;
-		prop.buyAssets(player);
+		if(player.getProperty().nFields() != 0) {
+			prop.buyAssets(player);
+		}
 		gui.AskToRollDice(player.getName());
 		diceCup.rollDice();
 		d1 = diceCup.getDiceValue(0);

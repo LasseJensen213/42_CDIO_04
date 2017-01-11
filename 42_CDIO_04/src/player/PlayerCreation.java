@@ -49,15 +49,12 @@ public class PlayerCreation {
 			String name = chooseName(pList);
 			int balance = 30000;
 			Color color = getColor(chooseColor());
-			Car car = new Car.Builder().typeUfo().primaryColor(color).secondaryColor(Color.BLUE).typeUfo().build();
-			if(name.toLowerCase().equals("Lasse".toLowerCase()))
-			{
-				car = new Car.Builder().primaryColor(color).secondaryColor(Color.BLUE).typeTractor().build();
-			}
+
+			Car car = new Car.Builder().primaryColor(color).typeTractor().build();
 			pList.addPlayer(name, car, balance);
-			GUI.addPlayer(name, balance);
+			GUI.addPlayer(name, balance, car);
 			GUI.setCar(1, name);
-			
+
 		}
 
 
