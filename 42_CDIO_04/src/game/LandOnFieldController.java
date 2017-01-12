@@ -185,6 +185,7 @@ public class LandOnFieldController {
 			rent = f.getTax();
 			LandOnFieldBoundary.payTax(rent);
 			player.getAccount().withdraw(rent);
+		
 
 		}
 		else if(f.getPercentange() == 10){
@@ -192,11 +193,13 @@ public class LandOnFieldController {
 			if(input == choice[0]) {
 				rent = f.getTax();
 				player.getAccount().withdraw(rent);
+			
 			}
 			else if(input == choice[1]) {
 				rent = ((player.getAccount().getBalance()+player.getProperty().totalValueOfAssets())*10)/100;
 				player.getAccount().withdraw(rent);
 				LandOnFieldBoundary.payTax(rent);
+				
 			}
 		}
 		ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+rent);

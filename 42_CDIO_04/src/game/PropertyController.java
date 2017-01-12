@@ -193,6 +193,7 @@ public class PropertyController {
 	 */
 	public void buyHouse(Player player)
 	{
+		
 		while(true)
 		{	
 			String options[] = new String[0];
