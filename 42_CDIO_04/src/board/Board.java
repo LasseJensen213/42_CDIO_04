@@ -33,11 +33,7 @@ public class Board {
 	
 	public void generateBoard() {
 		FieldGenerator.initFields();
-			Territory[] territoryFields = new field.Territory[22];
-		for(int i = 0;i<22;i++) {
-			territoryFields[i] = (Territory) FieldGenerator.getTerritoryFields(i);
 
-		}
 				
 		int territoryReached = 0;
 		int fleetReached = 0;
@@ -69,9 +65,11 @@ public class Board {
 				title = FieldGenerator.getTerritoryFields(territoryReached).getTitle();
 				fgColor = FieldGenerator.getFgColors(i);
 				bgColor = FieldGenerator.getTerritoryFields(territoryReached).getColor();
+				int price = FieldGenerator.getTerritoryFields(territoryReached).getPrice();
+				String priceString = "Kr. "+ price;
 
 				ourFields[i] = FieldGenerator.getTerritoryFields(territoryReached);
-				fields[i] = new Street.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).build();
+				fields[i] = new Street.Builder().setDescription(desc).setSubText(priceString).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).build();
 				territoryReached++;
 			}
 			else if(breweryReached<2  && (FieldGenerator.getBreweryFields(breweryReached).getFieldPosition()==i)) {
