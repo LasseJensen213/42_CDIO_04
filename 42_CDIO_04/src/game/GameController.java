@@ -43,7 +43,7 @@ public class GameController {
 			{
 				gLogic.normalTurn(pList.get(playerIndex));
 			}
-
+			
 			updateAllBalance();
 			//Checks to see if the player gets an extra turn
 			if(pList.get(playerIndex).getEqualFaceValue()>0)

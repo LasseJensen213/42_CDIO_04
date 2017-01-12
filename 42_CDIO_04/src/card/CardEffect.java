@@ -31,6 +31,10 @@ public class CardEffect {
 			player.setPlayerPos(10);
 			player.setJailed(true);
 			int distance = (40-before+player.getPlayerPos())%40;
+			if(before-player.getPlayerPos()<0) {
+				distance = -before+player.getPlayerPos();
+				
+			}
 			CardEffectBoundary.moveFigure(player.getName(), before, distance);
 		}
 		
@@ -102,7 +106,6 @@ public class CardEffect {
 			player.getAccount().deposit(4000);
 		}
 		
-		CardEffectBoundary.showMessage(2);
 		int distance = (40-before+player.getPlayerPos())%40;
 		CardEffectBoundary.moveFigure(player.getName(), before, distance);
 	}
