@@ -139,6 +139,7 @@ public class GameLogic {
 				player.setTimeInJail(0);
 				player.setJailed(false);
 				player.getAccount().withdraw(1000);
+				gui.tooLongTimeInPrison(player.getName());
 			}
 		}
 		else if(choice.equals(Stringbanks_GameLogic.inJailTurn(3)))

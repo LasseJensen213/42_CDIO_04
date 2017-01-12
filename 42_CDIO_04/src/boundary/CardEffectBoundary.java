@@ -21,14 +21,14 @@ public class CardEffectBoundary {
 	public static void moveFigure(String name, int playerPos, int distance){
 
 		//only moves the player on the board. Doesn't actually update their position
-		GUI.removeCar(playerPos, name);
+		GUI.removeCar(playerPos+1, name);
 		if(distance > 0) {
 			for(int i = playerPos; i<distance; i++)
 			{
 
-				GUI.removeCar(playerPos, name);
+				GUI.removeCar(playerPos+1, name);
 				playerPos =(playerPos+1)%40;
-				GUI.setCar(playerPos, name);
+				GUI.setCar(playerPos+1, name);
 				try {
 					TimeUnit.MILLISECONDS.sleep(sleep);
 
@@ -41,15 +41,15 @@ public class CardEffectBoundary {
 			}
 		}
 			else if(distance < 0) {
-				for(int i = 0; i<distance; i++)
+				for(int i = 0; i<Math.abs(distance); i++)
 				{
 
-					GUI.removeCar(playerPos, name);
+					GUI.removeCar(playerPos+1, name);
 					playerPos =(playerPos-1)%40;
 					if(playerPos == -1) {
 						playerPos = 39;
 					}
-					GUI.setCar(playerPos, name);
+					GUI.setCar(playerPos+1, name);
 					try {
 						TimeUnit.MILLISECONDS.sleep(sleep);
 

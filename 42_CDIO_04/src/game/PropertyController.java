@@ -307,6 +307,8 @@ public class PropertyController {
 						{
 							if(gui.confirmTrade(players[i].getName(),otherPlayersField.getTitle(),yourField.getTitle()))
 							{
+								yourField.setOwner(players[i]);
+								otherPlayersField.setOwner(player);
 								player.getProperty().removeField(yourField);
 								player.getProperty().addField(otherPlayersField);
 								gui.setOwner(player.getName(), otherPlayersField.getFieldPosition());
