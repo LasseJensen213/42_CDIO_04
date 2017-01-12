@@ -170,6 +170,8 @@ public class GameLogic {
 			player.getProperty().getTerritory(0).setOwner(null);
 			player.getProperty().getField(0).setPawned(false);
 			GUI.setSubText(player.getProperty().getField(0).getFieldPosition(), "Kr. " + player.getProperty().getField(0).getPrice());
+			bank.noBuildings(player.getProperty().getTerritory(0).getFieldPosition());
+
 			gui.removeOwner(player.getProperty().getTerritory(0).getFieldPosition());
 
 			int housesUsed = player.getProperty().getTerritory(0).getHouse();
@@ -183,8 +185,8 @@ public class GameLogic {
 				bank.housesFreed(housesUsed);
 				player.getProperty().getTerritory(0).setHouse(0);
 			}
-			bank.noBuildings(player.getProperty().getTerritory(0).getFieldPosition());
 			player.getProperty().removeField(player.getProperty().getTerritory(0));
+			
 		}
 
 		int restOfFields = player.getProperty().nFields();

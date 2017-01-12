@@ -67,7 +67,7 @@ public class Bank {
 		return INSTANCE;
 	}
 	public void noBuildings(int i) {
-		GUI.setHotel(i, false);
-		GUI.setHouses(i, 0);
+		GUI.setHotel(i+1, false);
+		GUI.setHouses(i+1, 0);
 	}
 }

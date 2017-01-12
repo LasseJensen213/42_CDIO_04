@@ -176,7 +176,7 @@ public class PropertyController {
 			}
 			else if(choice.equals(Stringbanks_Property.get(19)))
 				sellAssets(player);
-			else if(choice.equals(Stringbanks_Property.get(23))) {
+			else if(choice.equals(Stringbanks_Property.get(23)) && gui.confirmSurrender()) {
 				player.setBroke(true);
 				break;
 			}
@@ -193,6 +193,7 @@ public class PropertyController {
 	 */
 	public void buyHouse(Player player)
 	{
+		
 		while(true)
 		{	
 			String options[] = new String[0];
@@ -285,9 +286,9 @@ public class PropertyController {
 			String[] options = new String[0];
 			for(int i = 0; i<players.length;i++)
 			{
-				options = (String[]) addToArray(options,players[i].getName());
+				options = addToArray(options,players[i].getName());
 			}
-			options = (String[]) addToArray(options,Stringbanks_Property.get(5));
+			options = addToArray(options,Stringbanks_Property.get(5));
 
 			String choice = gui.chooseWhoToTradeWith(options);
 			if(choice.equals(Stringbanks_Property.get(5)))
@@ -307,6 +308,8 @@ public class PropertyController {
 						{
 							if(gui.confirmTrade(players[i].getName(),otherPlayersField.getTitle(),yourField.getTitle()))
 							{
+								yourField.setOwner(players[i]);
+								otherPlayersField.setOwner(player);
 								player.getProperty().removeField(yourField);
 								player.getProperty().addField(otherPlayersField);
 								gui.setOwner(player.getName(), otherPlayersField.getFieldPosition());
@@ -403,10 +406,12 @@ public class PropertyController {
 		for(int k = 0; k<player.getProperty().nFields();k++)
 		{
 			//Checks if the Field has any structures
-			if(player.getProperty().getField(k) instanceof Territory &&
-					((Territory)player.getProperty().getField(k)).getHouse()==0)
+			if(player.getProperty().getField(k) instanceof Territory)
 			{
-				result = addToArray(result, player.getProperty().getField(k));
+				if(((Territory)player.getProperty().getField(k)).getHouse()==0)
+				{
+					result = addToArray(result, player.getProperty().getField(k));
+				}
 			}
 			//These are the breweries and fleets
 			else
@@ -535,10 +540,11 @@ public class PropertyController {
 			if(numOfHousesSeries[outer][numOfHousesSeries[outer].length-1]>=4)
 				continue;
 
-			for(int inner = 0; inner<series[outer].length-1;inner++)
+			for(int inner = 0; inner<series[outer].length;inner++)
 			{
 				if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
-					result = addToArray(result, series[outer][inner]);
+					if(!series[outer][inner].isPawned())
+						result = addToArray(result, series[outer][inner]);
 			}
 
 		}
