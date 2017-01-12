@@ -160,6 +160,7 @@ public class GameLogic {
 	{
 		player.setBroke(true);
 		player.getAccount().setBalance(0);
+		player.setEqualFaceValue(0);
 		int nTer = player.getProperty().nTerritoriesOwned();
 		//First loops over the territories, since the houses has to be freed aswell
 		for(int i = 0 ; i<nTer;i++)
