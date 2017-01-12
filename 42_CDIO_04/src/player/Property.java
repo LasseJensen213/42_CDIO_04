@@ -337,7 +337,7 @@ public class Property {
 			return false;
 		}
 		else
-		{
+		{	
 			int max = getTerritoryOfId(series, 0).getSeries();
 			int owned = nParticularSeries(series);
 			return max == owned;

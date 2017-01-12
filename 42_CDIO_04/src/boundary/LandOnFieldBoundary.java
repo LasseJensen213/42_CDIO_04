@@ -23,7 +23,7 @@ public class LandOnFieldBoundary {
 	}
 	
 	public static void payOtherPlayer(String s, int i) {
-		String message = "De skal betale %s %d kroner.";
+		String message = "De skal betale %s Kr. %d.";
 		message = String.format(message,s, i);
 		GUI.showMessage(message);
 		

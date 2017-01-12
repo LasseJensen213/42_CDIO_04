@@ -121,6 +121,7 @@ public class LandOnFieldController {
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOwner(rent, f.getOwner().getName());
+			rent = rent/2;
 		}
 	}
 
@@ -167,9 +168,14 @@ public class LandOnFieldController {
 		}
 		else {
 			int rent = player.getTotalFaceValue()*f.getRent()*100;
+			if(player.getProperty().nBreweriesOwned()==2) {
+				rent = rent*2;
+			}
+			
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
+			rent = rent/2;
 		}
 	}
 
@@ -226,12 +232,12 @@ public class LandOnFieldController {
 			//Here due to a chancecard
 			if(doubleRent) {
 				rent = rent*2;
-				doubleRent = false;
 			}
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
 		}
+		doubleRent = false;
 	}
 
 	/**

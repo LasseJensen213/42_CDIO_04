@@ -1,5 +1,7 @@
 package game;
 
+import desktop_resources.GUI;
+
 public class Bank {
 	private static Bank INSTANCE;
 	
@@ -63,5 +65,9 @@ public class Bank {
 		if(INSTANCE==null)
 			INSTANCE = new Bank();
 		return INSTANCE;
+	}
+	public void noBuildings(int i) {
+		GUI.setHotel(i, false);
+		GUI.setHouses(i, 0);
 	}
 }
