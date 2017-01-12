@@ -90,4 +90,10 @@ public class LandOnFieldBoundary {
 		GUI.setChanceCard(txt);
 		GUI.displayChanceCard(txt);
 	}
+	
+	public static boolean cantAffordToBuy()
+	{
+		Stringbanks_LandOnFieldBoundary s = new Stringbanks_LandOnFieldBoundary();
+		return GUI.getUserLeftButtonPressed(s.getMessages(5), s.getMessages(6), s.getMessages(7));
+	}
 }
