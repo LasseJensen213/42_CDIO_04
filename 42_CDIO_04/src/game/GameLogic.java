@@ -153,6 +153,7 @@ public class GameLogic {
 		{
 			player.setJailed(false);
 			player.setTimeInJail(0);
+			player.getProperty().removeCard();
 		}
 
 	}
@@ -166,7 +167,6 @@ public class GameLogic {
 		//First loops over the territories, since the houses has to be freed aswell
 		for(int i = 0 ; i<nTer;i++)
 		{
-			System.out.println("--removing territories--");
 			player.getProperty().getTerritory(0).setOwner(null);
 			player.getProperty().getField(0).setPawned(false);
 			GUI.setSubText(player.getProperty().getField(0).getFieldPosition(), "");
