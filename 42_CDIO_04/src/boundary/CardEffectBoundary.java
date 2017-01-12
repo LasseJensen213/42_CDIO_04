@@ -7,7 +7,7 @@ import stringbanks.Stringbank_Card;
 
 public class CardEffectBoundary {
 
-	private static int sleep = 400; //Number of ms the system sleeps 400 ms is normal.
+	private static int sleep = 100; //Number of ms the system sleeps 400 ms is normal.
 
 
 	/**
@@ -34,6 +34,7 @@ public class CardEffectBoundary {
 					TimeUnit.MILLISECONDS.sleep(sleep);
 
 				} catch (InterruptedException e) {
+					System.out.println("WHY U NO SLEEP. CardEffectBoundary");
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 
@@ -41,33 +42,28 @@ public class CardEffectBoundary {
 				}
 			}
 		}
-			else if(distance < 0) {
-				for(int i = 0; i<Math.abs(distance); i++)
-				{
+		else if(distance < 0) {
+			for(int i = 0; i<Math.abs(distance); i++)
+			{
 
-					GUI.removeCar(playerPos+1, name);
+				GUI.removeCar(playerPos+1, name);
 				if(playerPos == 0){
-					playerPos =((playerPos-1)%40)+40;
+					playerPos = 39;
 				}
 				else{
 					playerPos =((playerPos-1)%40);
 				}
-					GUI.setCar(playerPos+1, name);
-					try {
-						TimeUnit.MILLISECONDS.sleep(sleep);
+				GUI.setCar(playerPos+1, name);
+				try {
+					TimeUnit.MILLISECONDS.sleep(sleep);
 
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-
-
-					}
+				} catch (InterruptedException e) {
+					System.out.println("WHY U NO SLEEP. CardEffectBoundary");
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-
-			
+			}			
 		}
-		
-
 	}
 
 
