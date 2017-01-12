@@ -319,7 +319,7 @@ public class LandOnFieldController {
 		card = cardDeck.draw();
 		LandOnFieldBoundary.displayCard(card.getDescription());
 		if(card instanceof Bail) {
-			//cE.cardEffectBail(player, (Card)card);
+			cE.cardEffectBail(player, (Bail)card);
 		}
 		else if(card instanceof GoToJailCard) {
 			CardEffectBoundary.youDraw();

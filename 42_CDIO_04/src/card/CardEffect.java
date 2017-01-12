@@ -20,7 +20,7 @@ public class CardEffect {
 
 	public void cardEffectBail(Player player, Bail card){
 		player.getProperty().addCard(card);
-		card.isInUse();
+		card.setInUse(true);
 	}
 
 
