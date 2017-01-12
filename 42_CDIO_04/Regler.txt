@@ -1,4 +1,4 @@
-Matador Spilleregler
+
 Kort oversigt over spillet.
 Formålet med spillet er at købe, udleje eller sælge ejendomme så fordelagtigt, at man
 bliver den rigeste spiller og eventuelt eneste matador.
@@ -12,13 +12,17 @@ Somme tider kommer en spiller i fængsel.
 Spillet er fuldt af spekulation og spænding, og auktionsholderen kan ofte bidrage til
 at forøge denne.
 
+______________________________________________________________________________________________
 REGLER
+
 Matador kan spilles af 3 til 6 personer, der hver får 30.000,- kr.
 Banken beholder resten af pengene samt skøderne og de 32 grønne huse og 12 røde
 hoteller, gennem banken foregår alle spillets ud- og indbetalinger undtagen leje, der
 betales til ejeren, og handel med skøder og løsladelseskort blandt spillerne indbyrdes.
 
+______________________________________________________________________________________________
 Spillet.
+
 Første spiller kaster de to terninger og flytter sin
 brik så mange felter frem, som øjnene viser.
 Når spilleren har benyttet retten, eller opfyldt pligten, som feltet angiver, går turen
@@ -34,22 +38,31 @@ Standser man på feltet "De sættes i fængsel", skal man gå direkte i fængsel og f
 altså ikke 4.000 kroner, selv om man passerer "Start". Standser man i fængsel, er
 man imidlertid blot på besøg og fortsætter næste gang uden straf.
 
+______________________________________________________________________________________________
 Indkomstskatten.
+
 Denne har man lov til at betale med 4.000 kr. Men man kan også betale 10 % af sine
 værdier: Kontanter, bygninger og den trykte pris for grunde og virksomheder (også pantsatte).
 Men Spilleren skal vælge betalingsmåden, inden han tæller sine værdier sammen.
 
+______________________________________________________________________________________________
 Ekstra kast.
+
 Får man, hvis man kaster 2 af samme slags (f. eks. 2 femmere), og man retter sig
 både efter forskrifterne for det felt, man kommer til efter første kast, og efter
 ekstrakastet.
 Kaster man 3 gange i træk 2 af samme slags, må man ikke flytte tredie gang, men skal
 gå direkte i fængsel.
 
+______________________________________________________________________________________________
 Parkering.
-er et fristed til man skal kaste igen.
 
+Parkeringsfeltet er et fristed til man skal kaste igen. 
+Alle penge som betales i skat, fra kort og skattefelterne, kommer og på pakeringsfeltet, og lander en spiller der, får han de penge som der er.
+
+______________________________________________________________________________________________
 Fængsel.
+
 Ud af fængsel kommer man:
 1) Ved at betale en bøde på 1.000 kroner, inden man kaster.
 2) Ved at benytte et af løsladelseskortene fra lykkekortene.
@@ -63,14 +76,21 @@ Indbyrdes handel med ubebyggede grunde etc. er spillerne tilladt til den pris, d
 blive enige om. Banken til den pris, der står på skødeme.
 N.B.! Har man bygget, skal man sælge bygningerne tilbage til banken, inden man kan
 afhænde nogen grund i den pågældende gruppe.
+
+______________________________________________________________________________________________
 Pantsætning.
+
+På en pantsat ejendom kan der ikke kræves leje.
 Man kan kun pantsætte sine ubebyggede grunde etc. til banken for det beløb, der
 står påtrykt bagsiden af skøderne. Har man bygninger på grundene, skal man først
 sælge disse til banken.
 Spilleren beholder, skødekortene, men vender bagsiden opad. 
 Ejer man alle grundene i samme farve, får man dobbelt leje af de ubebyggede grunde
 og har ret til når som helst at bygge huse, der købes hos banken.
+
+______________________________________________________________________________________________
 Huse og hoteller.
+
 Inden man opfører et hotel, skal der være fire huse på hver grund i gruppen.
 Der må kun bygges et hotel på hver grund.
 Når man køber et hotel, afleverer man de fire huse til banken.
@@ -80,16 +100,12 @@ Har banken ingen bygninger, når man vil købe, må man vente, til der kommer nogle
 tilbage. Er der flere, der vil købe, og banken ikke har nok bygninger, sætter den dem,
 der er, til auktion.
 Der skal bygges jævnt dvs. det første hus kan man opføre på hvilken grund i gruppen,
-man ønsker; men inden hus nr. 2 opføres på en grund, skal der være bygget eet på
+man ønsker; men inden hus nr. 2 opføres på en grund, skal der være bygget et på
 hver af de andre grunde i gruppen osv.
-Af pantsat ejendom kan der ikke kræves leje.
-Banken giver kun lån mod pantsætningssikkerhed.
-Pantsætning af grunde samt handel med bygninger sker kun gennem banken.
-Spillerne må ikke låne indbyrdes.
-Glemmer man at kræve leje af en medspiller, har man tabt sin ret, når nr. 2 efter ham
-har kastet.
 
+______________________________________________________________________________________________
 Fallit.
+
 Skylder en spiller mere, end han ejer, skal han overdrage alt til sin kreditor efter at
 have solgt eventuelle bygninger tilbage til banken, og han går ud af spillet.
 Er det banken, der er kreditor, sælger han straks modtagne grunde ved auktion.
