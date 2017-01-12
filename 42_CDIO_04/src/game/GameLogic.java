@@ -71,7 +71,7 @@ public class GameLogic {
 			
 			if(player.getAccount().getBalance()<=0)
 			{
-				if(player.getProperty().totalValueOfAssets()>Math.abs(player.getAccount().getBalance()))
+				if(player.getProperty().totalValueOfAssets()/2>Math.abs(player.getAccount().getBalance()))
 					prop.sellAssets(player);
 			}
 			//Checking if the player managed to sell enough assets
@@ -124,7 +124,7 @@ public class GameLogic {
 
 				if(player.getAccount().getBalance()<=0)
 				{
-					if(player.getProperty().totalValueOfAssets()>Math.abs(player.getAccount().getBalance()))
+					if(player.getProperty().totalValueOfAssets()/2>Math.abs(player.getAccount().getBalance()))
 						prop.sellAssets(player);
 				}
 				//Checking if the player managed to sell enough assets
@@ -136,7 +136,10 @@ public class GameLogic {
 			}
 			else if(player.getTimeInJail()==3)
 			{
-
+				player.setTimeInJail(0);
+				player.setJailed(false);
+				player.getAccount().withdraw(1000);
+				gui.tooLongTimeInPrison(player.getName());
 			}
 		}
 		else if(choice.equals(Stringbanks_GameLogic.inJailTurn(3)))
@@ -202,7 +205,10 @@ public class GameLogic {
 			if(player.getPlayerPos()==0)
 			{
 				if(player.isPassedStart())
+				{
 					player.getAccount().deposit(4000);
+					gui.passedStart(player.getName());
+				}
 				else
 					player.setPassedStart(true);
 			}

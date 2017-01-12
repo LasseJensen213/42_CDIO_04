@@ -11,14 +11,19 @@ public class Stringbanks_GameLogic {
 	private static String normalTurnThrowDice = "Kast";
 	
 	private static String playerIsBroke = "%s er gået konkurs";
+	private static String passedStart = "%s har modtaget 4000 kr, for at passere start";
+	private static String tooLongInJail = "%s har været i fængsel i for lang tid, betal 1000 kr til banken";
 	
-	private static String[] normalTurn = {normalTurnMenuMsg,normalTurnThrowDice, playerIsBroke};
+	
+	private static String[] normalTurn = {normalTurnMenuMsg,normalTurnThrowDice, playerIsBroke,passedStart, tooLongInJail };
 	private static String[] inJailTurn = {inJailMenuMsg, inJailRollDice, inJailUseCard, inJailPayBail};
 	
 	/**
 	 * 0 = normalTurnMsg(needs player name)<br>
 	 * 1 = normalTurnThrowDice<br>
-	 * 2 = playerIsBroke (Needs name)
+	 * 2 = playerIsBroke (Needs name)<br>
+	 * 3 = passedStart (needs name)<br>
+	 * 4 = tooLongInJail (needs name)<br>
 	 * @param i
 	 * @return
 	 */

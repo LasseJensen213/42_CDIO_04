@@ -99,6 +99,7 @@ public class LandOnFieldController {
 			}
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
+			LandOnFieldBoundary.payOwner(rent, f.getOwner().getName());
 		}
 	}
 	
@@ -222,6 +223,7 @@ public class LandOnFieldController {
 	 * @param f
 	 */
 	public void landOnGoToJail(Player player, GoToJail f){
+		player.setEqualFaceValue(0);
 		LandOnFieldBoundary.displayMessage(2);
 		GUI.removeCar(player.getPlayerPos(), player.getName());
 		LandOnFieldBoundary.moveToJail(player.getName(), player.getPlayerPos());
