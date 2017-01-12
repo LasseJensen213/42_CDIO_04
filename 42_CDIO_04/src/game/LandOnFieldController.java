@@ -215,8 +215,16 @@ public class LandOnFieldController {
 			LandOnFieldBoundary.displayMessage(4);
 		}
 		else {
-			int fleetsOwned = f.getOwner().getProperty().nFleetsOwned();
-			int rent = 500*(int)Math.pow(2, fleetsOwned-1);
+			int fleetsOwned =f.getOwner().getProperty().nFleetsOwned();
+			int fleetsNotPawned = 0;
+			for(int i = 0; i<fleetsOwned;i++)
+			{
+				if(!player.getProperty().getFleet(i).isPawned())
+				{
+					fleetsNotPawned++;
+				}
+			}
+			int rent = 500*(int)Math.pow(2, fleetsNotPawned-1);
 			//Here due to a chancecard
 			if(doubleRent) {
 				rent = rent*2;
