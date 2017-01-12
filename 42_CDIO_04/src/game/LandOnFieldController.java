@@ -167,7 +167,7 @@ public class LandOnFieldController {
 					
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
-
+			doubleRent = false;
 		}
 	}
 			

@@ -22,8 +22,9 @@ public class CardEffectBoundary {
 
 		//only moves the player on the board. Doesn't actually update their position
 		GUI.removeCar(playerPos+1, name);
+
 		if(distance > 0) {
-			for(int i = playerPos; i<distance; i++)
+			for(int i = 0; i<distance; i++)
 			{
 
 				GUI.removeCar(playerPos+1, name);
