@@ -56,7 +56,7 @@ public class CardEffect {
 
 		else if( card.equals(Cardgenerator.getCardDeckGenerator(37)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(38))){
-			player.setPlayerPos(player.getPlayerPos()+37);
+			player.setPlayerPos((player.getPlayerPos()+37)%40);
 		}
 
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(39))){
@@ -91,7 +91,7 @@ public class CardEffect {
 		}
 
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(44))){
-			player.setPlayerPos(player.getPlayerPos()+3);
+			player.setPlayerPos((player.getPlayerPos()+3)%40);
 		}
 		if(before > player.getPlayerPos()) {
 			player.getAccount().deposit(4000);
