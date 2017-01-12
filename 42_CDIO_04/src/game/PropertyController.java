@@ -285,9 +285,9 @@ public class PropertyController {
 			String[] options = new String[0];
 			for(int i = 0; i<players.length;i++)
 			{
-				options = (String[]) addToArray(options,players[i].getName());
+				options = addToArray(options,players[i].getName());
 			}
-			options = (String[]) addToArray(options,Stringbanks_Property.get(5));
+			options = addToArray(options,Stringbanks_Property.get(5));
 
 			String choice = gui.chooseWhoToTradeWith(options);
 			if(choice.equals(Stringbanks_Property.get(5)))
@@ -535,7 +535,7 @@ public class PropertyController {
 			if(numOfHousesSeries[outer][numOfHousesSeries[outer].length-1]>=4)
 				continue;
 
-			for(int inner = 0; inner<series[outer].length-1;inner++)
+			for(int inner = 0; inner<series[outer].length;inner++)
 			{
 				if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
 					result = addToArray(result, series[outer][inner]);

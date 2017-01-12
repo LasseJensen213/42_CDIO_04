@@ -109,5 +109,15 @@ public class GameLogicBoundary {
 	public void goToJail() {
 		GUI.showMessage("De har slået 3 ens og rykker derfor i fængsel");
 	}
+	
+	public void tooLongTimeInPrison(String name)
+	{
+		GUI.showMessage(String.format(Stringbanks_GameLogic.normalTurn(4), name));
+	}
+	
+	public void passedStart(String name)
+	{
+		GUI.showMessage(String.format(Stringbanks_GameLogic.normalTurn(3), name));
+	}
 
 }
