@@ -307,6 +307,8 @@ public class PropertyController {
 						{
 							if(gui.confirmTrade(players[i].getName(),otherPlayersField.getTitle(),yourField.getTitle()))
 							{
+								yourField.setOwner(players[i]);
+								otherPlayersField.setOwner(player);
 								player.getProperty().removeField(yourField);
 								player.getProperty().addField(otherPlayersField);
 								gui.setOwner(player.getName(), otherPlayersField.getFieldPosition());
@@ -403,10 +405,12 @@ public class PropertyController {
 		for(int k = 0; k<player.getProperty().nFields();k++)
 		{
 			//Checks if the Field has any structures
-			if(player.getProperty().getField(k) instanceof Territory &&
-					((Territory)player.getProperty().getField(k)).getHouse()==0)
+			if(player.getProperty().getField(k) instanceof Territory)
 			{
-				result = addToArray(result, player.getProperty().getField(k));
+				if(((Territory)player.getProperty().getField(k)).getHouse()==0)
+				{
+					result = addToArray(result, player.getProperty().getField(k));
+				}
 			}
 			//These are the breweries and fleets
 			else
