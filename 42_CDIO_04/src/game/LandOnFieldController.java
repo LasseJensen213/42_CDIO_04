@@ -218,7 +218,7 @@ public class LandOnFieldController {
 			int fleetsNotPawned = 0;
 			for(int i = 0; i<fleetsOwned;i++)
 			{
-				if(!player.getProperty().getFleet(i).isPawned())
+				if(!f.getOwner().getProperty().getFleet(i).isPawned())
 				{
 					fleetsNotPawned++;
 				}
