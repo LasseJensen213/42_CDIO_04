@@ -2,7 +2,7 @@ package stringbanks;
 
 public class Stringbanks_GameController {
 	
-	private static String winnerMsg = "%s er den heldige kartoffel";
+	private static String winnerMsg = "%s har vundet";
 	private static String announceTurn = "Det er %s' tur";
 	
 	private static String[] messages = {winnerMsg,announceTurn};
