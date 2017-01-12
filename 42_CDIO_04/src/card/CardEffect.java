@@ -122,7 +122,7 @@ public class CardEffect {
 
 		//Move to "frederikberggade"
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(43))){
-			player.setPlayerPos(37);
+			player.setPlayerPos(11);
 		}
 
 		// Move tree fields forward 
