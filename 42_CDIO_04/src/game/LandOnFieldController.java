@@ -94,7 +94,7 @@ public class LandOnFieldController {
 
 			int houses = f.getHouse();
 			int rent = f.getRent(houses);
-			if(houses == 0) {
+			if(houses == 0 && player.getProperty().completeSeries(f.getColor())) {
 				rent = rent*2;
 			}
 
@@ -176,7 +176,6 @@ public class LandOnFieldController {
 	 * @param f
 	 */
 	public void landOnTax(Player player, Tax f){
-		String choice[] = {"4000","10% af balance"};
 		int rent = 0;
 		if(f.getPercentange() == 0){
 			rent = f.getTax();
@@ -184,12 +183,12 @@ public class LandOnFieldController {
 
 		}
 		else if(f.getPercentange() == 10){
-			String input = GUI.getUserSelection("Vælg imellem:", choice);
-			if(input == choice[0]) {
+			boolean input = LandOnFieldBoundary.chooseTax();
+			if(input) {
 				rent = f.getTax();
 				player.getAccount().withdraw(rent);
 			}
-			else if(input == choice[1]) {
+			else if(!input) {
 				rent = ((player.getAccount().getBalance()+player.getProperty().totalValueOfAssets())*10)/100;
 				player.getAccount().withdraw(rent);
 				LandOnFieldBoundary.payTax(rent);

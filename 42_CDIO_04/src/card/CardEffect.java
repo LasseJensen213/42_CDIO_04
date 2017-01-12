@@ -2,6 +2,7 @@ package card;
 
 import board.Board;
 import boundary.CardEffectBoundary;
+import desktop_resources.GUI;
 import field.Fleet;
 import player.Player;
 
@@ -95,6 +96,8 @@ public class CardEffect {
 		if(before > player.getPlayerPos()) {
 			player.getAccount().deposit(4000);
 		}
+		
+		CardEffectBoundary.showMessage(2);
 		int distance = (40-before+player.getPlayerPos())%40;
 		CardEffectBoundary.moveFigure(player.getName(), before, distance);
 	}

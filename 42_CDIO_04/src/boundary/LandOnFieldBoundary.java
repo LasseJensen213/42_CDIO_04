@@ -29,6 +29,20 @@ public class LandOnFieldBoundary {
 		
 	}
 	
+	public static boolean chooseTax() {
+		boolean statement = false;
+		String[] choices = {"4000","10% af alt hvad de ejer"};
+		String message = "Vælg imellem at betale";		
+		
+		String input = GUI.getUserSelection(message, choices);
+		if(input.equals(choices[0])) {
+			statement = true;
+		}
+		else if(input.equals(choices[1]))
+			statement = false;
+		return statement;
+	}
+	
 	public static void payTax(int rent) {
 		String message = "De skal betale %d i skat";
 		message = String.format(message, rent);

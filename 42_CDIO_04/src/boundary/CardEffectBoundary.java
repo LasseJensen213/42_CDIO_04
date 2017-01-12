@@ -7,7 +7,7 @@ import stringbanks.Stringbank_Card;
 
 public class CardEffectBoundary {
 
-	private static int sleep = 0; //Number of ms the system sleeps 400 ms is normal.
+	private static int sleep = 400; //Number of ms the system sleeps 400 ms is normal.
 
 
 	/**

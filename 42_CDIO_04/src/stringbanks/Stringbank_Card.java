@@ -3,10 +3,11 @@ package stringbanks;
 public class Stringbank_Card {
 
 	private static String recieveLegat = "Du modtager Matador-legatet på kr. 40.000.";
-
 	private static String noRecieveLegat = "Da deres samlede formue overstiger 15.000, modtager de ikke Matador-legatet";
 	
-	private static String[] messages = {recieveLegat,noRecieveLegat};
+	private static String noMessage= "";
+	
+	private static String[] messages = {recieveLegat,noRecieveLegat,noMessage};
 	
 	
 	
