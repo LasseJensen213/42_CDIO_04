@@ -46,6 +46,7 @@ public class CardEffect {
 	 */
 	public void cardEffectMovePlayer(Player player, MovePlayer card){
 		int before = player.getPlayerPos();
+		int distance;
 
 		//Move to "start"
 		if( card.equals(Cardgenerator.getCardDeckGenerator(33)) ||
@@ -67,7 +68,7 @@ public class CardEffect {
 		else if( card.equals(Cardgenerator.getCardDeckGenerator(37)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(38))){
 			player.setPlayerPos((player.getPlayerPos()+37)%40);
-			int distance = -3;
+			distance = -3;
 			CardEffectBoundary.moveFigure(player.getName(), before, distance);
 		}
 
@@ -127,9 +128,9 @@ public class CardEffect {
 			player.getAccount().deposit(4000);
 		}
 
-		if(!card.equals(Cardgenerator.getCardDeckGenerator(37)) ||
-				!card.equals(Cardgenerator.getCardDeckGenerator(38))){
-		int distance = (40-before+player.getPlayerPos())%40;
+		if(!(card.equals(Cardgenerator.getCardDeckGenerator(37)) ||
+				card.equals(Cardgenerator.getCardDeckGenerator(38)))){
+		distance = (40-before+player.getPlayerPos())%40;
 		CardEffectBoundary.moveFigure(player.getName(), before, distance);
 		}
 	}
