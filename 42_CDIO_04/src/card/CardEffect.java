@@ -10,19 +10,19 @@ import player.Player;
 public class CardEffect {
 	private boolean doubleRent;
 	private Board board;
-	
-	
+
+
 	public CardEffect()
 	{
 		doubleRent = false;
 		board = Board.Board();
 	}
-	
+
 	public void cardEffectBail(Player player, Card card){
 		player.getProperty().addCard(card);
 	}
-	
-	
+
+
 
 	public void cardEffectGoToJail(Player player, GoToJailCard card){
 		int before = player.getPlayerPos();
@@ -33,7 +33,7 @@ public class CardEffect {
 			int distance = (40-before+player.getPlayerPos())%40;
 			CardEffectBoundary.moveFigure(player.getName(), before, distance);
 		}
-		
+
 	}
 
 
@@ -46,36 +46,46 @@ public class CardEffect {
 	 */
 	public void cardEffectMovePlayer(Player player, MovePlayer card){
 		int before = player.getPlayerPos();
+
+		//Move to "start"
 		if( card.equals(Cardgenerator.getCardDeckGenerator(33)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(34))){
 			player.setPlayerPos(0);
 		}
 
+		//Move to "Rådhuspladsen"
 		else if( card.equals(Cardgenerator.getCardDeckGenerator(35))){
 			player.setPlayerPos(39);
 		}
 
+		//Move to "Vimmelskaftet"
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(36))){
 			player.setPlayerPos(32);
 		}
 
+		//Move tree fields back
 		else if( card.equals(Cardgenerator.getCardDeckGenerator(37)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(38))){
 			player.setPlayerPos((player.getPlayerPos()+37)%40);
+			int distance = -3;
+			CardEffectBoundary.moveFigure(player.getName(), before, distance);
 		}
 
+		//Move to "Strandvejen"
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(39))){
 			player.setPlayerPos(19);
 		}
 
+		//Move to "Grønningen"
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(40))){
 			player.setPlayerPos(24);
 		}
 
+		//Move to "Mols-Linjen"
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(41))){
 			player.setPlayerPos(15);
 		}
-		//Gå til nærmeste fleet
+		//Move to nearest pardon and pay 2x rent
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(0)) || card.equals(Cardgenerator.getCardDeckGenerator(1))){
 			int pos = player.getPlayerPos();
 			for(int i = 0; i<40;i++)
@@ -83,7 +93,6 @@ public class CardEffect {
 				pos = (pos+1)%40;
 				if(board.getField(pos) instanceof Fleet)
 				{
-					int distance = pos-player.getPlayerPos();
 					player.setPlayerPos(pos);
 					break;
 				}
@@ -91,20 +100,38 @@ public class CardEffect {
 			doubleRent = true;
 		}
 
+		//Move to nearest pardon
+		else if(card.equals(Cardgenerator.getCardDeckGenerator(42))){
+			int pos = player.getPlayerPos();
+			for(int i = 0; i<40;i++)
+			{
+				pos = (pos+1)%40;
+				if(board.getField(pos) instanceof Fleet)
+				{
+					player.setPlayerPos(pos);
+					break;
+				}
+			}
+		}
+		
+		//Move to "frederikberggade"
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(43))){
 			player.setPlayerPos(37);
 		}
 
+		// Move tree fields forward 
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(44))){
 			player.setPlayerPos((player.getPlayerPos()+3)%40);
 		}
 		if(before > player.getPlayerPos()) {
 			player.getAccount().deposit(4000);
 		}
-		
-		CardEffectBoundary.showMessage(2);
+
+		if(!card.equals(Cardgenerator.getCardDeckGenerator(37)) ||
+				!card.equals(Cardgenerator.getCardDeckGenerator(38))){
 		int distance = (40-before+player.getPlayerPos())%40;
 		CardEffectBoundary.moveFigure(player.getName(), before, distance);
+		}
 	}
 
 
@@ -125,7 +152,7 @@ public class CardEffect {
 				card.equals(Cardgenerator.getCardDeckGenerator(20))){
 			player.getAccount().deposit(1000);
 		}
-		
+
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(12)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(13))){
 			player.getAccount().deposit(500);
@@ -181,7 +208,7 @@ public class CardEffect {
 			int rent = 800*houses+2300*hotels;
 			player.getAccount().withdraw(rent);
 			ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+rent);
-				
+
 		}
 		//Billig ejendomsskat
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(32))) {
@@ -210,9 +237,9 @@ public class CardEffect {
 		}
 	}
 
-	
+
 	public boolean isDoubleRent() {
 		return doubleRent;
 	}
-	
+
 }
