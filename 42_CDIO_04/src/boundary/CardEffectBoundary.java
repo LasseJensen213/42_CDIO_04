@@ -46,7 +46,12 @@ public class CardEffectBoundary {
 				{
 
 					GUI.removeCar(playerPos+1, name);
+				if(playerPos == 0){
 					playerPos =((playerPos-1)%40)+40;
+				}
+				else{
+					playerPos =((playerPos-1)%40);
+				}
 					GUI.setCar(playerPos+1, name);
 					try {
 						TimeUnit.MILLISECONDS.sleep(sleep);
