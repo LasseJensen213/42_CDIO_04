@@ -84,4 +84,10 @@ public class PropertyBoundary {
 	{
 		GUI.setSubText(fieldNumber+1, Stringbanks_Property.get(20));
 	}
+	
+	public boolean confirmSurrender()
+	{
+		return GUI.getUserLeftButtonPressed(Stringbanks_Property.get(24), 
+											Stringbanks_Property.get(25), Stringbanks_Property.get(26));
+	}
 }

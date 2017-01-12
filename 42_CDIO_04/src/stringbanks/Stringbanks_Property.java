@@ -29,6 +29,9 @@ public class Stringbanks_Property {
 	private static String pawnedDescription = "Pantsat";
 	
 	private static String surrender = "Giv op";
+	private static String confirmMsg = "Er du sikker på at du vil give op?";
+	private static String confirmYes = "Ja";
+	private static String confirmNo = "Nej";
 	
 	private static String[] strings = {mainPropertyMenuMsg, whereToBuyHouses, 
 									  whereToUpgradeHotel,chooseWhatToTradeWith,
@@ -36,7 +39,8 @@ public class Stringbanks_Property {
 									  confirmTradeYes,confirmTradeNo,chooseYourLot,buyHouseOption,
 									  buyHotelOption,tradeOption,chooseWhatToSell, choosePawnOptionsForField,
 									  pawnOption, sellHotelOption,sellHouseOption, sellOrPawnOption, 
-									  pawnedDescription, dePawnOption,pawnIdentifier,surrender};
+									  pawnedDescription, dePawnOption,pawnIdentifier,surrender,confirmMsg,
+									  confirmYes,confirmNo};
 		
 	/**
 	 * 0 = mainPropertMenuMsg<br>
@@ -62,6 +66,10 @@ public class Stringbanks_Property {
 	 * 20 = pawnedDescription<br>
 	 * 21 = dePawnOption<br>
 	 * 22 = pawnIdentifier<br>
+	 * 23 = surrender<br>
+	 * 24 = confirmMsg <br>
+	 * 25 = confirmYes <br>
+	 * 26 = confirmNo <br>
 	 * @param i 
 	 * @return
 	 */

@@ -54,6 +54,7 @@ public class GameLogic {
 				gui.goToJail();
 				player.setJailed(true);
 				player.setEqualFaceValue(0);
+				player.setPassedStart(false);
 				int distance;
 				distance = (40-player.getPlayerPos()+10)%40;
 				gui.movePlayerModel(player.getName(), player.getPlayerPos(), distance);
@@ -163,33 +164,38 @@ public class GameLogic {
 		//First loops over the territories, since the houses has to be freed aswell
 		for(int i = 0 ; i<nTer;i++)
 		{
-			player.getProperty().getTerritory(i).setOwner(null);
-			gui.removeOwner(player.getProperty().getTerritory(i).getFieldPosition());
+			System.out.println("--removing territories--");
+			player.getProperty().getTerritory(0).setOwner(null);
+			player.getProperty().getField(0).setPawned(false);
+			GUI.setSubText(player.getProperty().getField(0).getFieldPosition(), "");
+			gui.removeOwner(player.getProperty().getTerritory(0).getFieldPosition());
 
-			int housesUsed = player.getProperty().getTerritory(i).getHouse();
+			int housesUsed = player.getProperty().getTerritory(0).getHouse();
 			if(housesUsed == 5)
 			{
-				player.getProperty().getTerritory(i).setHouse(0);
+				player.getProperty().getTerritory(0).setHouse(0);
 				bank.hotelsFreed(1);
 			}
 			else{
 				bank.housesFreed(housesUsed);;
-				player.getProperty().getTerritory(i).setHouse(0);
+				player.getProperty().getTerritory(0).setHouse(0);
 			}
-			player.getProperty().removeField(player.getProperty().getTerritory(i));
+			player.getProperty().removeField(player.getProperty().getTerritory(0));
 		}
 
 		int restOfFields = player.getProperty().nFields();
 		for(int i = 0; i<restOfFields;i++)
 		{
-			player.getProperty().getField(i).freeOwner(player, 
-					player.getProperty().getField(i).getFieldPosition());
-			gui.removeOwner(player.getProperty().getField(i).getFieldPosition());
+			player.getProperty().getField(0).setOwner(null); 
+			player.getProperty().getField(0).setPawned(false);
+			GUI.setSubText(player.getProperty().getField(0).getFieldPosition(), "");
+			gui.removeOwner(player.getProperty().getField(0).getFieldPosition());
+			player.getProperty().removeField(player.getProperty().getField(0));
 		}
 
 		for(int i = 0 ; i<player.getProperty().nCards();i++)
 		{
-
+			player.getProperty().removeCard();
 		}
 		gui.removeCar(player.getName(),player.getPlayerPos());
 	}

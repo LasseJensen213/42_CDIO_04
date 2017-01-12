@@ -176,7 +176,7 @@ public class PropertyController {
 			}
 			else if(choice.equals(Stringbanks_Property.get(19)))
 				sellAssets(player);
-			else if(choice.equals(Stringbanks_Property.get(23))) {
+			else if(choice.equals(Stringbanks_Property.get(23)) && gui.confirmSurrender()) {
 				player.setBroke(true);
 				break;
 			}

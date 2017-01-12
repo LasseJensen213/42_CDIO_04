@@ -37,6 +37,7 @@ public class MainMenuController {
 					break;
 			}
 		}
+		gui.close();
 	}
 
 }
