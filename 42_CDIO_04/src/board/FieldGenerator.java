@@ -80,6 +80,7 @@ public class FieldGenerator {
 	private final static int breweryPrice[] = {3000,3000};
 	private final static int breweryBaseRent[] = {100,100};
 	private final static int breweryPlace[] = {12,28};
+	private final static String breweryPic[] = {"src/Images/TuborgSquash.png","src/Images/CocaCola.jpg"};
 
 	//Fleet related information.
 	private final static int fleetPrice[] = {4000,4000,4000,4000};
@@ -119,12 +120,7 @@ public class FieldGenerator {
 		FieldGenerator.initTerritoryFields();
 		FieldGenerator.initBgColor();
 		FieldGenerator.initFgColor();
-		String what = "asdf";
-		Territory[] field = new Territory[22];
-		for(int i = 0;i<22;i++) {
-			field[i] = getTerritoryFields(i);
-		}
-		System.out.println("Shite");
+		
 	}
 
 
@@ -189,6 +185,7 @@ public class FieldGenerator {
 		int pos = 0;
 		int price = 0;
 		int rent = 0;
+		String image = "";
 
 		for(int i = 0;i<breweryFields.length;i++) {
 			desc = strBank.getBreweryDescriptionArray(i);
@@ -197,8 +194,9 @@ public class FieldGenerator {
 			pos = breweryPlace[i];
 			price = breweryPrice[i];
 			rent = breweryBaseRent[i];
+			image = breweryPic[i];
 
-			breweryFields[i] = new Brewery(desc,subtext,title,pos,price,rent);
+			breweryFields[i] = new Brewery(desc,subtext,title,pos,price,rent,image);
 		}
 	}
 
