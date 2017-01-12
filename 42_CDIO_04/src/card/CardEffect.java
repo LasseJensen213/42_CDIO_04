@@ -1,16 +1,26 @@
 package card;
 
+import board.Board;
 import boundary.CardEffectBoundary;
+import field.Fleet;
 import player.Player;
 
 public class CardEffect {
 	private boolean doubleRent;
+	private Board board;
 	
 	
+	public CardEffect()
+	{
+		doubleRent = false;
+		board = Board.Board();
+	}
 	
 	public void cardEffectBail(Player player, Card card){
 		player.getProperty().addCard(card);
 	}
+	
+	
 
 	public void cardEffectGoToJail(Player player, GoToJailCard card){
 		int before = player.getPlayerPos();
@@ -65,20 +75,16 @@ public class CardEffect {
 		}
 		//Gå til nærmeste fleet
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(0)) || card.equals(Cardgenerator.getCardDeckGenerator(1))){
-			if(player.getPlayerPos()<5){
-				player.setPlayerPos(5);
-			}
-			if(5<=player.getPlayerPos() && player.getPlayerPos()<15){
-				player.setPlayerPos(15);
-			}
-			else if( 15 <= player.getPlayerPos() && player.getPlayerPos()<25){
-				player.setPlayerPos(25);
-			}
-			else if(25 <= player.getPlayerPos() && player.getPlayerPos()<35){
-				player.setPlayerPos(35);
-			}
-			else if(35<=player.getPlayerPos()){
-				player.setPlayerPos(5);
+			int pos = player.getPlayerPos();
+			for(int i = 0; i<40;i++)
+			{
+				pos = (pos+1)%40;
+				if(board.getField(pos) instanceof Fleet)
+				{
+					int distance = pos-player.getPlayerPos();
+					CardEffectBoundary.moveFigure(player.getName(), player.getPlayerPos(), distance);
+					break;
+				}
 			}
 			doubleRent = true;
 		}
