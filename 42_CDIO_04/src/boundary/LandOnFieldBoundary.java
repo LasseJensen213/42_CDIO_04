@@ -58,6 +58,7 @@ public class LandOnFieldBoundary {
 	}
 	
 	public static void displayCard(String txt) {
+		GUI.setChanceCard(txt);
 		GUI.displayChanceCard(txt);
 	}
 }
