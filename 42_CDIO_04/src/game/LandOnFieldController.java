@@ -7,7 +7,6 @@ import card.Bail;
 import card.Card;
 import card.CardDeck;
 import card.CardEffect;
-import card.Cardgenerator;
 import card.GoToJailCard;
 import card.MovePlayer;
 import card.TransferMoney;
