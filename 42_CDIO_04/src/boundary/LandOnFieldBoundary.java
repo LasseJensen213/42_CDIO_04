@@ -14,8 +14,8 @@ public class LandOnFieldBoundary {
 	}
 	
 	public static void moveToJail(String name, int pos){
-		GUI.removeCar(pos, name);
-		GUI.setCar(10, name);
+		GUI.removeCar(pos+1, name);
+		GUI.setCar(10+1, name);
 	}
 	
 	public static void setPlayerColorOnField(String name, int number){
