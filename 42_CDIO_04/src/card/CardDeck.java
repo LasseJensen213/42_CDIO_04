@@ -2,21 +2,44 @@ package card;
 
 import java.util.Random;
 
+import board.Board;
+import desktop_fields.Field;
+
 public class CardDeck {
+		
 	//The Active deck is the one you draw cards from,
 	//When are card is drawn is will be put on the top of the used deck
 	//when there are no more cards in the active deck, it will be swapped with the used deck-
 	//and then shuffled
 	
 	//The cards are intended to be generated in another class and then saved here in the active deck
+	private Card[] originalDeck;
 	private Card[] activeDeck;
 	private Card[] usedDeck;
 	
+	private static CardDeck INSTANCE;
 	
 	public CardDeck(Card[] cards) {
+		originalDeck = new Card[45];
 		usedDeck = new Card[0];
 		activeDeck = cards;
 	}
+	
+	public static void resetCardDeck() {
+		INSTANCE = null;
+	}
+	
+	public CardDeck()
+	{
+		usedDeck = new Card[0];
+	}
+	
+	public static CardDeck CardDeck() {
+		if(INSTANCE == null) 
+			INSTANCE = new CardDeck();
+		return INSTANCE;
+	}
+	
 	/**
 	 * Draws the card at the top of the active deck, <br>
 	 * if there are no more cards in the active deck <br>
@@ -38,7 +61,7 @@ public class CardDeck {
 		//which would mean that no cards have been generated yet
 		if(activeDeck.length==0)
 		{
-			return new Card("","");
+			return new Card("");
 		}
 		Card cardDrawn = activeDeck[0];
 		
@@ -102,6 +125,14 @@ public class CardDeck {
 	{
 		activeDeck = newDeck;
 	}
+	
+	public void setOriginalDeck(Card[] originalDeck) {
+		this.originalDeck = originalDeck;
+	}
+	
+	public Card[] getOriginalDeck() {
+		return originalDeck;
+	}
 	/**
 	 * removes the card that's on the top of the active deck
 	 * 
@@ -120,6 +151,13 @@ public class CardDeck {
 			}
 			activeDeck = newActiveDeck;
 		}
+	}
+	
+	public static CardDeck getCD()
+	{
+		if(INSTANCE==null)
+			INSTANCE = new CardDeck();
+		return INSTANCE;
 	}
 	
 	

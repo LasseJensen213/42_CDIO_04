@@ -1,7 +1,8 @@
 package player;
 
-import java.awt.Color;
 import desktop_codebehind.Car;
+import dice.Dice;
+import dice.DiceCup;
 
 public class Player 
 {
@@ -12,16 +13,42 @@ public class Player
 	private boolean jailed;
 	private boolean passedStart;
 	private int playerPos;
+	
+	//How many times the player has 
 	private int equalFaceValue;
 	private int timeInJail;
 	private Property property;
+	private int totalFaceValue;
+	DiceCup diceCup = DiceCup.getDC();
+
+	public int getEqualFaceValue() {
+		return equalFaceValue;
+	}
 	
+	public void setEqualFaceValue(int equalFaceValue) {
+		this.equalFaceValue = equalFaceValue;
+	}
+	
+	
+
+	public int getTotalFaceValue() {
+		return totalFaceValue;
+	}
+
+	public void setDiceTotalFaceValue() {
+		this.totalFaceValue = diceCup.getDiceTotal();
+	}
+	public void setTotalFaceValue(int totalFaceValue) {
+		this.totalFaceValue = totalFaceValue;
+	}
+
+
 
 	public Player(String name , Car car , int startBalance)
 	{
 		this.name = name;
 		this.timeInJail = 0;
-		this.equalFaceValue=0;
+		this.setEqualFaceValue(0);
 		this.broke = false;
 		this.jailed = false;
 		this.passedStart = false;
@@ -30,6 +57,7 @@ public class Player
 		this.property = new Property();
 		this.playerPos = 0;
 	}
+	
 	
 	public String getName() {
 		return name;
@@ -109,7 +137,18 @@ public class Player
 	public void setProperty(Property property) {
 		this.property = property;
 	}
-	
-	
+	public void equalFaceValue() {
+		if(!(equalFaceValue == 0)) {
+			if(diceCup.isEqual()) {
+				equalFaceValue++; 
+			}
+			else
+				equalFaceValue = 0;
+		}		
+	}
+	public void gotoJail() {
+		if(equalFaceValue == 3) 
+			jailed = true;
+	}
 	
 }

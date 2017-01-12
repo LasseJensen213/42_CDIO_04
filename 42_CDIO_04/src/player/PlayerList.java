@@ -1,12 +1,15 @@
 package player;
 
 import java.util.ArrayList;
-import gui.PlayerCreationGUI;
+
+import desktop_codebehind.Car;
 
 public class PlayerList {
 	
 	private ArrayList<Player>playerList;
-	private PlayerCreationGUI playerCreateGUI;
+
+	private static PlayerList INSTANCE;
+
 
 	private int nPlayers;
 	
@@ -14,19 +17,22 @@ public class PlayerList {
 	{
 		this.playerList = new ArrayList<Player>();
 		this.playerList.clear();
-		this.playerCreateGUI = new PlayerCreationGUI();	
 		
 	
 	}
 
+	public static void resetPlayerList() {
+		INSTANCE = null;
+	}
+	
 	public void setNPlayers(int nPlayers)
 	{
 		this.nPlayers = nPlayers;
 	}
 	
-	public void addPlayer(String name)
+	public void addPlayer(String name,Car car,int i)
 	{
-		playerList.add(new Player(name));
+		playerList.add(new Player(name,car,i));
 	}
 	
 	public int getNPlayers()
@@ -49,23 +55,7 @@ public class PlayerList {
 	
 	
 	
-	public void initPlayers()
-	{
-		//First choose number of players
-		nPlayers = playerCreateGUI.chooseNPlayers();
-		
-		for(int i = 0; i<nPlayers;i++)
-		{
-			String name = playerCreateGUI.chooseName(this);
-			String color = playerCreateGUI.chooseColor();//Chooses the color for the car
-			addPlayer(name);
-			playerList.get(i).setCar(playerCreateGUI.getColor(color));
-			playerCreateGUI.addPlayerToBoard(playerList.get(i));
-				
-			
-		}
-		
-	}
+	
 	
 	
 	/**
@@ -143,7 +133,14 @@ public class PlayerList {
 	}
 	
 	
-
+	public static PlayerList getPL()
+	{
+		if(INSTANCE == null)
+		{
+			INSTANCE = new PlayerList();
+		}
+		return INSTANCE;
+	}
 	
 	
 	

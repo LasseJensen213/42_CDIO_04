@@ -1,9 +1,17 @@
 package field;
 
-import java.awt.Image;
-
 public class GoToJail extends Field {
-	public GoToJail(String desc, String subtext, String title, Image i, int pos) {
-		super(desc,subtext,title,i,pos);
+	public GoToJail(String desc, String subtext, String title, int pos) {
+		super(desc,subtext,title,pos);
 	}
+
+	@Override
+	public String toString() {
+		return "GoToJail [getDesc()=" + getDesc() + ", getSubtext()=" + getSubtext() + ", getTitle()=" + getTitle()
+				+ ", getFieldPosition()=" + getFieldPosition() + ", toString()=" + super.toString() + ", getClass()="
+				+ getClass() + "]";
+	}
+	
+	
+	
 }
