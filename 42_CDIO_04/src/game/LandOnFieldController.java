@@ -162,11 +162,11 @@ public class LandOnFieldController {
 			int rent = 500*(int)Math.pow(2, fleetsOwned-1);
 			if(doubleRent) {
 				rent = rent*2;
+				doubleRent = false;
 			}
 					
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
-			doubleRent = false;
 		}
 	}
 			
