@@ -82,7 +82,7 @@ public class CardEffect {
 				if(board.getField(pos) instanceof Fleet)
 				{
 					int distance = pos-player.getPlayerPos();
-					CardEffectBoundary.moveFigure(player.getName(), player.getPlayerPos(), distance);
+					player.setPlayerPos(pos);
 					break;
 				}
 			}
