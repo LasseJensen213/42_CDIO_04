@@ -29,6 +29,20 @@ public class LandOnFieldBoundary {
 		
 	}
 	
+	public static boolean chooseTax() {
+		boolean statement = false;
+		String[] choices = {"4000","10% af alt hvad de ejer"};
+		String message = "Vælg imellem at betale";		
+		
+		String input = GUI.getUserSelection(message, choices);
+		if(input.equals(choices[0])) {
+			statement = true;
+		}
+		else if(input.equals(choices[1]))
+			statement = false;
+		return statement;
+	}
+	
 	public static void payTax(int rent) {
 		String message = "De skal betale %d i skat";
 		message = String.format(message, rent);
@@ -65,8 +79,11 @@ public class LandOnFieldBoundary {
 	 */
 	public static void displayMessage(int number) {
 		Stringbanks_LandOnFieldBoundary s = new Stringbanks_LandOnFieldBoundary();
-		
-		GUI.showMessage(s.getMessages(number));
+		if(number==3) {
+			GUI.getUserButtonPressed(s.getMessages(number), "Træk");
+		}
+		else
+			GUI.showMessage(s.getMessages(number));
 	}
 	
 	public static void displayCard(String txt) {

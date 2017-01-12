@@ -3,10 +3,11 @@ package stringbanks;
 public class Stringbank_Card {
 
 	private static String recieveLegat = "Du modtager Matador-legatet på kr. 40.000.";
-
 	private static String noRecieveLegat = "Da deres samlede formue overstiger 15.000, modtager de ikke Matador-legatet";
 	
-	private static String[] messages = {recieveLegat,noRecieveLegat};
+	private static String noMessage= "";
+	
+	private static String[] messages = {recieveLegat,noRecieveLegat,noMessage};
 	
 	
 	
@@ -59,7 +60,7 @@ public class Stringbank_Card {
 	private static String pm6 = "De har modtaget Deres tandlægeregning. Betal kr. 2.000.";
 	private static String pm7 = "Betal kr. 200 for levering af 2 kasser øl. ";
 	private static String pm8 = "Betal Deres bilforsikring - kr. 1.000.";
-	private static String pm9 = "Ejendomsskatterne er steget. Ekstraudgifterne er: kr. 80x0 pr. hus, kr. 2.300 pr. hotel.";
+	private static String pm9 = "Ejendomsskatterne er steget. Ekstraudgifterne er: kr. 800 pr. hus, kr. 2.300 pr. hotel.";
 	private static String pm10 = "Oliepriserne er steget, og De skal betale: kr. 500 pr. hus, kr. 2.000 pr. hotel";
 
 	private static String[] payMoneyCard = {pm1,pm2,pm3,pm4,pm5,pm6,pm7,pm8,pm9,pm10};
