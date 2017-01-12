@@ -47,6 +47,7 @@ public class Board {
 		String desc = "";
 		String subtext = "";
 		String title = "";
+		String image = "";
 		Color fgColor = Color.BLACK;
 		Color bgColor = Color.BLACK;
 		for(int i = 0;i<fields.length;i++) {
@@ -79,9 +80,10 @@ public class Board {
 				title = FieldGenerator.getBreweryFields(breweryReached).getTitle();
 				fgColor = FieldGenerator.getFgColors(i);
 				Color color = new Color(5,81,0);
+				image = FieldGenerator.getBreweryFields(breweryReached).getImage();
 
 				ourFields[i] = FieldGenerator.getBreweryFields(breweryReached);
-				fields[i] = new Brewery.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(color).setFgColor(fgColor).build();
+				fields[i] = new Brewery.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setPicture(image).setBgColor(color).setFgColor(fgColor).build();
 				breweryReached++;
 			}
 
