@@ -154,7 +154,7 @@ public class Stringbanks_Fields {
 	
 	
 	//Fleet information
-	private String field24Name = "Helsingør- <br> Helsingborg";
+	private String field24Name = "Helsingør-Helsingborg";
 	private String field24Description = "Pris: Kr. 4.000 <br> Leje af grund: Kr. 500 <br>"
 			+ "Hvis 2 rederier ejes: Kr. 1.000<br> Hvis 3 rederier ejes: Kr. 2.000 <br> "
 			+ "Hvis 4 rederier ejes: Kr. 4.000 <br> "
@@ -168,14 +168,14 @@ public class Stringbanks_Fields {
 			+ "Pantsætningsværdi: Kr. 2.000";
 	private String field25subtext = "";
 	
-	private String field26Name = "Gedser- <br> Rostock";
+	private String field26Name = "Gedser-Rostock";
 	private String field26Description = "Pris: Kr. 4.000 <br> Leje af grund: Kr. 500 <br>"
 			+ "Hvis 2 rederier ejes: Kr. 1.000<br> Hvis 3 rederier ejes: Kr. 2.000 <br> "
 			+ "Hvis 4 rederier ejes: Kr. 4.000 <br> "
 			+ "Pantsætningsværdi: Kr. 2.000";
 	private String field26subtext = "";
 	
-	private String field27Name = "Rødby- <br> Puttgarden";
+	private String field27Name = "Rødby-Puttgarden";
 	private String field27Description = "Pris: Kr. 4.000 <br> Leje af grund: Kr. 500 <br>"
 			+ "Hvis 2 rederier ejes: Kr. 1.000<br> Hvis 3 rederier ejes: Kr. 2.000 <br> "
 			+ "Hvis 4 rederier ejes: Kr. 4.000 <br> "

@@ -99,6 +99,7 @@ public class LandOnFieldController {
 			}
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
+			LandOnFieldBoundary.payOwner(rent, f.getOwner().getName());
 		}
 	}
 	
