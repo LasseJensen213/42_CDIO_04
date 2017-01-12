@@ -226,12 +226,12 @@ public class LandOnFieldController {
 			//Here due to a chancecard
 			if(doubleRent) {
 				rent = rent*2;
-				doubleRent = false;
 			}
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
 		}
+		doubleRent = false;
 	}
 
 	/**
