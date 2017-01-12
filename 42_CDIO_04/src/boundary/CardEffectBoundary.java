@@ -75,5 +75,10 @@ public class CardEffectBoundary {
 		GUI.showMessage(Stringbank_Card.getMessages(i));
 	}
 
+	public static void youDraw() {
+		String message = "De trak kortet:";
+		message = String.format(message);
+		GUI.showMessage(message);
+	}
 
 }
