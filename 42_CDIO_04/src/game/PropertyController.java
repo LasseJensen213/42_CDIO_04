@@ -543,7 +543,8 @@ public class PropertyController {
 			for(int inner = 0; inner<series[outer].length;inner++)
 			{
 				if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
-					result = addToArray(result, series[outer][inner]);
+					if(!series[outer][inner].isPawned())
+						result = addToArray(result, series[outer][inner]);
 			}
 
 		}
