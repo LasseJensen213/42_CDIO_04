@@ -7,7 +7,7 @@ import stringbanks.Stringbank_Card;
 
 public class CardEffectBoundary {
 
-	private static int sleep = 0; //Number of ms the system sleeps 400 ms is normal.
+	private static int sleep = 100; //Number of ms the system sleeps 400 ms is normal.
 
 
 	/**
@@ -46,10 +46,7 @@ public class CardEffectBoundary {
 				{
 
 					GUI.removeCar(playerPos+1, name);
-					playerPos =(playerPos-1)%40;
-					if(playerPos == -1) {
-						playerPos = 39;
-					}
+					playerPos =((playerPos-1)%40)+40;
 					GUI.setCar(playerPos+1, name);
 					try {
 						TimeUnit.MILLISECONDS.sleep(sleep);
