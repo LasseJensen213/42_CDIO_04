@@ -4,6 +4,7 @@ import board.Board;
 import boundary.CardEffectBoundary;
 import desktop_resources.GUI;
 import field.Fleet;
+import field.ParkingLot;
 import player.Player;
 
 public class CardEffect {
@@ -141,25 +142,30 @@ public class CardEffect {
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(22)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(30))){
 			player.getAccount().withdraw(1000);
+			ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+1000);
 		}
 
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(23))||
 				card.equals(Cardgenerator.getCardDeckGenerator(27)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(29))){
 			player.getAccount().withdraw(200);
+			ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+200);
 		}
 
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(24))){
 			player.getAccount().withdraw(300);
+			ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+300);
 		}
 
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(25)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(26))){
 			player.getAccount().withdraw(3000);
+			ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+3000);
 		}
 
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(28))){
 			player.getAccount().withdraw(2000);
+			ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+2000);
 		}
 		//Dyr ejendomsskat
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(31))) {
@@ -174,6 +180,7 @@ public class CardEffect {
 			}
 			int rent = 800*houses+2300*hotels;
 			player.getAccount().withdraw(rent);
+			ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+rent);
 				
 		}
 		//Billig ejendomsskat
@@ -189,6 +196,7 @@ public class CardEffect {
 			}
 			int rent = 500*houses+2000*hotels;
 			player.getAccount().withdraw(rent);
+			ParkingLot.setTaxMoney(ParkingLot.getTaxMoney()+rent);
 		}
 		//Matador legat
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(6))) {
