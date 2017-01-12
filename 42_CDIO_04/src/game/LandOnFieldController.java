@@ -226,11 +226,9 @@ public class LandOnFieldController {
 	public void landOnGoToJail(Player player, GoToJail f){
 		player.setEqualFaceValue(0);
 		LandOnFieldBoundary.displayMessage(2);
-		GUI.removeCar(player.getPlayerPos(), player.getName());
 		LandOnFieldBoundary.moveToJail(player.getName(), player.getPlayerPos());
 		player.setPlayerPos(10);
 		player.setJailed(true);
-		GUI.setCar(10, player.getName());
 
 	}
 	

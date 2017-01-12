@@ -76,8 +76,9 @@ public class CardEffect {
 			for(int i = 0; i<40;i++)
 			{
 				pos = (pos+1)%40;
-				if(board.getField(pos) instanceof Fleet){
-					int distance = (40-pos+player.getPlayerPos()%40);
+				if(board.getField(pos) instanceof Fleet)
+				{
+					int distance = pos-player.getPlayerPos();
 					CardEffectBoundary.moveFigure(player.getName(), player.getPlayerPos(), distance);
 					break;
 				}
