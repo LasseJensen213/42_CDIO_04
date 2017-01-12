@@ -35,31 +35,11 @@ public class FieldGenerator {
 	private static Chance[] chanceFields;
 	private static GoToJail goToJailField;
 
+
 	public FieldGenerator() {
-		territoryFields = new Territory[22];
-		breweryFields = new Brewery[2];
-		fleetFields = new Fleet[4];
-		parkingLotField = new ParkingLot("","","",0);
-		jailField = new Jail("","","",0);
-		startField = new Start("","","",0);
-		taxFields = new Tax[2];
-		chanceFields = new Chance[6];
-		goToJailField = new GoToJail("","","",0);
-
-		FieldGenerator.initBreweryFields();
-		FieldGenerator.initChance();
-		FieldGenerator.initFleetFields();
-		FieldGenerator.initGoToJail();
-		FieldGenerator.initJail();
-		FieldGenerator.initParkingLot();
-		FieldGenerator.initStart();
-		FieldGenerator.initTax();
-		FieldGenerator.initTerritoryFields();
-		FieldGenerator.initBgColor();
-		FieldGenerator.initFgColor();
-
-
-	}
+		}
+	
+	
 	//Territory related information.
 	//Rent:
 	private final static int hvidovrevejRent[] = {50,250,750,2250,4000,6000};
@@ -117,7 +97,35 @@ public class FieldGenerator {
 
 
 
+	public static void initFields() {
+		territoryFields = new Territory[22];
+		breweryFields = new Brewery[2];
+		fleetFields = new Fleet[4];
+		parkingLotField = new ParkingLot("","","",0);
+		jailField = new Jail("","","",0);
+		startField = new Start("","","",0);
+		taxFields = new Tax[2];
+		chanceFields = new Chance[6];
+		goToJailField = new GoToJail("","","",0);
 
+		FieldGenerator.initBreweryFields();
+		FieldGenerator.initChance();
+		FieldGenerator.initFleetFields();
+		FieldGenerator.initGoToJail();
+		FieldGenerator.initJail();
+		FieldGenerator.initParkingLot();
+		FieldGenerator.initStart();
+		FieldGenerator.initTax();
+		FieldGenerator.initTerritoryFields();
+		FieldGenerator.initBgColor();
+		FieldGenerator.initFgColor();
+		String what = "asdf";
+		Territory[] field = new Territory[22];
+		for(int i = 0;i<22;i++) {
+			field[i] = getTerritoryFields(i);
+		}
+		System.out.println("Shite");
+	}
 
 
 
@@ -132,20 +140,21 @@ public class FieldGenerator {
 			fgColors[i] = Color.BLACK;
 		}
 	}
-	public static void initTerritoryFields() {
+	public static void initTerritoryFields() {		
 		String desc = "";
 		String subtext = "";
 		String title = "";
 		int pos = 0;
 		int price = 0;
-		int rent[] = new int[6];
+		
 		Color color = Color.BLACK;
 		int seriesMax = 0;
 		int seriesMaxReached = 0;
 		int counter = 0;
 		int housePrice = 0;
-		//(String desc, String subtext, String title, int pos, int price, int rent, int series, Color color) 
 		for(int i = 0;i<territoryFields.length;i++) {
+			int rent[] = new int[6];
+
 			desc = strBank.getTerritoryDescArray(i);
 			subtext = strBank.getTerritorySubtextArray(i);
 			title = strBank.getTerritoryNameArray(i);
@@ -153,6 +162,7 @@ public class FieldGenerator {
 			for(int r = 0;r<6;r++) {
 				rent[r] = territoryRent[i][r];
 			}
+			
 			price = territoryPrice[i];
 			
 			

@@ -12,6 +12,7 @@ import desktop_fields.Start;
 import desktop_fields.Street;
 import desktop_fields.Tax;
 import desktop_resources.GUI;
+import field.Territory;
 
 public class Board {
 	private static Board INSTANCE ; 
@@ -31,8 +32,13 @@ public class Board {
 	}
 	
 	public void generateBoard() {
-		FieldGenerator fg = new FieldGenerator();
+		FieldGenerator.initFields();
+			Territory[] territoryFields = new field.Territory[22];
+		for(int i = 0;i<22;i++) {
+			territoryFields[i] = (Territory) FieldGenerator.getTerritoryFields(i);
 
+		}
+				
 		int territoryReached = 0;
 		int fleetReached = 0;
 		int taxReached = 0;
@@ -64,7 +70,7 @@ public class Board {
 				bgColor = FieldGenerator.getTerritoryFields(territoryReached).getColor();
 
 				ourFields[i] = FieldGenerator.getTerritoryFields(territoryReached);
-				fields[i] = new Street.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setRent("1 hus = ghetto\n 2 huse = 500valuta").setBgColor(bgColor).setFgColor(fgColor).build();
+				fields[i] = new Street.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).build();
 				territoryReached++;
 			}
 			else if(breweryReached<2  && (FieldGenerator.getBreweryFields(breweryReached).getFieldPosition()==i)) {
