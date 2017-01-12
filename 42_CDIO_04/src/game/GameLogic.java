@@ -164,10 +164,7 @@ public class GameLogic {
 		//First loops over the territories, since the houses has to be freed aswell
 		for(int i = 0 ; i<nTer;i++)
 		{
-			player.getProperty().getTerritory(i).
-			freeOwner(player, player.getProperty().getTerritory(i).getFieldPosition());
-
-
+			player.getProperty().getTerritory(i).setOwner(null);
 			gui.removeOwner(player.getProperty().getTerritory(i).getFieldPosition());
 
 			int housesUsed = player.getProperty().getTerritory(i).getHouse();
@@ -203,12 +200,13 @@ public class GameLogic {
 		for(int i = 0;i<distance;i++ )
 		{
 			player.setPlayerPos((player.getPlayerPos()+1)%40);
-			if(player.getPlayerPos()==0)
+			if(player.getPlayerPos()==1)
 			{
 				if(player.isPassedStart())
 				{
 					player.getAccount().deposit(4000);
 					gui.passedStart(player.getName());
+					gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
 				}
 				else
 					player.setPassedStart(true);

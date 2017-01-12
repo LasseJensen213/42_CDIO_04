@@ -22,11 +22,11 @@ public class GameLogicBoundary {
 	{
 		Random rand = new Random();
 		int faceValue1, faceValue2;
-		int x1 = rand.nextInt(4)+4;
-		int y1 = rand.nextInt(4)+4;
+		int x1 = rand.nextInt(4)+1; //rand.nextInt(4)+4;
+		int y1 = rand.nextInt(6)+2; //rand.nextInt(4)+4;
 		//Second dice's position is relative to the first
-		int x2 = x1+rand.nextInt(5)-2;
-		int y2 = y1+rand.nextInt(5)-2;
+		int x2 = rand.nextInt(4)+1;
+		int y2 = rand.nextInt(6)+2;
 
 		if(x1==x2 && y1 == y2)
 		{

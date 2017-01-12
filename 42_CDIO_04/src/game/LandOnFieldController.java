@@ -1,6 +1,7 @@
 package game;
 
 import board.Board;
+import boundary.CardEffectBoundary;
 import boundary.LandOnFieldBoundary;
 import card.Bail;
 import card.Card;
@@ -38,6 +39,7 @@ public class LandOnFieldController {
 	 */
 	public void landOnField(Player player){
 		field.Field f = b.getField(player.getPlayerPos());
+		LandOnFieldBoundary.youLandOn(f.getTitle());
 
 		if(f instanceof Territory){
 			landOnTerritory(player,(Territory)f);
@@ -161,6 +163,7 @@ public class LandOnFieldController {
 		else {
 			int fleetsOwned = f.getOwner().getProperty().nFleetsOwned();
 			int rent = 500*(int)Math.pow(2, fleetsOwned-1);
+			//Here due to a chancecard
 			if(doubleRent) {
 				rent = rent*2;
 				doubleRent = false;
@@ -180,6 +183,7 @@ public class LandOnFieldController {
 		int rent = 0;
 		if(f.getPercentange() == 0){
 			rent = f.getTax();
+			LandOnFieldBoundary.payTax(rent);
 			player.getAccount().withdraw(rent);
 
 		}
@@ -204,6 +208,7 @@ public class LandOnFieldController {
 	 * @param player
 	 */
 	public void landOnParkingLot(Player player){
+		LandOnFieldBoundary.parkingLotMoney(ParkingLot.getTaxMoney());
 		player.getAccount().deposit(ParkingLot.getTaxMoney());
 		ParkingLot.setTaxMoney(0);
 	}
@@ -225,11 +230,9 @@ public class LandOnFieldController {
 	public void landOnGoToJail(Player player, GoToJail f){
 		player.setEqualFaceValue(0);
 		LandOnFieldBoundary.displayMessage(2);
-		GUI.removeCar(player.getPlayerPos(), player.getName());
 		LandOnFieldBoundary.moveToJail(player.getName(), player.getPlayerPos());
 		player.setPlayerPos(10);
 		player.setJailed(true);
-		GUI.setCar(10, player.getName());
 
 	}
 	
@@ -239,7 +242,7 @@ public class LandOnFieldController {
 	 * @param f
 	 */
 	public void landOnStart(Player player, Start f){
-		LandOnFieldBoundary.displayMessage(1);
+//		LandOnFieldBoundary.displayMessage(1);
 	}
 	
 	/**
@@ -255,9 +258,11 @@ public class LandOnFieldController {
 			//cE.cardEffectBail(player, (Card)card);
 		}
 		else if(card instanceof GoToJailCard) {
+			CardEffectBoundary.youDraw();
 			cE.cardEffectGoToJail(player, (GoToJailCard)card);
 		}
 		else if(card instanceof MovePlayer) {
+			CardEffectBoundary.youDraw();
 			int posBefore = player.getPlayerPos();
 			cE.cardEffectMovePlayer(player, (MovePlayer)card);
 			this.doubleRent = cE.isDoubleRent();
@@ -267,6 +272,7 @@ public class LandOnFieldController {
 			
 		}
 		else if(card instanceof TransferMoney) {
+			CardEffectBoundary.youDraw();
 			cE.cardEffectTransferMoney(player, (TransferMoney)card);
 		}
 		

@@ -46,10 +46,12 @@ public class CardEffectBoundary {
 				{
 
 					GUI.removeCar(playerPos+1, name);
-					playerPos =(playerPos-1)%40;
-					if(playerPos == -1) {
-						playerPos = 39;
-					}
+				if(playerPos == 0){
+					playerPos =((playerPos-1)%40)+40;
+				}
+				else{
+					playerPos =((playerPos-1)%40);
+				}
 					GUI.setCar(playerPos+1, name);
 					try {
 						TimeUnit.MILLISECONDS.sleep(sleep);
@@ -73,5 +75,10 @@ public class CardEffectBoundary {
 		GUI.showMessage(Stringbank_Card.getMessages(i));
 	}
 
+	public static void youDraw() {
+		String message = "De trak kortet:";
+		message = String.format(message);
+		GUI.showMessage(message);
+	}
 
 }

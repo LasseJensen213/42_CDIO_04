@@ -24,10 +24,13 @@ public class CardEffect {
 	
 
 	public void cardEffectGoToJail(Player player, GoToJailCard card){
+		int before = player.getPlayerPos();
 		if(card.equals(Cardgenerator.getCardDeckGenerator(4)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(5))){
 			player.setPlayerPos(10);
 			player.setJailed(true);
+			int distance = (40-before+player.getPlayerPos())%40;
+			CardEffectBoundary.moveFigure(player.getName(), before, distance);
 		}
 		
 	}
@@ -57,7 +60,7 @@ public class CardEffect {
 
 		else if( card.equals(Cardgenerator.getCardDeckGenerator(37)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(38))){
-			player.setPlayerPos(player.getPlayerPos()+37);
+			player.setPlayerPos((player.getPlayerPos()+37)%40);
 		}
 
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(39))){
@@ -77,9 +80,10 @@ public class CardEffect {
 			for(int i = 0; i<40;i++)
 			{
 				pos = (pos+1)%40;
-				if(board.getField(pos) instanceof Fleet){
-					int distance = (40-pos+player.getPlayerPos()%40);
-					CardEffectBoundary.moveFigure(player.getName(), player.getPlayerPos(), distance);
+				if(board.getField(pos) instanceof Fleet)
+				{
+					int distance = pos-player.getPlayerPos();
+					player.setPlayerPos(pos);
 					break;
 				}
 			}
@@ -91,7 +95,7 @@ public class CardEffect {
 		}
 
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(44))){
-			player.setPlayerPos(player.getPlayerPos()+3);
+			player.setPlayerPos((player.getPlayerPos()+3)%40);
 		}
 		if(before > player.getPlayerPos()) {
 			player.getAccount().deposit(4000);

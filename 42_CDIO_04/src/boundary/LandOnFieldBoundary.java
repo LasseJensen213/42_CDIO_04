@@ -54,7 +54,19 @@ public class LandOnFieldBoundary {
 		message = String.format(message, rent, name);
 		GUI.showMessage(message);
 	}
-		
+	
+	public static void youLandOn(String name) {
+		String message = "De landede på %s";
+		message = String.format(message, name);
+		GUI.showMessage(message);
+	}
+	
+	public static void parkingLotMoney(int money) {
+		String message = "De tager pengene på Parkeringspladsen. Modtag %d";
+		message = String.format(message, money);
+		GUI.showMessage(message);
+	}
+	
 	/**
 	 * Displays a message, when a player lands on a field. <br>
 	 * 0 : landOnJail  <br> 
@@ -75,6 +87,7 @@ public class LandOnFieldBoundary {
 	}
 	
 	public static void displayCard(String txt) {
+		GUI.setChanceCard(txt);
 		GUI.displayChanceCard(txt);
 	}
 }
