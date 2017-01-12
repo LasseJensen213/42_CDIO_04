@@ -17,7 +17,7 @@ public class Stringbank_Card {
 			+ " Hvis selskabet ikke ejes af nogen, kan de købe det af banken";
 	private static String bailout = "I anledning af konges fødselsdag benådes "
 			+ "De herved for fængsel. Dette kort kan opbevares, indtil"
-			+ " De får brug for det, eller de kan sælge det.";
+			+ " De får brug for det.";
 	private static String jailed = "Gå i fængsel. Ryk direkte til fængslet."
 			+ " Selv om De passerer \"START\", indkassérer De ikke kr. 4.000.";
 	private static String matadorlegat = "De modtager \"Matador-legatet for værdigt trængende\""
