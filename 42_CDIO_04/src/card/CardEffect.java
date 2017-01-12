@@ -2,7 +2,6 @@ package card;
 
 import board.Board;
 import boundary.CardEffectBoundary;
-import desktop_resources.GUI;
 import field.Fleet;
 import field.ParkingLot;
 import player.Player;
@@ -19,8 +18,9 @@ public class CardEffect {
 		board = Board.Board();
 	}
 
-	public void cardEffectBail(Player player, Card card){
+	public void cardEffectBail(Player player, Bail card){
 		player.getProperty().addCard(card);
+		card.setInUse(true);
 	}
 
 

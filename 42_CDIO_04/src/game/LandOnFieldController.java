@@ -7,7 +7,6 @@ import card.Bail;
 import card.Card;
 import card.CardDeck;
 import card.CardEffect;
-import card.Cardgenerator;
 import card.GoToJailCard;
 import card.MovePlayer;
 import card.TransferMoney;
@@ -319,7 +318,7 @@ public class LandOnFieldController {
 		card = cardDeck.draw();
 		LandOnFieldBoundary.displayCard(card.getDescription());
 		if(card instanceof Bail) {
-			//cE.cardEffectBail(player, (Card)card);
+			cE.cardEffectBail(player, (Bail)card);
 		}
 		else if(card instanceof GoToJailCard) {
 			CardEffectBoundary.youDraw();
