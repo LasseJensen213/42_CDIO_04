@@ -6,6 +6,7 @@ import desktop_resources.GUI;
 import field.Fleet;
 import field.ParkingLot;
 import player.Player;
+import player.PlayerList;
 
 public class CardEffect {
 	private boolean doubleRent;
@@ -33,7 +34,7 @@ public class CardEffect {
 			int distance = (40-before+player.getPlayerPos())%40;
 			if(before-player.getPlayerPos()<0) {
 				distance = -before+player.getPlayerPos();
-				
+
 			}
 			CardEffectBoundary.moveFigure(player.getName(), before, distance);
 		}
@@ -118,7 +119,7 @@ public class CardEffect {
 				}
 			}
 		}
-		
+
 		//Move to "frederikberggade"
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(43))){
 			player.setPlayerPos(37);
@@ -134,8 +135,8 @@ public class CardEffect {
 
 		if(!(card.equals(Cardgenerator.getCardDeckGenerator(37)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(38)))){
-		distance = (40-before+player.getPlayerPos())%40;
-		CardEffectBoundary.moveFigure(player.getName(), before, distance);
+			distance = (40-before+player.getPlayerPos())%40;
+			CardEffectBoundary.moveFigure(player.getName(), before, distance);
 		}
 	}
 
@@ -240,7 +241,43 @@ public class CardEffect {
 			else
 				CardEffectBoundary.showMessage(1);
 		}
+
+		//Receive money for other players (kr. 500)
+		else if(card.equals(Cardgenerator.getCardDeckGenerator(7)) ||
+				card.equals(Cardgenerator.getCardDeckGenerator(8))) {
+			for(int i = 0; i < PlayerList.getPL().getNPlayers(); i++ ){
+				if(PlayerList.getPL().checkIfBroke(i) == true){
+					continue;
+				}
+				else if(PlayerList.getPL().get(i) == player){
+					continue;
+				}
+				else{
+					PlayerList.getPL().get(i).getAccount().transfer(500, player.getAccount());
+				}
+			}
+
+
+		}
+		//Receive money for other players (kr. 200)
+		else if(card.equals(Cardgenerator.getCardDeckGenerator(9)) ||
+				card.equals(Cardgenerator.getCardDeckGenerator(10))) {
+			for(int i = 0; i < PlayerList.getPL().getNPlayers(); i++ ){
+				if(PlayerList.getPL().checkIfBroke(i) == true){
+					continue;
+				}
+				else if(PlayerList.getPL().get(i) == player){
+					continue;
+				}
+				else{
+					PlayerList.getPL().get(i).getAccount().transfer(200, player.getAccount());
+				}
+			}
+			
+			
+		}
 	}
+
 
 
 	public boolean isDoubleRent() {
