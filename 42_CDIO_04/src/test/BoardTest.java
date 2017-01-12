@@ -1,5 +1,7 @@
 package test;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,6 +37,7 @@ public class BoardTest {
 		field.Field[] fields = b.getOurFields();
 		
 		for(int i = 0;i<fields.length;i++) {
+
 			if(i == FieldGenerator.getStartField().getFieldPosition()) {
 				if(fields[i] == FieldGenerator.getStartField()) {
 					correct++;
@@ -85,6 +88,7 @@ public class BoardTest {
 				}
 				else 
 					System.out.println("fejl fleet" + fields[i].getTitle());
+				fleetReached++;
 			}
 			else if(i == FieldGenerator.getJailField().getFieldPosition()) {
 				if(fields[i] == FieldGenerator.getJailField()) {
@@ -111,8 +115,7 @@ public class BoardTest {
 
 
 		}
-		
-		
+		assertEquals(40,correct);
 		
 	}
 

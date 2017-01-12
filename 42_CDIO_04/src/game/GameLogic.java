@@ -82,6 +82,7 @@ public class GameLogic {
 			}
 		}
 		else if(player.isBroke()) {
+			//message "player is broke"
 			gui.playerIsBroke(player.getName());
 			playerIsBroke(player);
 		}

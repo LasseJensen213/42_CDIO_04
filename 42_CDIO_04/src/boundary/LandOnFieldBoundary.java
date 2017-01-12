@@ -67,8 +67,11 @@ public class LandOnFieldBoundary {
 	 */
 	public static void displayMessage(int number) {
 		Stringbanks_LandOnFieldBoundary s = new Stringbanks_LandOnFieldBoundary();
-		
-		GUI.showMessage(s.getMessages(number));
+		if(number==3) {
+			GUI.getUserButtonPressed(s.getMessages(number), "Træk");
+		}
+		else
+			GUI.showMessage(s.getMessages(number));
 	}
 	
 	public static void displayCard(String txt) {

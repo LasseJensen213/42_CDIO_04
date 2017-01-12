@@ -90,7 +90,7 @@ public class FieldGenerator {
 	
 	private final static int territoryPrice[] = {1200,1200,2000,2000,2400,2800,2800,3200,3600,3600,4000,4400,4400,4800,5200,5200,5600,6000,6000,6400,7000,8000};
 	private final static int territoryRent[][] = {hvidovrevejRent,rødovrevejRent,roskildevejRent,valbyLanggadeRent,allégadeRent,frederiksbergAlléRent
-			,bülowsvejRent,glKongevejRent,bernstoffsvejRent,hellerupvejRent,hellerupvejRent,strandvejenRent,trianglenRent,østerbrogadeRent
+			,bülowsvejRent,glKongevejRent,bernstoffsvejRent,hellerupvejRent,strandvejenRent,trianglenRent,østerbrogadeRent
 			,grønningenRent,kgsNytorvRent,bredgadeRent,østergadeRent,vimmelskaftetRent,amagertorvRent,nygadeRent,frederiksberggadeRent,rådhuspladsenRent};
 	private final static int territoryPlace[] = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
 	private final static int territorySeriesMax[] = {2,3,3,3,3,3,3,2};
