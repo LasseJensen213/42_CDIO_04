@@ -139,7 +139,7 @@ public class Stringbanks_Fields {
 			+ "<br> Pantsætningsværdi: Kr. 3.200 <br> Hvert hus koster: Kr. 4.000";
 	private String field21subtext = "";
 	
-	private String field22Name = "Frederiksbe- rggade";
+	private String field22Name = "Frederiksberggade";
 	private String field22Description = "Leje af grund: Kr. 700 <br> m/1 hus: 3.500"
 			+ "<br> m/2 huse: Kr. 10.000 <br> m/3 huse: Kr. 22.000 <br> m/4 huse: Kr. 26.000 <br> m/ hotel: Kr. 30.000"
 			+ "<br> Pantsætningsværdi: Kr. 3.500 <br> Hvert hus koster: Kr. 4.000";

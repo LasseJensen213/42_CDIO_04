@@ -33,11 +33,7 @@ public class Board {
 	
 	public void generateBoard() {
 		FieldGenerator.initFields();
-			Territory[] territoryFields = new field.Territory[22];
-		for(int i = 0;i<22;i++) {
-			territoryFields[i] = (Territory) FieldGenerator.getTerritoryFields(i);
 
-		}
 				
 		int territoryReached = 0;
 		int fleetReached = 0;
