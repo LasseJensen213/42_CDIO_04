@@ -126,7 +126,7 @@ public class LandOnFieldController {
 			LandOnFieldBoundary.displayMessage(4);
 		}
 		else {
-			int rent = player.getTotalFaceValue()*f.getRent()*100;
+			int rent = player.getTotalFaceValue()*100;
 			
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
