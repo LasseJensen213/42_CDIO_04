@@ -207,13 +207,13 @@ public class Stringbanks_Fields {
 	//Brewery information
 	private String field32Name = "Tuborg-Squash";
 	private String field32Description = "Pris: Kr. 3.000 <br> Ejes 1 virksomhed betales 100 gange øjenværdi. <br>"
-			+ "Ejes begge virksomheder betales 200 gange øjenværdi"
+			+ "Ejes begge virksomheder betales 200 gange øjenværdi."
 			+ "<br> Pantsætningsværdi: Kr. 1.500";
 	private String field32subtext = "";
 	
 	private String field33Name = "Coca-Cola";
 	private String field33Description = "Pris: Kr. 3.000 <br> Ejes 1 virksomhed betales 100 gange øjenværdi. <br>"
-			+ "Ejes begge virksomheder betales 200 gange øjenværdi"
+			+ "Ejes begge virksomheder betales 200 gange øjenværdi."
 			+ "<br> Pantsætningsværdi: Kr. 1.500";
 	private String field33subtext = "";
 	
