@@ -35,6 +35,12 @@ public class LandOnFieldBoundary {
 		GUI.showMessage(message);
 	}
 	
+	public static void payOwner(int rent, String name) {
+		String message = "De skal betale %d i leje til %s";
+		message = String.format(message, rent, name);
+		GUI.showMessage(message);
+	}
+		
 	/**
 	 * Displays a message, when a player lands on a field. <br>
 	 * 0 : landOnJail  <br> 
