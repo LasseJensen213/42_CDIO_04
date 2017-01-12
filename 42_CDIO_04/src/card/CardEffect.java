@@ -13,10 +13,13 @@ public class CardEffect {
 	}
 
 	public void cardEffectGoToJail(Player player, GoToJailCard card){
+		int before = player.getPlayerPos();
 		if(card.equals(Cardgenerator.getCardDeckGenerator(4)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(5))){
 			player.setPlayerPos(10);
 			player.setJailed(true);
+			int distance = (40-before+player.getPlayerPos())%40;
+			CardEffectBoundary.moveFigure(player.getName(), before, distance);
 		}
 		
 	}
