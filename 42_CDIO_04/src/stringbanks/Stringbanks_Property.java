@@ -33,6 +33,12 @@ public class Stringbanks_Property {
 	private static String confirmYes = "Ja";
 	private static String confirmNo = "Nej";
 	
+	private static String wantsMoney = "Hvor mange penge vil De have oveni?";
+	private static String payekstra = "Hvor mange penge vil De betale oveni?";
+	private static String pay = "Betale penge";
+	private static String receive = "Modtage penge";
+	private static String justTrade = "Ingen af overstående - Handlen går lige over!";
+	
 	private static String[] strings = {mainPropertyMenuMsg, whereToBuyHouses, 
 									  whereToUpgradeHotel,chooseWhatToTradeWith,
 									  chooseWhoToTradeWith,goBack,pass, confirmTradeMsg, 
@@ -40,7 +46,7 @@ public class Stringbanks_Property {
 									  buyHotelOption,tradeOption,chooseWhatToSell, choosePawnOptionsForField,
 									  pawnOption, sellHotelOption,sellHouseOption, sellOrPawnOption, 
 									  pawnedDescription, dePawnOption,pawnIdentifier,surrender,confirmMsg,
-									  confirmYes,confirmNo};
+									  confirmYes,confirmNo,wantsMoney,payekstra, pay, receive, justTrade};
 		
 	/**
 	 * 0 = mainPropertMenuMsg<br>
@@ -70,6 +76,11 @@ public class Stringbanks_Property {
 	 * 24 = confirmMsg <br>
 	 * 25 = confirmYes <br>
 	 * 26 = confirmNo <br>
+	 * 27 = wantsMoney <br>
+	 * 28 = payekstra <br>
+	 * 29 = pay <br>
+	 * 30 = receive <br>
+	 * 31 = justTrade <br>
 	 * @param i 
 	 * @return
 	 */

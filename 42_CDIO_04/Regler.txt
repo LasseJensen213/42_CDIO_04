@@ -1,5 +1,9 @@
+________________
+|Matador Regler|
 
+______________________________________________________________________________________________
 Kort oversigt over spillet.
+
 Formålet med spillet er at købe, udleje eller sælge ejendomme så fordelagtigt, at man
 bliver den rigeste spiller og eventuelt eneste matador.
 Man begynder ved Start og flytter brikkerne venstre om ifølge terningekast. Når en
@@ -9,8 +13,6 @@ Lejesummen forøges betydeligt ved opførelse af huse og hoteller.
 For at skaffe flere penge kan man pantsætte grunde til banken.
 Felterne "Prøv lykken" giver ret til at trække et kort, hvis ordre derefter må følges.
 Somme tider kommer en spiller i fængsel.
-Spillet er fuldt af spekulation og spænding, og auktionsholderen kan ofte bidrage til
-at forøge denne.
 
 ______________________________________________________________________________________________
 REGLER
@@ -18,7 +20,9 @@ REGLER
 Matador kan spilles af 3 til 6 personer, der hver får 30.000,- kr.
 Banken beholder resten af pengene samt skøderne og de 32 grønne huse og 12 røde
 hoteller, gennem banken foregår alle spillets ud- og indbetalinger undtagen leje, der
-betales til ejeren, og handel med skøder og løsladelseskort blandt spillerne indbyrdes.
+betales til ejeren, og handel med skøder blandt spillerne indbyrdes.
+Derudover bliver alle skatte/afgivte overført til parkeringsfeltet, hvor en heldig spiller kan lande,
+og tage beløb som ligger.
 
 ______________________________________________________________________________________________
 Spillet.
@@ -27,12 +31,11 @@ Første spiller kaster de to terninger og flytter sin
 brik så mange felter frem, som øjnene viser.
 Når spilleren har benyttet retten, eller opfyldt pligten, som feltet angiver, går turen
 videre til næste spiller. 
-Hver gang man kommer til, eller passerer "Start", modtager man 4.000 kr. fra banken.
+Hver gang man passerer "Start", modtager man 4.000 kr. fra banken.
 Standser man på et felt "Prøv lykken", får man et lykkekort og retter sig efter ordren på dette.
 Standser man efter et terningekast eller ifølge ordren på et af lykkekortene på en
 grund eller en virksomhed, der ikke ejes af nogen, kan man købe denne af banken for
-den pris, der står på feltet, og man får udleveret skødet, der lægges med forsiden
-opad. Efter de takster, der står på skødet, kan man nu kræve leje af de spillere, der
+den pris, der står på feltet. Efter de takster, der står på skødet, kan man nu kræve leje af de spillere, der
 standser på ens grund.
 Standser man på feltet "De sættes i fængsel", skal man gå direkte i fængsel og får
 altså ikke 4.000 kroner, selv om man passerer "Start". Standser man i fængsel, er
@@ -51,40 +54,36 @@ Ekstra kast.
 Får man, hvis man kaster 2 af samme slags (f. eks. 2 femmere), og man retter sig
 både efter forskrifterne for det felt, man kommer til efter første kast, og efter
 ekstrakastet.
-Kaster man 3 gange i træk 2 af samme slags, må man ikke flytte tredie gang, men skal
+Kaster man 3 gange i træk 2 af samme slags, må man ikke flytte tredje gang, men skal
 gå direkte i fængsel.
 
 ______________________________________________________________________________________________
 Parkering.
 
 Parkeringsfeltet er et fristed til man skal kaste igen. 
-Alle penge som betales i skat, fra kort og skattefelterne, kommer og på pakeringsfeltet, og lander en spiller der, får han de penge som der er.
+Alle penge som betales i skat/afgift, fra kort og skattefelterne, kommer over på pakeringsfeltet.
+En spiller som lander på feltet, kan frit tage pengebeløbet.
 
 ______________________________________________________________________________________________
 Fængsel.
 
 Ud af fængsel kommer man:
-1) Ved at betale en bøde på 1.000 kroner, inden man kaster.
+1) Ved at betale en bøde på 1.000 kroner, og man har derefter en normal tur runden efter.
 2) Ved at benytte et af løsladelseskortene fra lykkekortene.
 3)Ved at kaste 2 af samme slags; man flytter da straks det antal pladser, øjnene 
 viser, og har alligevel ekstrakast.
 Man kan ikke blive i fængsel mere end tre omgange. Får man ikke to af samme slags,
-når man kaster tredie gang, må man betale bøden, 1.000 kroner, og flytte, som øjnene
+når man kaster tredje gang, må man betale bøden, 1.000 kroner, og flytte, som øjnene
 viser.
-Den fængslede har ret til at købe grunde osv.
-Indbyrdes handel med ubebyggede grunde etc. er spillerne tilladt til den pris, de kan
-blive enige om. Banken til den pris, der står på skødeme.
-N.B.! Har man bygget, skal man sælge bygningerne tilbage til banken, inden man kan
-afhænde nogen grund i den pågældende gruppe.
 
 ______________________________________________________________________________________________
 Pantsætning.
 
 På en pantsat ejendom kan der ikke kræves leje.
 Man kan kun pantsætte sine ubebyggede grunde etc. til banken for det beløb, der
-står påtrykt bagsiden af skøderne. Har man bygninger på grundene, skal man først
-sælge disse til banken.
-Spilleren beholder, skødekortene, men vender bagsiden opad. 
+står på skøderne. Har man bygninger på grundene, skal man først
+sælge disse til banken (til halv pris).
+Spilleren beholder skøderne, men det bliver markeret "pantsat" . 
 Ejer man alle grundene i samme farve, får man dobbelt leje af de ubebyggede grunde
 og har ret til når som helst at bygge huse, der købes hos banken.
 
@@ -97,8 +96,7 @@ Når man køber et hotel, afleverer man de fire huse til banken.
 Prisen for et hotel er fem gange prisen for et hus.
 Banken skal, når som helst man ønsker det, tage bygningerne tilbage til halv pris.
 Har banken ingen bygninger, når man vil købe, må man vente, til der kommer nogle
-tilbage. Er der flere, der vil købe, og banken ikke har nok bygninger, sætter den dem,
-der er, til auktion.
+tilbage.
 Der skal bygges jævnt dvs. det første hus kan man opføre på hvilken grund i gruppen,
 man ønsker; men inden hus nr. 2 opføres på en grund, skal der være bygget et på
 hver af de andre grunde i gruppen osv.
