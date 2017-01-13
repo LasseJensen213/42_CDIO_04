@@ -284,6 +284,8 @@ public class PropertyController {
 		{
 			Player[] players = validPlayersToTradeWith(player);
 			String[] options = new String[0];
+			int tradeAmount;
+			boolean tradeOption = true;
 			for(int i = 0; i<players.length;i++)
 			{
 				options = addToArray(options,players[i].getName());
@@ -304,6 +306,17 @@ public class PropertyController {
 					//the player has chosen to go back in the menu
 					if(yourField!=null){
 						Ownable otherPlayersField = chooseAssetForTrade(players[i]);
+						String amountOption = PropertyBoundary.tradeAmountOption();
+								if(amountOption.equals(Stringbanks_Property.get(26))){
+									tradeAmount = 0;
+								}
+								else if(amountOption.equals(Stringbanks_Property.get(30))){
+									tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(27));
+								}
+								else{
+									tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(29));
+									tradeOption = false;
+								}
 						if(otherPlayersField!=null)
 						{
 							if(gui.confirmTrade(players[i].getName(),otherPlayersField.getTitle(),yourField.getTitle()))
@@ -316,6 +329,14 @@ public class PropertyController {
 								players[i].getProperty().removeField(otherPlayersField);
 								players[i].getProperty().addField(yourField);
 								gui.setOwner(players[i].getName(), yourField.getFieldPosition());
+								if(tradeOption == true){
+								players[i].getAccount().transfer(tradeAmount, player.getAccount());
+								}
+								if(tradeOption == false){
+									player.getAccount().transfer(tradeAmount, players[i].getAccount());
+								}
+								gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
+								gui.updatePlayerBalance(players[i].getName(), players[i].getAccount().getBalance());
 								if(yourField.isPawned())
 									gui.pawnField(yourField.getFieldPosition());
 								if(otherPlayersField.isPawned())
