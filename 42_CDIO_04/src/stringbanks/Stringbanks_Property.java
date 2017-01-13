@@ -3,8 +3,8 @@ package stringbanks;
 public class Stringbanks_Property {
 
 	private static String mainPropertyMenuMsg = "%s: Vælg mellem at bygge huse/hoteller, bytte grunde, pantsætte grunde, eller sælge huse og hoteller";
-	private static String whereToBuyHouses = "Vælg hvor du vil bygge huse";
-	private static String whereToUpgradeHotel = "Vælg hvor du vil bygge hotel";
+	private static String whereToBuyHouses = "Vælg hvor du vil bygge huse (Hold musen over feltet, for at se prisen)";
+	private static String whereToUpgradeHotel = "Vælg hvor du vil bygge hotel (Prisen er den samme som hus-prisen + 4 huse)";
 	private static String chooseWhatToTradeWith = "Vælg en af %s's grunde";
 	private static String chooseWhoToTradeWith = "Hvem vil du bytte med?"; 
 	private static String goBack = "Tilbage";
