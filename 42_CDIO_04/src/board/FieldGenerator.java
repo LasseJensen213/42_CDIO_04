@@ -80,7 +80,7 @@ public class FieldGenerator {
 	private final static int breweryPrice[] = {3000,3000};
 	private final static int breweryBaseRent[] = {100,100};
 	private final static int breweryPlace[] = {12,28};
-	private final static String breweryPic[] = {"src/Images/TuborgSquash.png","src/Images/CocaCola.jpg"};
+	private final static String breweryPic[] = {"TuborgSquash.png","CocaCola.jpg"};
 
 	//Fleet related information.
 	private final static int fleetPrice[] = {4000,4000,4000,4000};

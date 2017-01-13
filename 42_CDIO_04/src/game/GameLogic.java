@@ -2,9 +2,11 @@ package game;
 
 import java.util.ArrayList;
 
+import board.FieldGenerator;
 import boundary.GameLogicBoundary;
 import desktop_resources.GUI;
 import dice.DiceCup;
+import field.ParkingLot;
 import game.LandOnFieldController;
 import player.Player;
 import stringbanks.Stringbanks_GameLogic;
@@ -68,6 +70,8 @@ public class GameLogic {
 				updatePlayerPos(player,d1+d2);
 				landOn.landOnField(player);
 				GUI.setBalance(player.getName(), player.getAccount().getBalance());
+				FieldGenerator.getParkingLotField();
+				GUI.setDescriptionText(21, String.format(FieldGenerator.getParkingLotField().getDesc(), ParkingLot.getTaxMoney()));
 			}
 			
 			if(player.getAccount().getBalance()<=0)

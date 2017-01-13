@@ -127,13 +127,13 @@ public class Board {
 
 			}
 			else if(FieldGenerator.getParkingLotField().getFieldPosition()==i) {
-				desc = FieldGenerator.getParkingLotField().getDesc();
+				desc = String.format(FieldGenerator.getParkingLotField().getDesc(), 0);
 				subtext = FieldGenerator.getParkingLotField().getSubtext();
 				title = FieldGenerator.getParkingLotField().getTitle();
 				Color color = new Color(193,255,188);
 
 				ourFields[i] = FieldGenerator.getParkingLotField();
-				fields[i] = new Refuge.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setPicture("src/Images/Redcar.gif").setBgColor(color).setFgColor(fgColor).build();
+				fields[i] = new Refuge.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setPicture("Redcar.gif").setBgColor(color).setFgColor(fgColor).build();
 			}
 			else if(taxReached<2 && (FieldGenerator.getTaxFields(taxReached).getFieldPosition()==i)) {
 				desc = FieldGenerator.getTaxFields(taxReached).getDesc();

@@ -220,7 +220,7 @@ public class Stringbanks_Fields {
 	
 	//Parking Lot information
 	private String field34Name = "Parkering";
-	private String field34Description = "GØR NOGET VED <br> DINE DRØMME!";
+	private String field34Description = "GØR NOGET VED <br> DINE DRØMME! <br> Beløb Kr. %d";
 	private String field34subtext = "Parkering";
 	
 	
