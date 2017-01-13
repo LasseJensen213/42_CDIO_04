@@ -61,8 +61,9 @@ public class PropertyBoundary {
 	}
 
 	public static String tradeAmountOption(){
-		String[] options = {Stringbanks_Property.get(30), Stringbanks_Property.get(29), Stringbanks_Property.get(26)};
-		return GUI.getUserSelection("Vil de modtage eller betale penge i handlen?", options);
+		String[] options = {Stringbanks_Property.get(30), Stringbanks_Property.get(29), Stringbanks_Property.get(31), Stringbanks_Property.get(5)};
+//		return GUI.getUserSelection("Vil de modtage eller betale penge i handlen?", options);
+		return GUI.getUserButtonPressed("Vil de modtage eller betale penge i handlen?", options);
 	}
 
 	public boolean confirmTrade(String opposingPlayer, String otherPlayersField, String yourField)
