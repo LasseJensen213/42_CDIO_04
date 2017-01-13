@@ -38,7 +38,7 @@ public class Stringbank_Card {
 
 
 	//Receive Money card
-	private static String rm1 = "Deres pr�mieobligation er udtrukket. De modtager kr. 1.000 af banken";
+	private static String rm1 = "Deres præmieobligation er udtrukket. De modtager kr. 1.000 af banken";
 	private static String rm2 = "De har vundet i Klasselotteriet. Modtag kr. 500.";
 	private static String rm3 = "De modtager Deres aktieudbytte. Modtag kr. 1.000 af banken.";
 	private static String rm4 = "Modtag udbytte af Deres aktier - kr. 1.000.";
@@ -52,7 +52,7 @@ public class Stringbank_Card {
 
 	//Pay Money Card
 	private static String pm1 = "De har købt 4 nye dæk til Deres vogn. Betal kr. 1.000.";
-	private static String pm2 = "De har fået en parkeringsbøde. Betal kr. 200 i både.";
+	private static String pm2 = "De har fået en parkeringsbøde. Betal kr. 200 i bøde.";
 	private static String pm3 = "Betal for vognvask og smøring kr. 300.";
 	private static String pm4 = "Betal kr. 3.000 for reparation af Deres vogn.";
 	private static String pm5 = "De har været en tur i udlandet og haft for mange cigaretter med hjem. Betal told kr. 200.";
