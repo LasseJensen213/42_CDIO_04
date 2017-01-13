@@ -193,7 +193,7 @@ public class PropertyController {
 	 */
 	public void buyHouse(Player player)
 	{
-		
+
 		while(true)
 		{	
 			String options[] = new String[0];
@@ -306,19 +306,23 @@ public class PropertyController {
 					//the player has chosen to go back in the menu
 					if(yourField!=null){
 						Ownable otherPlayersField = chooseAssetForTrade(players[i]);
-						String amountOption = PropertyBoundary.tradeAmountOption();
-								if(amountOption.equals(Stringbanks_Property.get(26))){
-									tradeAmount = 0;
-								}
-								else if(amountOption.equals(Stringbanks_Property.get(30))){
-									tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(27), 0, players[i].getAccount().getBalance());
-								}
-								else{
-									tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(29), 0, player.getAccount().getBalance());
-									tradeOption = false;
-								}
 						if(otherPlayersField!=null)
 						{
+							String amountOption = PropertyBoundary.tradeAmountOption();
+							if(amountOption.equals(Stringbanks_Property.get(5))){
+								break;
+							}
+
+							else if(amountOption.equals(Stringbanks_Property.get(26))){
+								tradeAmount = 0;
+							}
+							else if(amountOption.equals(Stringbanks_Property.get(30))){
+								tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(27), 0, players[i].getAccount().getBalance());
+							}
+							else{
+								tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(28), 0, player.getAccount().getBalance());
+								tradeOption = false;
+							}
 							if(gui.confirmTrade(players[i].getName(),otherPlayersField.getTitle(),yourField.getTitle()))
 							{
 								yourField.setOwner(players[i]);
@@ -330,7 +334,7 @@ public class PropertyController {
 								players[i].getProperty().addField(yourField);
 								gui.setOwner(players[i].getName(), yourField.getFieldPosition());
 								if(tradeOption == true){
-								players[i].getAccount().transfer(tradeAmount, player.getAccount());
+									players[i].getAccount().transfer(tradeAmount, player.getAccount());
 								}
 								if(tradeOption == false){
 									player.getAccount().transfer(tradeAmount, players[i].getAccount());

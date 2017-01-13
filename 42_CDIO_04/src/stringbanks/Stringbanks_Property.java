@@ -37,6 +37,7 @@ public class Stringbanks_Property {
 	private static String payekstra = "Hvor mange penge vil De betale oveni?";
 	private static String pay = "Betale penge";
 	private static String receive = "Modtage penge";
+	private static String justTrade = "Ingen af overstående - Handlen går lige over!";
 	
 	private static String[] strings = {mainPropertyMenuMsg, whereToBuyHouses, 
 									  whereToUpgradeHotel,chooseWhatToTradeWith,
@@ -45,7 +46,7 @@ public class Stringbanks_Property {
 									  buyHotelOption,tradeOption,chooseWhatToSell, choosePawnOptionsForField,
 									  pawnOption, sellHotelOption,sellHouseOption, sellOrPawnOption, 
 									  pawnedDescription, dePawnOption,pawnIdentifier,surrender,confirmMsg,
-									  confirmYes,confirmNo,wantsMoney,payekstra, pay, receive};
+									  confirmYes,confirmNo,wantsMoney,payekstra, pay, receive, justTrade};
 		
 	/**
 	 * 0 = mainPropertMenuMsg<br>
@@ -79,6 +80,7 @@ public class Stringbanks_Property {
 	 * 28 = payekstra <br>
 	 * 29 = pay <br>
 	 * 30 = receive <br>
+	 * 31 = justTrade <br>
 	 * @param i 
 	 * @return
 	 */
