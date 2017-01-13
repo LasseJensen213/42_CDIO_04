@@ -133,7 +133,7 @@ public class Board {
 				Color color = new Color(193,255,188);
 
 				ourFields[i] = FieldGenerator.getParkingLotField();
-				fields[i] = new Refuge.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setPicture("Redcar.gif").setBgColor(color).setFgColor(fgColor).build();
+				fields[i] = new Refuge.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setPicture("src/images/Redcar.gif").setBgColor(color).setFgColor(fgColor).build();
 			}
 			else if(taxReached<2 && (FieldGenerator.getTaxFields(taxReached).getFieldPosition()==i)) {
 				desc = FieldGenerator.getTaxFields(taxReached).getDesc();
