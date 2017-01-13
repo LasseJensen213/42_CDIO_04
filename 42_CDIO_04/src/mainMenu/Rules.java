@@ -2,11 +2,18 @@ package mainMenu;
 
 import java.io.IOException;
 
+import desktop_resources.GUI;
+
 public class Rules {
 
-	private String fileName = "resources/rules/Regler.txt";
+	private String fileName;
 
 
+	public Rules()
+	{
+		String path = System.getProperty("user.dir")+"\\resources\\rules\\Regler.txt";
+		fileName = path;
+	}
 	public void open()
 	{
 		ProcessBuilder pb = new ProcessBuilder("Notepad.exe", fileName);
