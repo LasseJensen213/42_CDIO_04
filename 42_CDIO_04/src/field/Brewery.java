@@ -1,13 +1,17 @@
 package field;
 
+import java.awt.Color;
+
 public class Brewery extends Ownable{
 	private int rent;
 	String image;
+	Color color;
 	
-	public Brewery(String desc, String subtext, String title, int pos, int price, int rent, String image) {
+	public Brewery(String desc, String subtext, String title, int pos, int price, int rent, String image, Color color) {
 		super(desc, subtext, title,  pos, price);
 			this.rent = rent;
 			this.image = image;
+			this.color = color;
 	}
 
 	public int getRent() {
@@ -20,6 +24,13 @@ public class Brewery extends Ownable{
 
 	public String getImage() {
 		return image;
+	}
+
+	
+	
+	
+	public Color getColor() {
+		return color;
 	}
 
 	@Override

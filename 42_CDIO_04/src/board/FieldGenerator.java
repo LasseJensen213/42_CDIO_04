@@ -74,14 +74,16 @@ public class FieldGenerator {
 			,grønningenRent,kgsNytorvRent,bredgadeRent,østergadeRent,vimmelskaftetRent,amagertorvRent,nygadeRent,frederiksberggadeRent,rådhuspladsenRent};
 	private final static int territoryPlace[] = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
 	private final static int territorySeriesMax[] = {2,3,3,3,3,3,3,2};
-	private final static Color territoryColor[] = {Color.BLUE,Color.ORANGE,Color.GREEN, Color.GRAY,Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
+	private final static Color orangeColor = new Color(237, 123, 16);
+	private final static Color territoryColor[] = {Color.BLUE,orangeColor,Color.GREEN, Color.GRAY,Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
 	
 
 	private final static int breweryPrice[] = {3000,3000};
 	private final static int breweryBaseRent[] = {100,100};
 	private final static int breweryPlace[] = {12,28};
-	private final static String breweryPic[] = {"/Images/pics/TuborgSquash.png","src/Images/pics/CocaCola.jpg"};
-
+	private final static String breweryPic[] = {"resources/pics/TuborgSquash.png","resources/pics/CocaCola.jpg"};
+	private final static Color breweryColor = new Color(42, 237, 16);
+	
 	//Fleet related information.
 	private final static int fleetPrice[] = {4000,4000,4000,4000};
 	private final static int fleetPlace[] = {5,15,25,35};
@@ -95,14 +97,14 @@ public class FieldGenerator {
 	//Chance related information
 	private final static int chancePlace[] = {2,7,17,22,33,36};
 
-
+	private final static String parkingLotImage = "resources/pics/Redcar.gif";
 
 
 	public static void initFields() {
 		territoryFields = new Territory[22];
 		breweryFields = new Brewery[2];
 		fleetFields = new Fleet[4];
-		parkingLotField = new ParkingLot("","","",0);
+		parkingLotField = new ParkingLot("","","",0,"");
 		jailField = new Jail("","","",0);
 		startField = new Start("","","",0);
 		taxFields = new Tax[2];
@@ -182,6 +184,7 @@ public class FieldGenerator {
 		String desc = "";
 		String subtext = "";
 		String title = "";
+		Color color;
 		int pos = 0;
 		int price = 0;
 		int rent = 0;
@@ -195,8 +198,10 @@ public class FieldGenerator {
 			price = breweryPrice[i];
 			rent = breweryBaseRent[i];
 			image = breweryPic[i];
+			color = breweryColor;
+			
 
-			breweryFields[i] = new Brewery(desc,subtext,title,pos,price,rent,image);
+			breweryFields[i] = new Brewery(desc,subtext,title,pos,price,rent,image,color);
 		}
 	}
 
@@ -232,8 +237,9 @@ public class FieldGenerator {
 		String desc = strBank.getField34Description();
 		String subtext = strBank.getField34subtext();
 		String title = strBank.getField34Name();
+		String image = parkingLotImage;
 		int pos = 20;
-		parkingLotField = new ParkingLot(desc,subtext,title,pos);
+		parkingLotField = new ParkingLot(desc,subtext,title,pos,image);
 
 	}
 
