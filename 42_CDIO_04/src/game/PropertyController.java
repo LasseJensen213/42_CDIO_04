@@ -311,10 +311,10 @@ public class PropertyController {
 									tradeAmount = 0;
 								}
 								else if(amountOption.equals(Stringbanks_Property.get(30))){
-									tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(27));
+									tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(27), 0, players[i].getAccount().getBalance());
 								}
 								else{
-									tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(29));
+									tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(29), 0, player.getAccount().getBalance());
 									tradeOption = false;
 								}
 						if(otherPlayersField!=null)
