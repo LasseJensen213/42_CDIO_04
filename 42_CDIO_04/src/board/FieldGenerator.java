@@ -82,7 +82,7 @@ public class FieldGenerator {
 	private final static int breweryBaseRent[] = {100,100};
 	private final static int breweryPlace[] = {12,28};
 	private final static String breweryPic[] = {"resources/pics/TuborgSquash.png","resources/pics/CocaCola.jpg"};
-	private final static Color breweryColor = new Color(42, 237, 16);
+	private final static Color breweryColor = new Color(24, 160, 6);
 	
 	//Fleet related information.
 	private final static int fleetPrice[] = {4000,4000,4000,4000};
