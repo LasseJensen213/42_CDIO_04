@@ -167,14 +167,10 @@ public class LandOnFieldController {
 			LandOnFieldBoundary.displayMessage(4);
 		}
 		else {
-<<<<<<< HEAD
-			int rent = player.getTotalFaceValue()*100;
-=======
 			int rent = player.getTotalFaceValue()*f.getRent()*100;
 			if(player.getProperty().nBreweriesOwned()==2) {
 				rent = rent*2;
 			}
->>>>>>> branch 'develop' of https://github.com/LasseJensen213/42_CDIO_04.git
 			
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
