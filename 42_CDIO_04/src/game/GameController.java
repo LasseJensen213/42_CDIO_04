@@ -4,7 +4,6 @@ import board.Board;
 import boundary.GameControllerBoundary;
 import card.CardDeck;
 import card.Cardgenerator;
-import desktop_resources.GUI;
 import player.PlayerCreation;
 import player.PlayerList;
 
@@ -43,7 +42,7 @@ public class GameController {
 			{
 				gLogic.normalTurn(pList.get(playerIndex));
 			}
-
+			
 			updateAllBalance();
 			//Checks to see if the player gets an extra turn
 			if(pList.get(playerIndex).getEqualFaceValue()>0)

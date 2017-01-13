@@ -2,10 +2,12 @@ package field;
 
 public class Brewery extends Ownable{
 	private int rent;
+	String image;
 	
-	public Brewery(String desc, String subtext, String title, int pos, int price, int rent) {
+	public Brewery(String desc, String subtext, String title, int pos, int price, int rent, String image) {
 		super(desc, subtext, title,  pos, price);
 			this.rent = rent;
+			this.image = image;
 	}
 
 	public int getRent() {
@@ -14,6 +16,10 @@ public class Brewery extends Ownable{
 
 	public void setRent(int rent) {
 		this.rent = rent;
+	}
+
+	public String getImage() {
+		return image;
 	}
 
 	@Override

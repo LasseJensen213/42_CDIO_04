@@ -1,7 +1,6 @@
 package player;
 
 import desktop_codebehind.Car;
-import dice.Dice;
 import dice.DiceCup;
 
 public class Player 

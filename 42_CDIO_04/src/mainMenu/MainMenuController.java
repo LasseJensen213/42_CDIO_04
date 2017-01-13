@@ -9,7 +9,7 @@ public class MainMenuController {
 	public void MainMenu()
 	{
 
-		Board board = Board.Board();
+		Board board = Board.board();
 		board.generateBoard();
 		GameController game = new GameController();
 
@@ -33,9 +33,11 @@ public class MainMenuController {
 			else
 			{
 				if(gui.confirmInput())
+					ingame = false;
 					break;
 			}
 		}
+		gui.close();
 	}
 
 }

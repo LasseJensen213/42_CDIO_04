@@ -21,7 +21,7 @@ public class Board {
 	field.Field[] ourFields = new field.Field[40];
 	Field[] fields = new Field[40];
 
-	public static Board Board() {
+	public static Board board() {
 		if(INSTANCE == null) 
 			INSTANCE = new Board();
 		return INSTANCE;
@@ -31,8 +31,9 @@ public class Board {
 	}
 	
 	public void generateBoard() {
-		FieldGenerator fg = new FieldGenerator();
+		FieldGenerator.initFields();
 
+				
 		int territoryReached = 0;
 		int fleetReached = 0;
 		int taxReached = 0;
@@ -41,6 +42,7 @@ public class Board {
 		String desc = "";
 		String subtext = "";
 		String title = "";
+		String image = "";
 		Color fgColor = Color.BLACK;
 		Color bgColor = Color.BLACK;
 		for(int i = 0;i<fields.length;i++) {
@@ -62,9 +64,11 @@ public class Board {
 				title = FieldGenerator.getTerritoryFields(territoryReached).getTitle();
 				fgColor = FieldGenerator.getFgColors(i);
 				bgColor = FieldGenerator.getTerritoryFields(territoryReached).getColor();
+				int price = FieldGenerator.getTerritoryFields(territoryReached).getPrice();
+				String priceString = "Kr. "+ price;
 
 				ourFields[i] = FieldGenerator.getTerritoryFields(territoryReached);
-				fields[i] = new Street.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setRent("1 hus = ghetto\n 2 huse = 500valuta").setBgColor(bgColor).setFgColor(fgColor).build();
+				fields[i] = new Street.Builder().setDescription(desc).setSubText(priceString).setTitle(title).setBgColor(bgColor).setFgColor(fgColor).build();
 				territoryReached++;
 			}
 			else if(breweryReached<2  && (FieldGenerator.getBreweryFields(breweryReached).getFieldPosition()==i)) {
@@ -73,9 +77,10 @@ public class Board {
 				title = FieldGenerator.getBreweryFields(breweryReached).getTitle();
 				fgColor = FieldGenerator.getFgColors(i);
 				Color color = new Color(5,81,0);
+				image = FieldGenerator.getBreweryFields(breweryReached).getImage();
 
 				ourFields[i] = FieldGenerator.getBreweryFields(breweryReached);
-				fields[i] = new Brewery.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setBgColor(color).setFgColor(fgColor).build();
+				fields[i] = new Brewery.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setPicture(image).setBgColor(color).setFgColor(fgColor).build();
 				breweryReached++;
 			}
 
@@ -121,13 +126,13 @@ public class Board {
 
 			}
 			else if(FieldGenerator.getParkingLotField().getFieldPosition()==i) {
-				desc = FieldGenerator.getParkingLotField().getDesc();
+				desc = String.format(FieldGenerator.getParkingLotField().getDesc(), 0);
 				subtext = FieldGenerator.getParkingLotField().getSubtext();
 				title = FieldGenerator.getParkingLotField().getTitle();
 				Color color = new Color(193,255,188);
 
 				ourFields[i] = FieldGenerator.getParkingLotField();
-				fields[i] = new Refuge.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setPicture("src/Images/Redcar.gif").setBgColor(color).setFgColor(fgColor).build();
+				fields[i] = new Refuge.Builder().setDescription(desc).setSubText(subtext).setTitle(title).setPicture("src/images/Redcar.gif").setBgColor(color).setFgColor(fgColor).build();
 			}
 			else if(taxReached<2 && (FieldGenerator.getTaxFields(taxReached).getFieldPosition()==i)) {
 				desc = FieldGenerator.getTaxFields(taxReached).getDesc();

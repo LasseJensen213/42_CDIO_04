@@ -176,7 +176,7 @@ public class PropertyController {
 			}
 			else if(choice.equals(Stringbanks_Property.get(19)))
 				sellAssets(player);
-			else if(choice.equals(Stringbanks_Property.get(23))) {
+			else if(choice.equals(Stringbanks_Property.get(23)) && gui.confirmSurrender()) {
 				player.setBroke(true);
 				break;
 			}
@@ -193,6 +193,7 @@ public class PropertyController {
 	 */
 	public void buyHouse(Player player)
 	{
+		
 		while(true)
 		{	
 			String options[] = new String[0];
@@ -542,7 +543,8 @@ public class PropertyController {
 			for(int inner = 0; inner<series[outer].length;inner++)
 			{
 				if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
-					result = addToArray(result, series[outer][inner]);
+					if(!series[outer][inner].isPawned())
+						result = addToArray(result, series[outer][inner]);
 			}
 
 		}

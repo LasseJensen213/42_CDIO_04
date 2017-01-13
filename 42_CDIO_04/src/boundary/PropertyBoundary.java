@@ -52,6 +52,12 @@ public class PropertyBoundary {
 		return GUI.getUserButtonPressed(String.format(Stringbanks_Property.get(3), playerName), options);
 	}
 	
+	public static void housePrice(int pris) {
+		String message = "Hver hus koster %d <br> Hvert hotel koster %d + 4 huse";
+		message = String.format(message, pris, pris);
+		GUI.showMessage(message);
+	}
+	
 	public boolean confirmTrade(String opposingPlayer, String otherPlayersField, String yourField)
 	{
 		return GUI.getUserLeftButtonPressed(String.format(Stringbanks_Property.get(7), opposingPlayer,otherPlayersField,yourField), 
@@ -83,5 +89,11 @@ public class PropertyBoundary {
 	public void pawnField(int fieldNumber)
 	{
 		GUI.setSubText(fieldNumber+1, Stringbanks_Property.get(20));
+	}
+	
+	public boolean confirmSurrender()
+	{
+		return GUI.getUserLeftButtonPressed(Stringbanks_Property.get(24), 
+											Stringbanks_Property.get(25), Stringbanks_Property.get(26));
 	}
 }

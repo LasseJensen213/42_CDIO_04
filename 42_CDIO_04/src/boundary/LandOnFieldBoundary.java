@@ -23,10 +23,24 @@ public class LandOnFieldBoundary {
 	}
 	
 	public static void payOtherPlayer(String s, int i) {
-		String message = "De skal betale %s %d kroner.";
+		String message = "De skal betale %s Kr. %d.";
 		message = String.format(message,s, i);
 		GUI.showMessage(message);
 		
+	}
+	
+	public static boolean chooseTax() {
+		boolean statement = false;
+		String[] choices = {"4000","10% af alt hvad de ejer"};
+		String message = "Vælg imellem at betale";		
+		
+		String input = GUI.getUserSelection(message, choices);
+		if(input.equals(choices[0])) {
+			statement = true;
+		}
+		else if(input.equals(choices[1]))
+			statement = false;
+		return statement;
 	}
 	
 	public static void payTax(int rent) {
@@ -40,7 +54,19 @@ public class LandOnFieldBoundary {
 		message = String.format(message, rent, name);
 		GUI.showMessage(message);
 	}
-		
+	
+	public static void youLandOn(String name) {
+		String message = "De landede på %s";
+		message = String.format(message, name);
+		GUI.showMessage(message);
+	}
+	
+	public static void parkingLotMoney(int money) {
+		String message = "De tager pengene på Parkeringspladsen. Modtag %d";
+		message = String.format(message, money);
+		GUI.showMessage(message);
+	}
+	
 	/**
 	 * Displays a message, when a player lands on a field. <br>
 	 * 0 : landOnJail  <br> 
@@ -53,11 +79,21 @@ public class LandOnFieldBoundary {
 	 */
 	public static void displayMessage(int number) {
 		Stringbanks_LandOnFieldBoundary s = new Stringbanks_LandOnFieldBoundary();
-		
-		GUI.showMessage(s.getMessages(number));
+		if(number==3) {
+			GUI.getUserButtonPressed(s.getMessages(number), "Træk");
+		}
+		else
+			GUI.showMessage(s.getMessages(number));
 	}
 	
 	public static void displayCard(String txt) {
+		GUI.setChanceCard(txt);
 		GUI.displayChanceCard(txt);
+	}
+	
+	public static boolean cantAffordToBuy()
+	{
+		Stringbanks_LandOnFieldBoundary s = new Stringbanks_LandOnFieldBoundary();
+		return GUI.getUserLeftButtonPressed(s.getMessages(5), s.getMessages(6), s.getMessages(7));
 	}
 }

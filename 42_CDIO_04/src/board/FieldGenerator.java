@@ -35,31 +35,11 @@ public class FieldGenerator {
 	private static Chance[] chanceFields;
 	private static GoToJail goToJailField;
 
+
 	public FieldGenerator() {
-		territoryFields = new Territory[22];
-		breweryFields = new Brewery[2];
-		fleetFields = new Fleet[4];
-		parkingLotField = new ParkingLot("","","",0);
-		jailField = new Jail("","","",0);
-		startField = new Start("","","",0);
-		taxFields = new Tax[2];
-		chanceFields = new Chance[6];
-		goToJailField = new GoToJail("","","",0);
-
-		FieldGenerator.initBreweryFields();
-		FieldGenerator.initChance();
-		FieldGenerator.initFleetFields();
-		FieldGenerator.initGoToJail();
-		FieldGenerator.initJail();
-		FieldGenerator.initParkingLot();
-		FieldGenerator.initStart();
-		FieldGenerator.initTax();
-		FieldGenerator.initTerritoryFields();
-		FieldGenerator.initBgColor();
-		FieldGenerator.initFgColor();
-
-
-	}
+		}
+	
+	
 	//Territory related information.
 	//Rent:
 	private final static int hvidovrevejRent[] = {50,250,750,2250,4000,6000};
@@ -90,7 +70,7 @@ public class FieldGenerator {
 	
 	private final static int territoryPrice[] = {1200,1200,2000,2000,2400,2800,2800,3200,3600,3600,4000,4400,4400,4800,5200,5200,5600,6000,6000,6400,7000,8000};
 	private final static int territoryRent[][] = {hvidovrevejRent,rødovrevejRent,roskildevejRent,valbyLanggadeRent,allégadeRent,frederiksbergAlléRent
-			,bülowsvejRent,glKongevejRent,bernstoffsvejRent,hellerupvejRent,hellerupvejRent,strandvejenRent,trianglenRent,østerbrogadeRent
+			,bülowsvejRent,glKongevejRent,bernstoffsvejRent,hellerupvejRent,strandvejenRent,trianglenRent,østerbrogadeRent
 			,grønningenRent,kgsNytorvRent,bredgadeRent,østergadeRent,vimmelskaftetRent,amagertorvRent,nygadeRent,frederiksberggadeRent,rådhuspladsenRent};
 	private final static int territoryPlace[] = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
 	private final static int territorySeriesMax[] = {2,3,3,3,3,3,3,2};
@@ -100,6 +80,7 @@ public class FieldGenerator {
 	private final static int breweryPrice[] = {3000,3000};
 	private final static int breweryBaseRent[] = {100,100};
 	private final static int breweryPlace[] = {12,28};
+	private final static String breweryPic[] = {"src/Images/TuborgSquash.png","src/Images/CocaCola.jpg"};
 
 	//Fleet related information.
 	private final static int fleetPrice[] = {4000,4000,4000,4000};
@@ -117,7 +98,30 @@ public class FieldGenerator {
 
 
 
+	public static void initFields() {
+		territoryFields = new Territory[22];
+		breweryFields = new Brewery[2];
+		fleetFields = new Fleet[4];
+		parkingLotField = new ParkingLot("","","",0);
+		jailField = new Jail("","","",0);
+		startField = new Start("","","",0);
+		taxFields = new Tax[2];
+		chanceFields = new Chance[6];
+		goToJailField = new GoToJail("","","",0);
 
+		FieldGenerator.initBreweryFields();
+		FieldGenerator.initChance();
+		FieldGenerator.initFleetFields();
+		FieldGenerator.initGoToJail();
+		FieldGenerator.initJail();
+		FieldGenerator.initParkingLot();
+		FieldGenerator.initStart();
+		FieldGenerator.initTax();
+		FieldGenerator.initTerritoryFields();
+		FieldGenerator.initBgColor();
+		FieldGenerator.initFgColor();
+		
+	}
 
 
 
@@ -132,20 +136,21 @@ public class FieldGenerator {
 			fgColors[i] = Color.BLACK;
 		}
 	}
-	public static void initTerritoryFields() {
+	public static void initTerritoryFields() {		
 		String desc = "";
 		String subtext = "";
 		String title = "";
 		int pos = 0;
 		int price = 0;
-		int rent[] = new int[6];
+		
 		Color color = Color.BLACK;
 		int seriesMax = 0;
 		int seriesMaxReached = 0;
 		int counter = 0;
 		int housePrice = 0;
-		//(String desc, String subtext, String title, int pos, int price, int rent, int series, Color color) 
 		for(int i = 0;i<territoryFields.length;i++) {
+			int rent[] = new int[6];
+
 			desc = strBank.getTerritoryDescArray(i);
 			subtext = strBank.getTerritorySubtextArray(i);
 			title = strBank.getTerritoryNameArray(i);
@@ -153,6 +158,7 @@ public class FieldGenerator {
 			for(int r = 0;r<6;r++) {
 				rent[r] = territoryRent[i][r];
 			}
+			
 			price = territoryPrice[i];
 			
 			
@@ -179,6 +185,7 @@ public class FieldGenerator {
 		int pos = 0;
 		int price = 0;
 		int rent = 0;
+		String image = "";
 
 		for(int i = 0;i<breweryFields.length;i++) {
 			desc = strBank.getBreweryDescriptionArray(i);
@@ -187,8 +194,9 @@ public class FieldGenerator {
 			pos = breweryPlace[i];
 			price = breweryPrice[i];
 			rent = breweryBaseRent[i];
+			image = breweryPic[i];
 
-			breweryFields[i] = new Brewery(desc,subtext,title,pos,price,rent);
+			breweryFields[i] = new Brewery(desc,subtext,title,pos,price,rent,image);
 		}
 	}
 

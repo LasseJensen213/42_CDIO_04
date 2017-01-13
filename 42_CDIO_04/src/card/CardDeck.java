@@ -2,9 +2,6 @@ package card;
 
 import java.util.Random;
 
-import board.Board;
-import desktop_fields.Field;
-
 public class CardDeck {
 		
 	//The Active deck is the one you draw cards from,
@@ -34,7 +31,7 @@ public class CardDeck {
 		usedDeck = new Card[0];
 	}
 	
-	public static CardDeck CardDeck() {
+	public static CardDeck cardDeck() {
 		if(INSTANCE == null) 
 			INSTANCE = new CardDeck();
 		return INSTANCE;

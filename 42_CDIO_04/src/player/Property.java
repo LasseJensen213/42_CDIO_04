@@ -4,6 +4,7 @@ package player;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import card.Bail;
 import card.Card;
 import field.Brewery;
 import field.Fleet;
@@ -140,6 +141,7 @@ public class Property {
 			{
 				newBailCards[i-1] = bailCards[i];
 			}
+			((Bail)bailCards[0]).setInUse(false);;
 			bailCards = newBailCards;
 		}
 	}

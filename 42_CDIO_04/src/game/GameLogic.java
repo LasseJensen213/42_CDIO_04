@@ -2,9 +2,11 @@ package game;
 
 import java.util.ArrayList;
 
+import board.FieldGenerator;
 import boundary.GameLogicBoundary;
 import desktop_resources.GUI;
 import dice.DiceCup;
+import field.ParkingLot;
 import game.LandOnFieldController;
 import player.Player;
 import stringbanks.Stringbanks_GameLogic;
@@ -54,6 +56,7 @@ public class GameLogic {
 				gui.goToJail();
 				player.setJailed(true);
 				player.setEqualFaceValue(0);
+				player.setPassedStart(false);
 				int distance;
 				distance = (40-player.getPlayerPos()+10)%40;
 				gui.movePlayerModel(player.getName(), player.getPlayerPos(), distance);
@@ -67,6 +70,8 @@ public class GameLogic {
 				updatePlayerPos(player,d1+d2);
 				landOn.landOnField(player);
 				GUI.setBalance(player.getName(), player.getAccount().getBalance());
+				FieldGenerator.getParkingLotField();
+				GUI.setDescriptionText(21, String.format(FieldGenerator.getParkingLotField().getDesc(), ParkingLot.getTaxMoney()));
 			}
 			
 			if(player.getAccount().getBalance()<=0)
@@ -82,6 +87,7 @@ public class GameLogic {
 			}
 		}
 		else if(player.isBroke()) {
+			//message "player is broke"
 			gui.playerIsBroke(player.getName());
 			playerIsBroke(player);
 		}
@@ -151,6 +157,7 @@ public class GameLogic {
 		{
 			player.setJailed(false);
 			player.setTimeInJail(0);
+			player.getProperty().removeCard();
 		}
 
 	}
@@ -159,40 +166,46 @@ public class GameLogic {
 	{
 		player.setBroke(true);
 		player.getAccount().setBalance(0);
+		player.setEqualFaceValue(0);
 		int nTer = player.getProperty().nTerritoriesOwned();
 		//First loops over the territories, since the houses has to be freed aswell
 		for(int i = 0 ; i<nTer;i++)
 		{
-			player.getProperty().getTerritory(i).
-			freeOwner(player, player.getProperty().getTerritory(i).getFieldPosition());
+			player.getProperty().getTerritory(0).setOwner(null);
+			player.getProperty().getField(0).setPawned(false);
+			GUI.setSubText(player.getProperty().getField(0).getFieldPosition(), "Kr. " + player.getProperty().getField(0).getPrice());
+			bank.noBuildings(player.getProperty().getTerritory(0).getFieldPosition());
 
+			gui.removeOwner(player.getProperty().getTerritory(0).getFieldPosition());
 
-			gui.removeOwner(player.getProperty().getTerritory(i).getFieldPosition());
-
-			int housesUsed = player.getProperty().getTerritory(i).getHouse();
+			int housesUsed = player.getProperty().getTerritory(0).getHouse();
 			if(housesUsed == 5)
 			{
-				player.getProperty().getTerritory(i).setHouse(0);
+				player.getProperty().getTerritory(0).setHouse(0);
 				bank.hotelsFreed(1);
+				
 			}
 			else{
-				bank.housesFreed(housesUsed);;
-				player.getProperty().getTerritory(i).setHouse(0);
+				bank.housesFreed(housesUsed);
+				player.getProperty().getTerritory(0).setHouse(0);
 			}
-			player.getProperty().removeField(player.getProperty().getTerritory(i));
+			player.getProperty().removeField(player.getProperty().getTerritory(0));
+			
 		}
 
 		int restOfFields = player.getProperty().nFields();
 		for(int i = 0; i<restOfFields;i++)
 		{
-			player.getProperty().getField(i).freeOwner(player, 
-					player.getProperty().getField(i).getFieldPosition());
-			gui.removeOwner(player.getProperty().getField(i).getFieldPosition());
+			player.getProperty().getField(0).setOwner(null); 
+			player.getProperty().getField(0).setPawned(false);
+			GUI.setSubText(player.getProperty().getField(0).getFieldPosition(), "");
+			gui.removeOwner(player.getProperty().getField(0).getFieldPosition());
+			player.getProperty().removeField(player.getProperty().getField(0));
 		}
 
 		for(int i = 0 ; i<player.getProperty().nCards();i++)
 		{
-
+			player.getProperty().removeCard();
 		}
 		gui.removeCar(player.getName(),player.getPlayerPos());
 	}
@@ -202,12 +215,13 @@ public class GameLogic {
 		for(int i = 0;i<distance;i++ )
 		{
 			player.setPlayerPos((player.getPlayerPos()+1)%40);
-			if(player.getPlayerPos()==0)
+			if(player.getPlayerPos()==1)
 			{
 				if(player.isPassedStart())
 				{
 					player.getAccount().deposit(4000);
 					gui.passedStart(player.getName());
+					gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
 				}
 				else
 					player.setPassedStart(true);
