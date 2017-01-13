@@ -30,6 +30,11 @@ public class PropertyController {
 
 
 
+	/**
+	 * the menu for selling houses/hotels, pawning fields or lifting the pawn.<br>
+	 * This is usually called from the buyAssets()menu but can be called independently<br>
+	 * @param player
+	 */
 	public void sellAssets(Player player)
 	{
 		while(true)
@@ -67,6 +72,8 @@ public class PropertyController {
 		}
 	}
 
+	
+	
 	public void pawnAField(Player player, Ownable field)
 	{
 		while(true)
@@ -135,6 +142,14 @@ public class PropertyController {
 
 		}
 	}
+	/**
+	 * When this method is called the player will gain access to a property menu.<br>
+	 * In this menu the player can choose to buy houses/hotels, pawn fields or released the pawned field.<br>
+	 * The player can also trade his owned fields for another player's <br>
+	 * It is a form of super menu that uses the sub menus buyHouse(), 
+	 * buyHotel(),tradeWithPlayer() and sellAssets()<br>
+	 * @param player = the player whose turn it is<br>
+	 */
 	public void buyAssets(Player player)
 	{
 		while(true)
