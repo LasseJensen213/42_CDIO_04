@@ -15,7 +15,7 @@ public class CardEffect {
 	public CardEffect()
 	{
 		doubleRent = false;
-		board = Board.Board();
+		board = Board.board();
 	}
 
 	public void cardEffectBail(Player player, Bail card){

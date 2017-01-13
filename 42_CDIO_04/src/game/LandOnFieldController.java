@@ -23,10 +23,10 @@ import field.Territory;
 import player.Player;
 
 public class LandOnFieldController {
-	CardDeck cardDeck = CardDeck.CardDeck();
+	CardDeck cardDeck = CardDeck.cardDeck();
 	CardEffect cE = new CardEffect();
 	Card card;
-	Board b = Board.Board();
+	Board b = Board.board();
 	PropertyController pawnMenu = new PropertyController();
 
 

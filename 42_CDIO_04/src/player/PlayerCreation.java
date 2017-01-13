@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import desktop_codebehind.Car;
-import desktop_codebehind.Car.Builder;
 import desktop_resources.GUI;
 import stringbanks.Stringbanks_PlayerCreation;
 
