@@ -4,7 +4,6 @@ import board.Board;
 import boundary.GameControllerBoundary;
 import card.CardDeck;
 import card.Cardgenerator;
-import desktop_resources.GUI;
 import player.PlayerCreation;
 import player.PlayerList;
 

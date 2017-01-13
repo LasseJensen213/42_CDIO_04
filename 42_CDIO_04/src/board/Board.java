@@ -12,7 +12,6 @@ import desktop_fields.Start;
 import desktop_fields.Street;
 import desktop_fields.Tax;
 import desktop_resources.GUI;
-import field.Territory;
 
 public class Board {
 	private static Board INSTANCE ; 
@@ -22,7 +21,7 @@ public class Board {
 	field.Field[] ourFields = new field.Field[40];
 	Field[] fields = new Field[40];
 
-	public static Board Board() {
+	public static Board board() {
 		if(INSTANCE == null) 
 			INSTANCE = new Board();
 		return INSTANCE;
