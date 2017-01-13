@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Rules {
 
-	private String fileName = System.getProperty("user.dir")+"/Dokumentation/Regler.txt";
+	private String fileName = "resources/rules/Regler.txt";
 
 
 	public void open()
