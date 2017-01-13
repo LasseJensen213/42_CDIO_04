@@ -22,7 +22,7 @@ public class BoardTest {
 	@Test
 	public void generateBoardtest() {
 		FieldGenerator.initFields();
-		Board b = Board.Board();
+		Board b = Board.board();
 		b.generateBoard();
 
 
