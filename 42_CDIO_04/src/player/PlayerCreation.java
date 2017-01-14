@@ -48,7 +48,7 @@ public class PlayerCreation {
 			int balance = 30000;
 			Color color = getColor(chooseColor());
 
-			Car car = new Car.Builder().primaryColor(color).typeTractor().build();
+			Car car = new Car.Builder().primaryColor(color).typeCar().build();
 			pList.addPlayer(name, car, balance);
 			pCB.addPlayer(name,balance,car);
 			
