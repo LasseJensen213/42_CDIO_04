@@ -39,6 +39,7 @@ public class GameLogic {
 			diceCup.rollDice();
 			d1 = diceCup.getDiceValue(0);
 			d2 = diceCup.getDiceValue(1);
+			player.setTotalFaceValue(d1+d2);
 			gui.showDiceRolling(d1,d2);
 
 			if(d1==d2)

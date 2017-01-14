@@ -167,7 +167,8 @@ public class LandOnFieldController {
 			LandOnFieldBoundary.displayMessage(4);
 		}
 		else {
-			int rent = player.getTotalFaceValue()*f.getRent()*100;
+			int rent = player.getTotalFaceValue()*f.getRent();
+
 			if(player.getProperty().nBreweriesOwned()==2) {
 				rent = rent*2;
 			}
