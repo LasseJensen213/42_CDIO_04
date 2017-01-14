@@ -30,14 +30,20 @@ public class MainMenuController {
 			{
 				gui.gameRules();
 			}
-			else
+			else if(input.equals(Stringbanks_MainMenu.getString(4)))
 			{
-				if(gui.confirmInput())
+				if(gui.confirmInput()) {
 					ingame = false;
-					break;
+				}
 			}
 		}
 		gui.close();
+
+	
+	
+	
+	
+	
 	}
 
 }
