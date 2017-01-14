@@ -426,7 +426,7 @@ public class PropertyController {
 
 	public int cheapestHousePrice(Territory[] territories)
 	{
-		int result = 500000;
+		int result = territories[0].getHousePrice();
 		for(Territory t : territories)
 		{
 			if(t.getHousePrice()<result)
@@ -527,7 +527,6 @@ public class PropertyController {
 	{
 
 
-		//Placeholder for the different ID's
 		Color[] id = {Color.BLUE,Color.ORANGE,Color.GREEN, Color.GRAY,Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
 		ArrayList<Color> completeSeries = new ArrayList<Color>();
 		for(int i = 0; i<id.length; i++)
