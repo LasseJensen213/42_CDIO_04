@@ -7,7 +7,6 @@ import card.Bail;
 import card.Card;
 import card.CardDeck;
 import card.CardEffect;
-import card.Cardgenerator;
 import card.GoToJailCard;
 import card.MovePlayer;
 import card.TransferMoney;
@@ -24,10 +23,10 @@ import field.Territory;
 import player.Player;
 
 public class LandOnFieldController {
-	CardDeck cardDeck = CardDeck.CardDeck();
+	CardDeck cardDeck = CardDeck.cardDeck();
 	CardEffect cE = new CardEffect();
 	Card card;
-	Board b = Board.Board();
+	Board b = Board.board();
 	PropertyController pawnMenu = new PropertyController();
 
 
@@ -116,12 +115,15 @@ public class LandOnFieldController {
 
 			int houses = f.getHouse();
 			int rent = f.getRent(houses);
-			if(houses == 0 && player.getProperty().completeSeries(f.getColor())) {
+			if(houses == 0 && f.getOwner().getProperty().completeSeries(f.getColor()) && 
+					!f.getOwner().getProperty().seriesHasPawnedFields(f.getColor()))
+			{
 				rent = rent*2;
 			}
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOwner(rent, f.getOwner().getName());
+			rent = rent/2;
 		}
 	}
 
@@ -167,10 +169,16 @@ public class LandOnFieldController {
 			LandOnFieldBoundary.displayMessage(4);
 		}
 		else {
-			int rent = player.getTotalFaceValue()*f.getRent()*100;
+			int rent = player.getTotalFaceValue()*f.getRent();
+
+			if(player.getProperty().nBreweriesOwned()==2) {
+				rent = rent*2;
+			}
+			
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
+			rent = rent/2;
 		}
 	}
 
@@ -227,12 +235,12 @@ public class LandOnFieldController {
 			//Here due to a chancecard
 			if(doubleRent) {
 				rent = rent*2;
-				doubleRent = false;
 			}
 
 			player.getAccount().transfer(rent, f.getOwner().getAccount());
 			LandOnFieldBoundary.payOtherPlayer(f.getOwner().getName(), rent);
 		}
+		doubleRent = false;
 	}
 
 	/**
@@ -319,7 +327,7 @@ public class LandOnFieldController {
 		card = cardDeck.draw();
 		LandOnFieldBoundary.displayCard(card.getDescription());
 		if(card instanceof Bail) {
-			//cE.cardEffectBail(player, (Card)card);
+			cE.cardEffectBail(player, (Bail)card);
 		}
 		else if(card instanceof GoToJailCard) {
 			CardEffectBoundary.youDraw();

@@ -9,7 +9,7 @@ public class MainMenuController {
 	public void MainMenu()
 	{
 
-		Board board = Board.Board();
+		Board board = Board.board();
 		board.generateBoard();
 		GameController game = new GameController();
 
@@ -30,14 +30,20 @@ public class MainMenuController {
 			{
 				gui.gameRules();
 			}
-			else
+			else if(input.equals(Stringbanks_MainMenu.getString(4)))
 			{
-				if(gui.confirmInput())
+				if(gui.confirmInput()) {
 					ingame = false;
-					break;
+				}
 			}
 		}
 		gui.close();
+
+	
+	
+	
+	
+	
 	}
 
 }

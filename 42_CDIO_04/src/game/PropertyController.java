@@ -19,6 +19,8 @@ public class PropertyController {
 	private Bank bank;
 	private PropertyBoundary gui; 
 	private PlayerList pList;
+	private Color orangeColor = new Color(237, 123, 16);
+	private Color id[] = {Color.BLUE,orangeColor,Color.GREEN, Color.GRAY,Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
 
 	public PropertyController()
 	{
@@ -30,6 +32,11 @@ public class PropertyController {
 
 
 
+	/**
+	 * the menu for selling houses/hotels, pawning fields or lifting the pawn.<br>
+	 * This is usually called from the buyAssets()menu but can be called independently<br>
+	 * @param player
+	 */
 	public void sellAssets(Player player)
 	{
 		while(true)
@@ -38,10 +45,17 @@ public class PropertyController {
 			int nFields = player.getProperty().nFields();
 			for(int i = 0; i<nFields;i++)
 			{
-				if(player.getProperty().getField(i).isPawned() && player.getProperty().getField(i).getPrice()/2<player.getAccount().getBalance())
-					options = addToArray(options, player.getProperty().getField(i).getTitle()+Stringbanks_Property.get(22));
+				if(player.getProperty().getField(i).isPawned())
+				{
+					if(player.getProperty().getField(i).getPrice()/2<player.getAccount().getBalance())
+					{
+						options = addToArray(options, player.getProperty().getField(i).getTitle()+Stringbanks_Property.get(22));
+					}
+				}
 				else
+				{
 					options = addToArray(options, player.getProperty().getField(i).getTitle());
+				}
 			}
 
 			if(player.getAccount().getBalance()>0)
@@ -67,6 +81,8 @@ public class PropertyController {
 		}
 	}
 
+
+
 	public void pawnAField(Player player, Ownable field)
 	{
 		while(true)
@@ -85,12 +101,13 @@ public class PropertyController {
 				options = addToArray(options, Stringbanks_Property.get(16));
 			else
 			{
+				//The menu options are added here
 				Territory t = (Territory)field;
 				if(t.getHouse()==5)
 					options = addToArray(options, Stringbanks_Property.get(17));
-				else if(t.getHouse()<=4 && t.getHouse()>0)
+				else if(t.getHouse()>0 && t.getHouse() == player.getProperty().highestNumOfHousesInSeries(t.getColor()))
 					options = addToArray(options, Stringbanks_Property.get(18));
-				else
+				else if(t.getHouse() == 0)
 					options = addToArray(options, Stringbanks_Property.get(16));
 			}
 			options = addToArray(options, Stringbanks_Property.get(5));
@@ -101,6 +118,7 @@ public class PropertyController {
 				break;
 			else if(choice.equals(Stringbanks_Property.get(16)))
 			{
+				//Player has chosen to pawn the field
 				field.setPawned(true);
 				player.getAccount().deposit(field.getPrice()/2);
 				gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
@@ -108,6 +126,7 @@ public class PropertyController {
 			}
 			else if(choice.equals(Stringbanks_Property.get(17)))
 			{
+				//Player has chosen to sell the hotel
 				Territory t = (Territory)field;
 				t.removeHouse(1);
 				gui.updateHotelPlacement(t.getFieldPosition(), false);
@@ -117,6 +136,7 @@ public class PropertyController {
 			}
 			else if(choice.equals(Stringbanks_Property.get(21)))
 			{
+				//Player has chosen to release the pawned field
 				field.setPawned(false);
 				player.getAccount().withdraw(field.getPrice()/2);
 				GUI.setSubText(field.getFieldPosition()+1, "");
@@ -125,6 +145,7 @@ public class PropertyController {
 			}
 			else
 			{
+				//Player has chosen to sell a house
 				Territory t = (Territory)field;
 				t.removeHouse(1);
 				gui.updateHouseCount(t.getFieldPosition(), t.getHouse());
@@ -135,6 +156,14 @@ public class PropertyController {
 
 		}
 	}
+	/**
+	 * When this method is called the player will gain access to a property menu.<br>
+	 * In this menu the player can choose to buy houses/hotels, pawn fields or released the pawned field.<br>
+	 * The player can also trade his owned fields for another player's <br>
+	 * It is a form of super menu that uses the sub menus buyHouse(), 
+	 * buyHotel(),tradeWithPlayer() and sellAssets()<br>
+	 * @param player = the player whose turn it is<br>
+	 */
 	public void buyAssets(Player player)
 	{
 		while(true)
@@ -193,7 +222,7 @@ public class PropertyController {
 	 */
 	public void buyHouse(Player player)
 	{
-		
+
 		while(true)
 		{	
 			String options[] = new String[0];
@@ -284,6 +313,8 @@ public class PropertyController {
 		{
 			Player[] players = validPlayersToTradeWith(player);
 			String[] options = new String[0];
+			int tradeAmount;
+			boolean tradeOption = true;
 			for(int i = 0; i<players.length;i++)
 			{
 				options = addToArray(options,players[i].getName());
@@ -306,6 +337,21 @@ public class PropertyController {
 						Ownable otherPlayersField = chooseAssetForTrade(players[i]);
 						if(otherPlayersField!=null)
 						{
+							String amountOption = PropertyBoundary.tradeAmountOption();
+							if(amountOption.equals(Stringbanks_Property.get(5))){
+								break;
+							}
+
+							else if(amountOption.equals(Stringbanks_Property.get(31))){
+								tradeAmount = 0;
+							}
+							else if(amountOption.equals(Stringbanks_Property.get(30))){
+								tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(27), 0, players[i].getAccount().getBalance());
+							}
+							else{
+								tradeAmount = GUI.getUserInteger(Stringbanks_Property.get(28), 0, player.getAccount().getBalance());
+								tradeOption = false;
+							}
 							if(gui.confirmTrade(players[i].getName(),otherPlayersField.getTitle(),yourField.getTitle()))
 							{
 								yourField.setOwner(players[i]);
@@ -316,6 +362,14 @@ public class PropertyController {
 								players[i].getProperty().removeField(otherPlayersField);
 								players[i].getProperty().addField(yourField);
 								gui.setOwner(players[i].getName(), yourField.getFieldPosition());
+								if(tradeOption == true){
+									players[i].getAccount().transfer(tradeAmount, player.getAccount());
+								}
+								if(tradeOption == false){
+									player.getAccount().transfer(tradeAmount, players[i].getAccount());
+								}
+								gui.updatePlayerBalance(player.getName(), player.getAccount().getBalance());
+								gui.updatePlayerBalance(players[i].getName(), players[i].getAccount().getBalance());
 								if(yourField.isPawned())
 									gui.pawnField(yourField.getFieldPosition());
 								if(otherPlayersField.isPawned())
@@ -386,7 +440,7 @@ public class PropertyController {
 
 	public int cheapestHousePrice(Territory[] territories)
 	{
-		int result = 500000;
+		int result = 5000000;
 		for(Territory t : territories)
 		{
 			if(t.getHousePrice()<result)
@@ -487,9 +541,8 @@ public class PropertyController {
 	{
 
 
-		//Placeholder for the different ID's
-		Color[] id = {Color.BLUE,Color.ORANGE,Color.GREEN, Color.GRAY,Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
 		ArrayList<Color> completeSeries = new ArrayList<Color>();
+		//First checking which complete groups the player has
 		for(int i = 0; i<id.length; i++)
 		{
 			if(p.getProperty().completeSeries(id[i]))
@@ -497,56 +550,30 @@ public class PropertyController {
 				completeSeries.add(id[i]);
 			}
 		}
-
-		// a 2-dimensional array has to be uses here since territories are grouped by some ID
-		// on the game board this is color that they've got in common
-		Territory[][] series = new Territory[0][0];
-		int[][] numOfHousesSeries = new int[0][0];
-		Territory[] singleSeries = new Territory[0];
-		int[] numOfHouses = new int[0];
-
+		Territory[] result = new Territory[0];
+		//First loop goes through each color, then through each territory of 
+		//that color and checking whether the player can afford the house and
+		//whether the number of houses is equal to the lowest number of houses in that series
+		//This makes sure that the player can only build an even distribution of houses
 		for(int i = 0; i<completeSeries.size();i++)
 		{
-			int smallestNumOfHouses = 4;
+			int lowH = p.getProperty().lowestNumOfHousesInSeries(completeSeries.get(i)); // The lowest number of houses in the series
 			int numberOfFieldsInSeries = p.getProperty().getTerritoryOfId(completeSeries.get(i), 0).getSeriesMax();
-			singleSeries = new Territory[0];
-			numOfHouses = new int[0];
-
-			for(int k = 0; k<numberOfFieldsInSeries;k++)
+			if(lowH<4)
 			{
-				int housePrice = p.getProperty().getTerritoryOfId(completeSeries.get(i), k).getHousePrice();
-				if(housePrice<p.getAccount().getBalance())
+				for(int k = 0; k<numberOfFieldsInSeries;k++)
 				{
-					singleSeries =  addToArray(singleSeries, p.getProperty().getTerritoryOfId(completeSeries.get(i), k));
+					int housePrice = p.getProperty().getTerritoryOfId(completeSeries.get(i), k).getHousePrice();	
+					if(housePrice<p.getAccount().getBalance() && 
+							p.getProperty().getTerritoryOfId(completeSeries.get(i), k).getHouse() == lowH &&
+							!p.getProperty().getTerritoryOfId(completeSeries.get(i), k).isPawned())
+					{
 
-					int houseCount = singleSeries[k].getHouse();
-					numOfHouses = addToArray(numOfHouses,houseCount);
+						result =  addToArray(result, p.getProperty().getTerritoryOfId(completeSeries.get(i), k));
+					}
 
-					if(houseCount<smallestNumOfHouses)
-						smallestNumOfHouses = houseCount;
 				}
-
 			}
-			//The last index in the numOfHouses array is the smallest number of houses of that series
-			//This is needed to be known since there has to be an equal distribution of houses
-			series = addToTwoDimensionalArray(series, singleSeries);
-			numOfHouses = addToArray(numOfHouses, smallestNumOfHouses);
-			numOfHousesSeries = addToTwoDimensionalArray(numOfHousesSeries,numOfHouses);
-
-		}
-		Territory[] result = new Territory[0];
-		for(int outer = 0; outer<completeSeries.size();outer++)
-		{
-			if(numOfHousesSeries[outer][numOfHousesSeries[outer].length-1]>=4)
-				continue;
-
-			for(int inner = 0; inner<series[outer].length;inner++)
-			{
-				if(numOfHousesSeries[outer][inner]==numOfHousesSeries[outer][numOfHousesSeries[outer].length-1])
-					if(!series[outer][inner].isPawned())
-						result = addToArray(result, series[outer][inner]);
-			}
-
 		}
 		return result;
 
@@ -560,13 +587,38 @@ public class PropertyController {
 	 */
 	public Territory[] getValidHotelsUpgrades(Player p)
 	{
-		Territory[] result = new Territory[0];
-		int nTer = p.getProperty().nTerritoriesOwned();
-		for(int i = 0; i<nTer;i++)
+		ArrayList<Color> completeSeries = new ArrayList<Color>();
+		//First checking which complete groups the player has
+		for(int i = 0; i<id.length; i++)
 		{
-			if(p.getProperty().getTerritory(i).getHouse()==4)
+			if(p.getProperty().completeSeries(id[i]))
 			{
-				result = addToArray(result,p.getProperty().getTerritory(i));
+				completeSeries.add(id[i]);
+			}
+		}
+		Territory[] result = new Territory[0];
+		//First loop goes through each color, then through each territory of 
+		//that color and checking whether the player can afford the hotel and
+		//whether the number of houses is equal to the lowest number of houses in that series
+		//The lowest number of houses has to be equal to 4 before a hotel can be build
+		for(int i = 0; i<completeSeries.size();i++)
+		{
+			int lowH = p.getProperty().lowestNumOfHousesInSeries(completeSeries.get(i));
+			if(lowH == 4)
+			{
+				int numberOfFieldsInSeries = p.getProperty().getTerritoryOfId(completeSeries.get(i), 0).getSeriesMax();
+				for(int k = 0; k<numberOfFieldsInSeries;k++)
+				{
+					int housePrice = p.getProperty().getTerritoryOfId(completeSeries.get(i), k).getHousePrice();	
+					if(housePrice<p.getAccount().getBalance() && 
+							p.getProperty().getTerritoryOfId(completeSeries.get(i), k).getHouse() == lowH &&
+							!p.getProperty().getTerritoryOfId(completeSeries.get(i), k).isPawned())
+					{
+
+						result =  addToArray(result, p.getProperty().getTerritoryOfId(completeSeries.get(i), k));
+					}
+
+				}
 			}
 		}
 		return result;

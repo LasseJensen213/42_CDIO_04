@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import boundary.PlayerCreationBoundary;
 import desktop_codebehind.Car;
-import desktop_codebehind.Car.Builder;
-import desktop_resources.GUI;
-import stringbanks.Stringbanks_PlayerCreation;
 
 public class PlayerCreation {
 
@@ -17,22 +15,22 @@ public class PlayerCreation {
 	private Map<String,Color>colorMap;
 	private Color[] colors = {Color.BLUE,Color.GREEN, Color.RED, Color.YELLOW, Color.WHITE, Color.PINK};
 
-	Stringbanks_PlayerCreation s = new Stringbanks_PlayerCreation();
 	PlayerList pList;
+	PlayerCreationBoundary pCB;
 
 
 
 
-	public PlayerCreation()
-	{	pList = PlayerList.getPL();
+	public PlayerCreation() {
+	pCB = new PlayerCreationBoundary();
+	pList = PlayerList.getPL();
 	availableColors = new ArrayList<String>();
 	colorMap = new HashMap<String,Color>();
 	for(int i = 0; i<colors.length;i++)
 	{
-		availableColors.add(s.getColors(i));
-		colorMap.put(s.getColors(i), colors[i]);
+		availableColors.add(pCB.getColors(i));
+		colorMap.put(pCB.getColors(i), colors[i]);
 	}
-
 
 	}
 
@@ -50,10 +48,11 @@ public class PlayerCreation {
 			int balance = 30000;
 			Color color = getColor(chooseColor());
 
-			Car car = new Car.Builder().primaryColor(color).typeTractor().build();
+			Car car = new Car.Builder().primaryColor(color).typeCar().build();
 			pList.addPlayer(name, car, balance);
-			GUI.addPlayer(name, balance, car);
-			GUI.setCar(1, name);
+			pCB.addPlayer(name,balance,car);
+			
+			
 
 		}
 
@@ -69,19 +68,19 @@ public class PlayerCreation {
 		int nPlayersInList = pList.getPlayerList().size();
 		while(true)
 		{
-			String name = GUI.getUserString(s.getMessages(0));
+			String name = pCB.getUserString(0);
 			if(name.length()>16)
 			{
-				GUI.showMessage(s.getMessages(1));
+				pCB.showMessage(1);;
 				continue;
 			}
 			else if(name.length()==0)
 			{
-				name = s.getMessages(2)+" "+(nPlayersInList+1);
+				name = pCB.getMessages(2)+" "+(nPlayersInList+1);
 			}
 			if(pList.nameTaken(name))
 			{
-				GUI.showMessage(s.getMessages(3));
+				pCB.showMessage(3);
 			}
 			else 
 				return name;
@@ -95,7 +94,7 @@ public class PlayerCreation {
 
 	public String chooseColor() {
 		String[] colorArr = availableColors.toArray(new String[]{});
-		String color = GUI.getUserSelection(s.getMessages(4),colorArr);
+		String color = pCB.chooseColor(colorArr);
 
 		//removes colors already chosen by other players
 		availableColors.remove(color);
@@ -106,6 +105,6 @@ public class PlayerCreation {
 
 	public int chooseNPlayers()
 	{
-		return Integer.parseInt(GUI.getUserSelection(s.getMessages(5), new String[]{"2","3","4","5","6"}));
+		return pCB.chooseNPlayers();
 	}
 }

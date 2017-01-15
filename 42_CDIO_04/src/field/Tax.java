@@ -1,7 +1,5 @@
 package field;
 
-import java.awt.Image;
-
 public class Tax extends Field{
 	
 	private int tax;

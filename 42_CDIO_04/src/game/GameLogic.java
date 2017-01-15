@@ -2,9 +2,11 @@ package game;
 
 import java.util.ArrayList;
 
+import board.FieldGenerator;
 import boundary.GameLogicBoundary;
 import desktop_resources.GUI;
 import dice.DiceCup;
+import field.ParkingLot;
 import game.LandOnFieldController;
 import player.Player;
 import stringbanks.Stringbanks_GameLogic;
@@ -37,6 +39,7 @@ public class GameLogic {
 			diceCup.rollDice();
 			d1 = diceCup.getDiceValue(0);
 			d2 = diceCup.getDiceValue(1);
+			player.setTotalFaceValue(d1+d2);
 			gui.showDiceRolling(d1,d2);
 
 			if(d1==d2)
@@ -68,11 +71,13 @@ public class GameLogic {
 				updatePlayerPos(player,d1+d2);
 				landOn.landOnField(player);
 				GUI.setBalance(player.getName(), player.getAccount().getBalance());
+				FieldGenerator.getParkingLotField();
+				GUI.setDescriptionText(21, String.format(FieldGenerator.getParkingLotField().getDesc(), ParkingLot.getTaxMoney()));
 			}
 			
 			if(player.getAccount().getBalance()<=0)
 			{
-				if(player.getProperty().totalValueOfAssets()/2>Math.abs(player.getAccount().getBalance()))
+				if(player.getProperty().totalValueOfSellableAssets()/2>Math.abs(player.getAccount().getBalance()))
 					prop.sellAssets(player);
 			}
 			//Checking if the player managed to sell enough assets
@@ -126,7 +131,7 @@ public class GameLogic {
 
 				if(player.getAccount().getBalance()<=0)
 				{
-					if(player.getProperty().totalValueOfAssets()/2>Math.abs(player.getAccount().getBalance()))
+					if(player.getProperty().totalValueOfSellableAssets()/2>Math.abs(player.getAccount().getBalance()))
 						prop.sellAssets(player);
 				}
 				//Checking if the player managed to sell enough assets
@@ -169,7 +174,9 @@ public class GameLogic {
 		{
 			player.getProperty().getTerritory(0).setOwner(null);
 			player.getProperty().getField(0).setPawned(false);
-			GUI.setSubText(player.getProperty().getField(0).getFieldPosition(), "");
+			GUI.setSubText(player.getProperty().getField(0).getFieldPosition(), "Kr. " + player.getProperty().getField(0).getPrice());
+			bank.noBuildings(player.getProperty().getTerritory(0).getFieldPosition());
+
 			gui.removeOwner(player.getProperty().getTerritory(0).getFieldPosition());
 
 			int housesUsed = player.getProperty().getTerritory(0).getHouse();
@@ -177,12 +184,14 @@ public class GameLogic {
 			{
 				player.getProperty().getTerritory(0).setHouse(0);
 				bank.hotelsFreed(1);
+				
 			}
 			else{
-				bank.housesFreed(housesUsed);;
+				bank.housesFreed(housesUsed);
 				player.getProperty().getTerritory(0).setHouse(0);
 			}
 			player.getProperty().removeField(player.getProperty().getTerritory(0));
+			
 		}
 
 		int restOfFields = player.getProperty().nFields();

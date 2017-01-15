@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 public class Territory extends Ownable {
 	private int house;
-	private String id;
 	private int seriesMax;
 	private Color color;
 	private int rent[];

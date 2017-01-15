@@ -22,16 +22,31 @@ public class Property {
 
 	}
 
+	/**
+	 * 
+	 * @return
+	 * total number of fields owned
+	 */
 	public int nFields()
 	{
 		return fieldsOwned.length;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * number of Bail cards held
+	 */
 	public int nCards()
 	{
 		return bailCards.length;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * number of breweries owned
+	 */
 	public int nBreweriesOwned()
 	{
 		int result = 0;
@@ -47,6 +62,10 @@ public class Property {
 
 	}
 	
+	/**
+	 * 
+	 * @return Number of territories owned
+	 */
 	public int nTerritoriesOwned()
 	{
 		int result = 0;
@@ -59,6 +78,11 @@ public class Property {
 		return result;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * Number of fleets owned
+	 */
 	public int nFleetsOwned()
 	{
 		int result = 0;
@@ -73,6 +97,10 @@ public class Property {
 		return result;
 	}
 
+	/**
+	 * adds the field to the end of the field array
+	 * @param newlyOwned
+	 */
 	public void addField(Ownable newlyOwned)
 	{
 		Ownable[] newOwnableArr = new Ownable[nFields()+1];
@@ -96,6 +124,10 @@ public class Property {
 
 	}
 
+	/**
+	 * Removes the field in the array, thus making the array shorter
+	 * @param notOwned
+	 */
 	public void removeField(Ownable notOwned)
 	{
 
@@ -128,6 +160,7 @@ public class Property {
 	}
 	/**
 	 * removes one bail out card from the players cards
+	 * and sets the InUse to false
 	 */
 	public void removeCard()
 	{
@@ -255,6 +288,10 @@ public class Property {
 	}
 
 	
+	/**
+	 * Adds a card to the players hand, the cards should only be Bail cards
+	 * @param newCard
+	 */
 	public void addCard(Card newCard) {
 		Card[] card = new Card[bailCards.length+1];
 		for(int i = 0;i<bailCards.length;i++) {
@@ -345,6 +382,12 @@ public class Property {
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * the  total sum of all the player's owned field's prices 
+	 * and the price of the houses/hotels on the player's fields
+	 */
 	public int totalValueOfAssets()
 	{
 		int result = 0;
@@ -366,6 +409,73 @@ public class Property {
 		}
 		return result;
 	}
+	
+	/**
+	 * This is totalValueOfAssets but with the price of pawned fields subtracted
+	 * @return
+	 */
+	public int totalValueOfSellableAssets()
+	{
+		int result = totalValueOfAssets();
+		int nFields = nFields();
+		for(int i = 0; i<nFields;i++)
+		{
+			if(getField(i).isPawned())
+				result-=getField(i).getPrice();
+		}
+		return result;
+	}
+	
+	
+	
+	/**
+	 * Used for the menu where you buy houses/hotels
+	 * @param series
+	 * @return
+	 */
+	public int lowestNumOfHousesInSeries(Color series)
+	{
+		int nTer = nParticularSeries(series); //- The number of territories with the color
+		int minHouses = 6;
+		for(int i = 0; i<nTer;i++)
+		{
+			int nHouse = getTerritoryOfId(series,i).getHouse();
+			if(nHouse<minHouses)
+				minHouses = nHouse;
+		}
+		return minHouses;
+	}
+	/**
+	 * Used for the menu where you sell houses/hotels
+	 * @param series
+	 * @return
+	 */
+	public int highestNumOfHousesInSeries(Color series)
+	{
+		int nTer = nParticularSeries(series);
+		int maxHouses = 0;
+		for(int i = 0; i<nTer;i++)
+		{
+			int nHouse = getTerritoryOfId(series,i).getHouse();
+			if(nHouse>maxHouses)
+				maxHouses = nHouse;
+		}
+		return maxHouses;
+	}
+	
+	public boolean seriesHasPawnedFields(Color series)
+	{
+		int nTer = nParticularSeries(series);
+		for(int i = 0; i<nTer;i++)
+		{
+			if(getTerritoryOfId(series, i).isPawned())
+				return true;
+		}
+		return false;
+	}
+
+	
+	
 	
 	
 	
