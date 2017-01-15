@@ -15,7 +15,7 @@ public class Stringbank_Card {
 	private static String pardon = "Ryk brikken frem til det nærmeste rederi"
 			+ " og betal ejeren to gange den leje, han ellers er berettiget til."
 			+ " Hvis selskabet ikke ejes af nogen, kan de købe det af banken";
-	private static String bailout = "I anledning af konges fødselsdag benådes "
+	private static String bailout = "I anledning af kongens fødselsdag benådes "
 			+ "De herved for fængsel. Dette kort kan opbevares, indtil"
 			+ " De får brug for det.";
 	private static String jailed = "Gå i fængsel. Ryk direkte til fængslet."

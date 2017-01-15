@@ -410,6 +410,73 @@ public class Property {
 		return result;
 	}
 	
+	/**
+	 * This is totalValueOfAssets but with the price of pawned fields subtracted
+	 * @return
+	 */
+	public int totalValueOfSellableAssets()
+	{
+		int result = totalValueOfAssets();
+		int nFields = nFields();
+		for(int i = 0; i<nFields;i++)
+		{
+			if(getField(i).isPawned())
+				result-=getField(i).getPrice();
+		}
+		return result;
+	}
+	
+	
+	
+	/**
+	 * Used for the menu where you buy houses/hotels
+	 * @param series
+	 * @return
+	 */
+	public int lowestNumOfHousesInSeries(Color series)
+	{
+		int nTer = nParticularSeries(series); //- The number of territories with the color
+		int minHouses = 6;
+		for(int i = 0; i<nTer;i++)
+		{
+			int nHouse = getTerritoryOfId(series,i).getHouse();
+			if(nHouse<minHouses)
+				minHouses = nHouse;
+		}
+		return minHouses;
+	}
+	/**
+	 * Used for the menu where you sell houses/hotels
+	 * @param series
+	 * @return
+	 */
+	public int highestNumOfHousesInSeries(Color series)
+	{
+		int nTer = nParticularSeries(series);
+		int maxHouses = 0;
+		for(int i = 0; i<nTer;i++)
+		{
+			int nHouse = getTerritoryOfId(series,i).getHouse();
+			if(nHouse>maxHouses)
+				maxHouses = nHouse;
+		}
+		return maxHouses;
+	}
+	
+	public boolean seriesHasPawnedFields(Color series)
+	{
+		int nTer = nParticularSeries(series);
+		for(int i = 0; i<nTer;i++)
+		{
+			if(getTerritoryOfId(series, i).isPawned())
+				return true;
+		}
+		return false;
+	}
+
+	
+	
+	
 	
 	
 	

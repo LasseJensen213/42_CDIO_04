@@ -77,7 +77,7 @@ public class GameLogic {
 			
 			if(player.getAccount().getBalance()<=0)
 			{
-				if(player.getProperty().totalValueOfAssets()/2>Math.abs(player.getAccount().getBalance()))
+				if(player.getProperty().totalValueOfSellableAssets()/2>Math.abs(player.getAccount().getBalance()))
 					prop.sellAssets(player);
 			}
 			//Checking if the player managed to sell enough assets
@@ -131,7 +131,7 @@ public class GameLogic {
 
 				if(player.getAccount().getBalance()<=0)
 				{
-					if(player.getProperty().totalValueOfAssets()/2>Math.abs(player.getAccount().getBalance()))
+					if(player.getProperty().totalValueOfSellableAssets()/2>Math.abs(player.getAccount().getBalance()))
 						prop.sellAssets(player);
 				}
 				//Checking if the player managed to sell enough assets

@@ -115,7 +115,9 @@ public class LandOnFieldController {
 
 			int houses = f.getHouse();
 			int rent = f.getRent(houses);
-			if(houses == 0 && player.getProperty().completeSeries(f.getColor())) {
+			if(houses == 0 && f.getOwner().getProperty().completeSeries(f.getColor()) && 
+					!f.getOwner().getProperty().seriesHasPawnedFields(f.getColor()))
+			{
 				rent = rent*2;
 			}
 
