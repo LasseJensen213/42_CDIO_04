@@ -129,10 +129,7 @@ public class CardEffect {
 		else if(card.equals(Cardgenerator.getCardDeckGenerator(44))){
 			player.setPlayerPos((player.getPlayerPos()+3)%40);
 		}
-		if(before > player.getPlayerPos()) {
-			player.getAccount().deposit(4000);
-		}
-
+	
 		if(!(card.equals(Cardgenerator.getCardDeckGenerator(37)) ||
 				card.equals(Cardgenerator.getCardDeckGenerator(38)))){
 			distance = (40-before+player.getPlayerPos())%40;
