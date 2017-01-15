@@ -342,7 +342,7 @@ public class PropertyController {
 								break;
 							}
 
-							else if(amountOption.equals(Stringbanks_Property.get(26))){
+							else if(amountOption.equals(Stringbanks_Property.get(31))){
 								tradeAmount = 0;
 							}
 							else if(amountOption.equals(Stringbanks_Property.get(30))){

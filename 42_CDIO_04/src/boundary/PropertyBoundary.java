@@ -1,8 +1,6 @@
 package boundary;
 
 import desktop_resources.GUI;
-import field.Ownable;
-import player.Player;
 import stringbanks.Stringbanks_Property;
 
 public class PropertyBoundary {
