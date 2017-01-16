@@ -61,7 +61,7 @@ public class FieldGenerator {
 	private final static int østergadeRent[] = {500,2400,7200,17000,20500,24000};
 	private final static int vimmelskaftetRent[] = {550,2600,7800,18000,22000,25000};
 	private final static int amagertorvRent[] = {550,2600,7800,18000,22000,25000};
-	private final static int nygadeRent[] = {600,4000,9000,19000,23000,26000};
+	private final static int nygadeRent[] = {600,3000,9000,20000,24000,28000};
 	private final static int frederiksberggadeRent[] = {700,3500,10000,22000,26000,30000};
 	private final static int rådhuspladsenRent[] = {1000,4000,12000,28000,34000,40000};
 	

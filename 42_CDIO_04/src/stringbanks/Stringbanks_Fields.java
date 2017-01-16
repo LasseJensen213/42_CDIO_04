@@ -134,8 +134,8 @@ public class Stringbanks_Fields {
 	private String field20subtext = "";
 	
 	private String field21Name = "Nygade";
-	private String field21Description = "Leje af grund: Kr. 600 <br> m/1 hus: 4.000"
-			+ "<br> m/2 huse: Kr. 9.000 <br> m/3 huse: Kr. 19.000 <br> m/4 huse: Kr. 23.000 <br> m/ hotel: Kr. 26.000"
+	private String field21Description = "Leje af grund: Kr. 600 <br> m/1 hus: 3.000"
+			+ "<br> m/2 huse: Kr. 9.000 <br> m/3 huse: Kr. 20.000 <br> m/4 huse: Kr. 24.000 <br> m/ hotel: Kr. 28.000"
 			+ "<br> Pantsætningsværdi: Kr. 3.200 <br> Hvert hus koster: Kr. 4.000";
 	private String field21subtext = "";
 	
