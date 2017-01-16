@@ -2,8 +2,6 @@ package mainMenu;
 
 import java.io.IOException;
 
-import desktop_resources.GUI;
-
 public class Rules {
 
 	private String fileName;

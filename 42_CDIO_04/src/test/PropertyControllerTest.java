@@ -1,14 +1,10 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import desktop_codebehind.Car;
-import field.Territory;
 import game.PropertyController;
-import player.Player;
-import player.PlayerList;
 
 public class PropertyControllerTest {
 
